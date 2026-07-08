@@ -1,13 +1,12 @@
-runtime: nodejs22
+name: dyau-ai
 
-env: standard
-instances: 1
-
-env_variables:
-  NODE_ENV: production
-  NPM_CONFIG_PRODUCTION: true
-  NPM_CONFIG_LOGLEVEL: error
-
-automatic_scaling:
-  min_instances: 1
-  max_instances: 5
+static_sites:
+  - name: web
+    github:
+      repo: Shivammishra0001/DYAU-AI
+      branch: main
+    source_dir: /
+    build_command: npm run build
+    output_dir: dist
+    index_document: index.html
+    error_document: index.html
