@@ -1,0 +1,13 @@
+runtime: nodejs22
+
+env: standard
+instances: 1
+
+env_variables:
+  NODE_ENV: production
+  NPM_CONFIG_PRODUCTION: true
+  NPM_CONFIG_LOGLEVEL: error
+
+automatic_scaling:
+  min_instances: 1
+  max_instances: 5

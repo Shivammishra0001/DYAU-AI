@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+src
+public
+.env
+.env.local
+dist
+*.tsbuildinfo
+tsconfig.json
+vite.config.ts
