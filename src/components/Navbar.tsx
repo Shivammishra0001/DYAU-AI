@@ -33,9 +33,14 @@ export default function Navbar() {
       >
         <Link
           to="/"
-          className="group flex shrink-0 items-center gap-1"
+          className="group flex shrink-0 items-center gap-3"
           aria-label="DYAU.AI home"
         >
+          <img
+            src="/images/logo.png"
+            alt="DYAU.AI logo"
+            className="h-10 w-10 object-cover"
+          />
           <span className="leading-none">
             <span className="flex items-end gap-0 text-[24px] font-black tracking-[0.02em] text-white">
               <span>DYAU</span>
