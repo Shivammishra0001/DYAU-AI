@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import SectionTitle from "../components/SectionTitle";
+import SectionTitle, { ColorizedWords } from "../components/SectionTitle";
 import { faqs, FaqAccordionItem } from "../data/content";
 
 export default function Contact() {
@@ -87,61 +87,61 @@ export default function Contact() {
 
   return (
     <>
-      {/* ───── Contact CTA ───── */}
       <section className="relative overflow-hidden px-5 pb-24 pt-44 md:px-8 md:pb-32 md:pt-52">
-        <div className="absolute left-1/3 top-1/4 h-[400px] w-[400px] rounded-full bg-violet-500/8 blur-3xl" />
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.45 }} transition={{ duration: 0.75 }}>
-            <p className="mb-5 text-sm font-medium uppercase tracking-[0.35em] text-cyan-300/80">Get Started</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-white md:text-6xl">Let's Build Something Extraordinary</h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.35em] text-brand-blue">Get Started</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-heading md:text-6xl">
+              <ColorizedWords text="Let's Build Something Extraordinary" />
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600 font-light">
               Whether you need AI strategy, a dedicated engineering team, or a custom product built from scratch — we're ready to help you move faster and smarter.
             </p>
             <div className="mt-8 space-y-4">
               <div className="flex flex-wrap gap-4">
                 <a
                   href="mailto:contact@dyau.ai"
-                  className="inline-flex items-center gap-3 rounded-full border border-cyan-300/20 bg-cyan-300/[0.08] px-5 py-3 text-sm font-medium text-cyan-100 transition hover:border-cyan-300/50 hover:bg-cyan-300/[0.12]"
+                  className="inline-flex items-center gap-3 rounded-full border border-brand-blue/20 bg-blue-50 px-5 py-3 text-sm font-medium text-brand-blue transition hover:border-brand-blue/50 hover:bg-blue-100/50"
                 >
                   <span className="font-semibold">Email:</span>
                   <span>contact@dyau.ai</span>
                 </a>
               </div>
               
-              <div className="flex flex-col gap-1.5 rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm text-slate-300 max-w-sm">
-                <span className="font-semibold text-cyan-300 uppercase tracking-wider text-xs">Office Address</span>
-                <span className="leading-relaxed mt-1 text-slate-300">
+              <div className="flex flex-col gap-1.5 rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-700 shadow-sm max-w-sm">
+                <span className="font-semibold text-brand-blue uppercase tracking-wider text-xs">Office Address</span>
+                <span className="leading-relaxed mt-1 text-slate-600">
                   68 CIRCULAR ROAD, #02-01,<br />SINGAPORE 049422
                 </span>
               </div>
 
-              <p className="text-sm text-slate-400">We typically reply within 1–2 business days.</p>
+              <p className="text-sm text-slate-500">We typically reply within 1–2 business days.</p>
             </div>
           </motion.div>
 
           {status === "success" ? (
             <motion.div 
-              className="rounded-[2rem] border border-cyan-500/20 bg-cyan-950/5 p-8 text-center backdrop-blur-2xl md:p-12 flex flex-col items-center justify-center min-h-[420px]"
+              className="rounded-[2rem] border border-green-200 bg-green-50/50 p-8 text-center backdrop-blur-2xl md:p-12 flex flex-col items-center justify-center min-h-[420px]"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-cyan-500/10 text-cyan-300 text-3xl mb-6 shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-brand-green text-3xl mb-6 shadow-[0_0_20px_rgba(52,168,83,0.1)]">
                 ✓
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
-              <p className="text-slate-300 max-w-md leading-relaxed text-sm">
+              <h3 className="text-2xl font-bold text-slate-900 mb-3">Message Sent!</h3>
+              <p className="text-slate-600 max-w-md leading-relaxed text-sm">
                 Thank you for reaching out. Your message has been sent successfully to our system. We will review your request and get back to you within 1-2 business days.
               </p>
               <button
                 onClick={() => setStatus("idle")}
-                className="mt-8 rounded-full border border-white/10 bg-white/[0.04] px-6 py-2.5 text-sm font-medium text-slate-300 transition hover:border-cyan-300/30 hover:bg-cyan-300/[0.08] hover:text-white cursor-pointer"
+                className="mt-8 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-sm font-medium text-slate-600 transition hover:border-brand-blue/30 hover:bg-blue-50 hover:text-brand-blue cursor-pointer"
               >
                 Send Another Message
               </button>
             </motion.div>
           ) : (
             <motion.form
-              className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-5 backdrop-blur-2xl md:p-8"
+              className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-lg backdrop-blur-2xl md:p-8"
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
@@ -157,7 +157,7 @@ export default function Contact() {
                     placeholder="Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-2xl border border-white/10 bg-[#050816]/55 px-4 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-[#050816]/80"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   />
                 </label>
                 <label className="block">
@@ -168,7 +168,7 @@ export default function Contact() {
                     placeholder="Email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full rounded-2xl border border-white/10 bg-[#050816]/55 px-4 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-[#050816]/80"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   />
                 </label>
                 <label className="block">
@@ -178,7 +178,7 @@ export default function Contact() {
                     placeholder="Phone"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full rounded-2xl border border-white/10 bg-[#050816]/55 px-4 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-[#050816]/80"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   />
                 </label>
                 <label className="block">
@@ -188,7 +188,7 @@ export default function Contact() {
                     placeholder="Company"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full rounded-2xl border border-white/10 bg-[#050816]/55 px-4 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-[#050816]/80"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   />
                 </label>
               </div>
@@ -197,7 +197,7 @@ export default function Contact() {
                 <select 
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full rounded-2xl border border-white/10 bg-[#050816]/55 px-4 py-4 text-slate-400 outline-none transition focus:border-cyan-300/60 focus:bg-[#050816]/80 [&:has(option:checked:not([value='']))]:text-white"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-500 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue [&:has(option:checked:not([value='']))]:text-slate-900"
                 >
                   <option value="">Select a service</option>
                   <option>AI Consulting</option>
@@ -217,14 +217,14 @@ export default function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full resize-none rounded-2xl border border-white/10 bg-[#050816]/55 px-4 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/60 focus:bg-[#050816]/80"
+                  className="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                 />
               </label>
               <div className="mt-6 flex flex-col gap-4 sm:flex-row">
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="rounded-full bg-white px-6 py-3.5 text-center text-sm font-semibold text-[#050816] transition hover:bg-cyan-100 disabled:opacity-50 cursor-pointer"
+                  className="rounded-full bg-brand-blue px-6 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50 cursor-pointer"
                 >
                   {status === "submitting" ? "Sending..." : "Send Message"}
                 </button>

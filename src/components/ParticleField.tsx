@@ -12,13 +12,22 @@ export default function ParticleField() {
 
     let frame = 0;
     let animationId = 0;
+
+    const logoColors = [
+      "rgba(26, 115, 232, 0.25)", // Blue
+      "rgba(234, 67, 53, 0.25)", // Red
+      "rgba(251, 188, 5, 0.3)",  // Yellow
+      "rgba(52, 168, 83, 0.25)"  // Green
+    ];
+
     const particles = Array.from({ length: 86 }, () => ({
       x: Math.random(),
       y: Math.random(),
       vx: (Math.random() - 0.5) * 0.00055,
       vy: (Math.random() - 0.5) * 0.00055,
-      size: Math.random() * 1.8 + 0.4,
+      size: Math.random() * 2.2 + 0.6,
       glow: Math.random() * 0.75 + 0.25,
+      color: logoColors[Math.floor(Math.random() * logoColors.length)],
     }));
 
     const resize = () => {
@@ -37,9 +46,9 @@ export default function ParticleField() {
       ctx.clearRect(0, 0, width, height);
 
       const gradient = ctx.createRadialGradient(width * 0.72, height * 0.24, 0, width * 0.72, height * 0.24, width * 0.58);
-      gradient.addColorStop(0, "rgba(79, 70, 229, 0.18)");
-      gradient.addColorStop(0.45, "rgba(6, 182, 212, 0.08)");
-      gradient.addColorStop(1, "rgba(5, 8, 22, 0)");
+      gradient.addColorStop(0, "rgba(26, 115, 232, 0.05)");
+      gradient.addColorStop(0.45, "rgba(52, 168, 83, 0.02)");
+      gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
@@ -53,7 +62,7 @@ export default function ParticleField() {
         const y = p.y * height;
         ctx.beginPath();
         ctx.arc(x, y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${0.18 + p.glow * 0.4})`;
+        ctx.fillStyle = p.color;
         ctx.fill();
 
         for (let j = index + 1; j < particles.length; j += 1) {
@@ -62,7 +71,7 @@ export default function ParticleField() {
           const oy = other.y * height;
           const distance = Math.hypot(x - ox, y - oy);
           if (distance < 118) {
-            ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 * (1 - distance / 118)})`;
+            ctx.strokeStyle = `rgba(26, 115, 232, ${0.08 * (1 - distance / 118)})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(x, y);
@@ -75,7 +84,7 @@ export default function ParticleField() {
       ctx.save();
       ctx.translate(width * 0.74, height * 0.48);
       ctx.rotate(frame);
-      ctx.strokeStyle = "rgba(139, 92, 246, 0.12)";
+      ctx.strokeStyle = "rgba(26, 115, 232, 0.05)";
       ctx.lineWidth = 1;
       for (let i = 0; i < 3; i += 1) {
         ctx.beginPath();
@@ -104,5 +113,5 @@ export default function ParticleField() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 -z-20 h-full w-full bg-[#050816]" aria-hidden="true" />;
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-20 h-full w-full bg-[#ffffff]" aria-hidden="true" />;
 }

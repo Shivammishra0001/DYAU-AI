@@ -26,26 +26,26 @@ export default function Navbar() {
       }`}
     >
       <nav
-        className={`mx-auto flex min-h-[76px] max-w-[1820px] items-center justify-between gap-3 rounded-[28px] border border-white/10 bg-[#07111f]/[0.82] px-5 py-3 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition-all duration-500 md:px-7 ${
-          scrolled ? "bg-[#07111f]/[0.9]" : ""
+        className={`mx-auto flex min-h-[76px] max-w-[1820px] items-center justify-between gap-3 rounded-[28px] border border-slate-200/80 bg-white/[0.82] px-5 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.04)] backdrop-blur-2xl transition-all duration-500 md:px-7 ${
+          scrolled ? "bg-white/[0.92]" : ""
         }`}
         aria-label="Main navigation"
       >
         <Link
           to="/"
-          className="group flex shrink-0 items-center gap-3"
-          aria-label="DYAU.AI home"
+          className="group flex shrink-0 items-center gap-1.5"
+          aria-label="Dyau home"
         >
           <img
             src="/images/logo.png"
-            alt="DYAU.AI logo"
-            className="h-10 w-10 object-cover"
+            alt="Dyau logo"
+            className="h-12 w-12 object-cover"
           />
-          <span className="leading-none">
-            <span className="flex items-end gap-0 text-[24px] font-black tracking-[0.02em] text-white">
-              <span>DYAU</span>
-              <span className="text-cyan-300">.AI</span>
-            </span>
+          <span className="leading-none text-[25px] font-semibold tracking-[-0.04em] font-sans">
+            <span className="text-[#4285f4]">D</span>
+            <span className="text-[#ea4335]">y</span>
+            <span className="text-[#fbbc05]">a</span>
+            <span className="text-[#34a853]">u</span>
           </span>
         </Link>
 
@@ -54,8 +54,8 @@ export default function Navbar() {
             <Link
               key={item.href}
               to={item.href}
-              className={`rounded-full px-4 py-2.5 text-sm font-medium transition hover:bg-white/5 hover:text-white ${
-                location.pathname === item.href ? "bg-white/5 text-white" : "text-slate-300"
+              className={`rounded-full px-4 py-2.5 text-sm font-medium transition hover:bg-slate-100 hover:text-slate-900 ${
+                location.pathname === item.href ? "bg-blue-50 text-brand-blue" : "text-slate-600"
               }`}
             >
               {item.label}
@@ -68,8 +68,8 @@ export default function Navbar() {
             to="/contact"
             className={`rounded-full border px-5 py-3 text-sm font-medium transition ${
               location.pathname === "/contact"
-                ? "border-cyan-300/40 bg-white/[0.08] text-white"
-                : "border-white/10 bg-white/[0.04] text-slate-300 hover:border-cyan-300/40 hover:bg-white/[0.08] hover:text-white"
+                ? "border-brand-blue/30 bg-blue-50 text-brand-blue"
+                : "border-slate-200 bg-white text-slate-700 hover:border-brand-blue/40 hover:bg-blue-50/50 hover:text-brand-blue"
             }`}
           >
             Contact
@@ -77,7 +77,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:bg-white/10 hover:text-white lg:hidden"
+          className="grid h-12 w-12 place-items-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 lg:hidden"
           onClick={() => setMobileOpen((v: boolean) => !v)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
@@ -97,14 +97,14 @@ export default function Navbar() {
         animate={{ height: mobileOpen ? "auto" : 0, opacity: mobileOpen ? 1 : 0 }}
         className="mx-auto mt-3 max-w-[1820px] overflow-hidden lg:hidden"
       >
-        <div className="rounded-[28px] border border-white/10 bg-[#08111f]/95 p-4 shadow-2xl shadow-black/30 backdrop-blur-2xl">
+        <div className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-xl shadow-slate-200/50 backdrop-blur-2xl">
           <div className="grid gap-1 sm:grid-cols-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className={`rounded-2xl px-4 py-3 text-sm font-medium transition hover:bg-white/5 hover:text-white ${
-                  location.pathname === item.href ? "bg-white/5 text-white" : "text-slate-300"
+                className={`rounded-2xl px-4 py-3 text-sm font-medium transition hover:bg-slate-100 hover:text-slate-900 ${
+                  location.pathname === item.href ? "bg-blue-50 text-brand-blue" : "text-slate-600"
                 }`}
               >
                 {item.label}
@@ -114,7 +114,7 @@ export default function Navbar() {
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <Link
               to="/contact"
-              className="rounded-full border border-cyan-300/25 bg-white/[0.04] px-5 py-3 text-center text-sm font-semibold text-cyan-100 transition hover:border-cyan-200/60 hover:bg-cyan-300/10 hover:text-white"
+              className="rounded-full border border-brand-blue/30 bg-blue-50 px-5 py-3 text-center text-sm font-semibold text-brand-blue transition hover:border-brand-blue/60 hover:bg-brand-blue hover:text-white"
             >
               Contact
             </Link>

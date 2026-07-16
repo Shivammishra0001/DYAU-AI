@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation, Outlet } from "react-router-dom";
-import ParticleField from "./components/ParticleField";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -19,12 +18,10 @@ function ScrollToTop() {
   return null;
 }
 
-/* Shared layout: Navbar + ParticleField + Footer wrapping all pages */
+/* Shared layout: Navbar + Footer wrapping all pages */
 function Layout() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#050816] text-white selection:bg-cyan-300 selection:text-[#050816]">
-      <ParticleField />
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(5,8,22,0)_0%,rgba(5,8,22,0.68)_55%,#050816_100%)]" />
+    <div className="min-h-screen overflow-hidden bg-[#ffffff] text-slate-800 selection:bg-brand-blue selection:text-white">
       <Navbar />
       <main>
         <Outlet />

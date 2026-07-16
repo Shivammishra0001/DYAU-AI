@@ -302,19 +302,19 @@ export const caseStudies: CaseStudy[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    quote: "DYAU.AI transformed our entire data infrastructure. Their team integrated seamlessly with ours and delivered ahead of schedule. The AI pipeline they built now processes 10x the volume at half the cost.",
+    quote: "Dyau transformed our entire data infrastructure. Their team integrated seamlessly with ours and delivered ahead of schedule. The AI pipeline they built now processes 10x the volume at half the cost.",
     name: "Sarah Chen",
     title: "CTO",
     company: "MedVantage Health",
   },
   {
-    quote: "We needed 15 senior engineers fast. DYAU.AI staffed our team in under two weeks with talent that hit the ground running. The quality and cultural fit exceeded every expectation.",
+    quote: "We needed 15 senior engineers fast. Dyau staffed our team in under two weeks with talent that hit the ground running. The quality and cultural fit exceeded every expectation.",
     name: "Marcus Rivera",
     title: "VP of Engineering",
     company: "FinScale Technologies",
   },
   {
-    quote: "From strategy to deployment, the DYAU.AI team delivered a custom AI solution that automated 70% of our manual processes. Their expertise in AI governance gave our board the confidence to scale.",
+    quote: "From strategy to deployment, the Dyau team delivered a custom AI solution that automated 70% of our manual processes. Their expertise in AI governance gave our board the confidence to scale.",
     name: "Dr. Ananya Patel",
     title: "Chief Digital Officer",
     company: "GlobalRetail Corp",
@@ -357,7 +357,7 @@ export const faqs: FaqItem[] = [
 export function FaqAccordionItem({ q, a, isOpen, onClick }: { q: string; a: string; isOpen: boolean; onClick: () => void }) {
   return (
     <motion.div
-      className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl transition-colors duration-300 hover:border-cyan-300/20"
+      className="rounded-2xl border border-slate-200 bg-white shadow-sm transition-colors duration-300 hover:border-brand-blue/30"
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
@@ -365,14 +365,14 @@ export function FaqAccordionItem({ q, a, isOpen, onClick }: { q: string; a: stri
     >
       <button
         onClick={onClick}
-        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer"
         aria-expanded={isOpen}
       >
-        <span className="text-base font-medium text-white md:text-lg">{q}</span>
+        <span className="text-base font-bold text-heading md:text-lg">{q}</span>
         <motion.span
           animate={{ rotate: isOpen ? 45 : 0 }}
           transition={{ duration: 0.25 }}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-cyan-300"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-brand-blue"
         >
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M12 5v14M5 12h14" />
@@ -388,7 +388,7 @@ export function FaqAccordionItem({ q, a, isOpen, onClick }: { q: string; a: stri
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="px-6 pb-5 text-sm leading-7 text-slate-400 md:text-base">{a}</p>
+            <p className="px-6 pb-5 text-sm leading-7 text-slate-600 md:text-base font-light">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>
