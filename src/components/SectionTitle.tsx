@@ -30,11 +30,17 @@ export default function SectionTitle({ eyebrow, title, text }: { eyebrow?: strin
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.75 }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
     >
-      {eyebrow ? <p className="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-brand-blue">{eyebrow}</p> : null}
+      {eyebrow ? (
+        <p className="mb-4 text-sm font-mono font-semibold uppercase tracking-[0.35em] text-brand-navy flex items-center justify-center gap-2">
+          <span className="h-1.5 w-1.5 bg-brand-blue inline-block shrink-0 rounded-sm shadow-[0_0_6px_rgba(26,115,232,0.3)]" />
+          <span>{eyebrow}</span>
+          <span className="h-1.5 w-1.5 bg-brand-blue inline-block shrink-0 rounded-sm shadow-[0_0_6px_rgba(26,115,232,0.3)]" />
+        </p>
+      ) : null}
       <h2 className="text-3xl font-semibold tracking-tight text-heading md:text-5xl">
-        {typeof title === "string" ? <ColorizedWords text={title} /> : title}
+        {title}
       </h2>
       {text ? <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg font-light">{text}</p> : null}
     </motion.div>

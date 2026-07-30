@@ -12,6 +12,10 @@ export interface ServiceItem {
   title: string;
   desc: string;
   features: string[];
+  date: string;
+  category: string;
+  headline: string;
+  longDesc: string[];
 }
 
 export interface WhyUsItem {
@@ -86,6 +90,14 @@ export const services: ServiceItem[] = [
     title: "AI Consulting",
     desc: "Strategic AI advisory that transforms your business operations with intelligent automation and data-driven insights.",
     features: ["AI Strategy & Roadmaps", "AI Governance & Ethics", "Generative AI Solutions", "Predictive Analytics"],
+    date: "July 24, 2026",
+    category: "Advisory",
+    headline: "Strategic cognitive roadmaps built for enterprise operations, blending predictive intelligence and governance frameworks.",
+    longDesc: [
+      "We work side-by-side with your leadership team to define high-impact AI opportunities, perform data-readiness audits, and establish rigorous risk-mitigation roadmaps. Our goal is to transform standard workflows into intelligent processes.",
+      "From generative AI integration to predictive analytics and custom model training, we deliver strategic blueprints that map tech capabilities directly to measurable business outcomes.",
+      "We also establish governance frameworks to ensure compliant, ethical, and secure deployments matching SOC 2 and GDPR standards."
+    ]
   },
   {
     icon: (
@@ -99,6 +111,14 @@ export const services: ServiceItem[] = [
     title: "Staffing Solutions",
     desc: "Access vetted, elite tech talent — from dedicated teams to contract and permanent hires for any scale.",
     features: ["Dedicated Development Teams", "Contract & Permanent Hiring", "Staff Augmentation", "Technical Screening"],
+    date: "June 30, 2026",
+    category: "Talent Solutions",
+    headline: "Access vetted, elite tech talent and specialized engineering squads to accelerate product delivery.",
+    longDesc: [
+      "Finding top-tier talent in AI engineering, quantum computing, and DevOps is one of the biggest bottlenecks for scaling organizations. We bridge this gap by offering elite technical placement and dedicated squads.",
+      "Our rigorous screening process, led by senior architects, ensures every developer and data scientist matches high technical standards and integrates seamlessly into your timezone.",
+      "Whether you need immediate staff augmentation, contract hires, or permanent placements, we supply top 2% engineering talent to keep your roadmap on schedule."
+    ]
   },
   {
     icon: (
@@ -111,6 +131,14 @@ export const services: ServiceItem[] = [
     title: "Product Development",
     desc: "End-to-end custom software, SaaS, and enterprise application development built for scale and performance.",
     features: ["Custom Software Development", "SaaS Development", "Enterprise Applications", "MVP & Prototyping"],
+    date: "June 28, 2026",
+    category: "Engineering",
+    headline: "End-to-end custom software engineering and SaaS platforms built for speed, resilience, and scale.",
+    longDesc: [
+      "We design, build, and deploy custom software products that solve complex business challenges. Our development team follows modern agile practices, delivering production-ready releases in rapid sprints.",
+      "From early MVP prototyping and user experience design to fully fledged enterprise SaaS architectures, we build robust products using React, Next.js, and Node.js.",
+      "Our codebases are optimized for high performance, maintaining modular architectures that scale effortlessly as your user base grows."
+    ]
   },
   {
     icon: (
@@ -121,6 +149,14 @@ export const services: ServiceItem[] = [
     title: "Cloud & DevOps",
     desc: "Architect, migrate, and optimize your cloud infrastructure with CI/CD pipelines and infrastructure as code.",
     features: ["Cloud Architecture & Migration", "CI/CD Pipeline Setup", "Kubernetes & Containers", "Infrastructure as Code"],
+    date: "May 15, 2026",
+    category: "Infrastructure",
+    headline: "Automated deployment pipelines and highly resilient, secure cloud infrastructure built for zero downtime.",
+    longDesc: [
+      "Modern applications require continuous integration, automated deployments, and self-healing environments. We build secure, production-grade cloud architectures on AWS, GCP, and Azure.",
+      "Using Infrastructure as Code (Terraform) and Kubernetes orchestration, we automate your infrastructure provisioning, ensuring high availability and disaster recovery.",
+      "We implement advanced CI/CD pipelines, containerized deployments, and continuous log monitoring to shorten release cycles and minimize deployment risks."
+    ]
   },
   {
     icon: (
@@ -132,6 +168,14 @@ export const services: ServiceItem[] = [
     title: "Data Engineering",
     desc: "Build robust data pipelines, warehouses, and real-time analytics platforms that power intelligent decisions.",
     features: ["Data Pipeline Architecture", "Data Warehousing", "Real-Time Analytics", "ETL/ELT Solutions"],
+    date: "May 08, 2026",
+    category: "Data Intelligence",
+    headline: "Robust data warehouses, pipelines, and real-time streaming engines designed to power analytics.",
+    longDesc: [
+      "Decisions are only as good as the data backing them. We design and implement scalable data architectures, real-time pipelines, and centralized warehouses that clean and aggregate your data.",
+      "Using Snowflake, Kafka, and Spark, we engineer robust pipelines that process millions of records with sub-second latency, feeding your analytics dashboards and ML training runs.",
+      "We also build metadata tracking, automated quality validation checks, and secure access layers to preserve data integrity and privacy across your organization."
+    ]
   },
   {
     icon: (
@@ -144,6 +188,14 @@ export const services: ServiceItem[] = [
     title: "AI Automation",
     desc: "Automate complex workflows with intelligent process automation, RPA, and AI-powered decision engines.",
     features: ["Intelligent Process Automation", "Robotic Process Automation", "Workflow Optimization", "AI Decision Engines", "AI Fullstack Development"],
+    date: "April 20, 2026",
+    category: "Automation",
+    headline: "Intelligent workflow automation and autonomous AI agents designed to replace manual processes.",
+    longDesc: [
+      "Repetitive, manual workflows lead to high operational costs and human errors. We build intelligent process automation engines and autonomous agents that streamline your operations.",
+      "By combining LLMs, custom API integrations, and robotic process automation (RPA), we automate complex tasks like contract analysis, customer support, and financial auditing.",
+      "Our autonomous agents run continuously, learning from user feedback loops to improve accuracy and optimize organizational efficiency."
+    ]
   },
 ];
 
@@ -302,19 +354,19 @@ export const caseStudies: CaseStudy[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    quote: "Dyau transformed our entire data infrastructure. Their team integrated seamlessly with ours and delivered ahead of schedule. The AI pipeline they built now processes 10x the volume at half the cost.",
+    quote: "DYAU AI transformed our entire data infrastructure. Their team integrated seamlessly with ours and delivered ahead of schedule. The AI pipeline they built now processes 10x the volume at half the cost.",
     name: "Sarah Chen",
     title: "CTO",
     company: "MedVantage Health",
   },
   {
-    quote: "We needed 15 senior engineers fast. Dyau staffed our team in under two weeks with talent that hit the ground running. The quality and cultural fit exceeded every expectation.",
+    quote: "We needed 15 senior engineers fast. DYAU AI staffed our team in under two weeks with talent that hit the ground running. The quality and cultural fit exceeded every expectation.",
     name: "Marcus Rivera",
     title: "VP of Engineering",
     company: "FinScale Technologies",
   },
   {
-    quote: "From strategy to deployment, the Dyau team delivered a custom AI solution that automated 70% of our manual processes. Their expertise in AI governance gave our board the confidence to scale.",
+    quote: "From strategy to deployment, the DYAU AI team delivered a custom AI solution that automated 70% of our manual processes. Their expertise in AI governance gave our board the confidence to scale.",
     name: "Dr. Ananya Patel",
     title: "Chief Digital Officer",
     company: "GlobalRetail Corp",

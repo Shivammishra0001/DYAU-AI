@@ -5,10 +5,10 @@ import { whyUs } from "../data/content";
 export default function WhyUs() {
   return (
     <>
-      <section className="relative overflow-hidden px-5 pb-16 pt-44 md:px-8 md:pt-52">
+      <section className="relative overflow-hidden px-5 pb-16 pt-28 md:px-8 md:pt-32">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Why Dyau"
+            eyebrow="Why DYAU AI"
             title="The Partner You Can Trust"
             text="We combine deep technical expertise with a proven delivery framework to ensure every engagement drives real business value."
           />
@@ -30,7 +30,7 @@ export default function WhyUs() {
               return (
                 <motion.div
                   key={item.title}
-                  className="group rounded-[2rem] border border-slate-200 bg-white p-6 shadow-md backdrop-blur-2xl transition duration-300 hover:border-brand-blue/30 hover:bg-blue-50/20 md:p-8"
+                  className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-md backdrop-blur-2xl transition duration-300 hover:border-brand-blue/30 hover:bg-blue-50/20 md:p-8"
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}

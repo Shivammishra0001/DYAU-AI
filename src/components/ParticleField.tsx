@@ -113,5 +113,5 @@ export default function ParticleField() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 -z-20 h-full w-full bg-[#ffffff]" aria-hidden="true" />;
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-20 h-full w-full bg-brand-cream" aria-hidden="true" />;
 }

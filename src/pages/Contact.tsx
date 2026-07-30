@@ -87,30 +87,30 @@ export default function Contact() {
 
   return (
     <>
-      <section className="relative overflow-hidden px-5 pb-24 pt-44 md:px-8 md:pb-32 md:pt-52">
+      <section className="relative overflow-hidden px-5 pb-24 pt-28 md:px-8 md:pb-32 md:pt-32">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.45 }} transition={{ duration: 0.75 }}>
-            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.35em] text-brand-blue">Get Started</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-heading md:text-6xl">
-              <ColorizedWords text="Let's Build Something Extraordinary" />
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.35em] text-slate-700">Get Started</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-heading md:text-6xl font-serif">
+              Let's Build Something Extraordinary
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600 font-light">
+            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-700 font-light font-sans">
               Whether you need AI strategy, a dedicated engineering team, or a custom product built from scratch — we're ready to help you move faster and smarter.
             </p>
             <div className="mt-8 space-y-4">
               <div className="flex flex-wrap gap-4">
                 <a
                   href="mailto:contact@dyau.ai"
-                  className="inline-flex items-center gap-3 rounded-full border border-brand-blue/20 bg-blue-50 px-5 py-3 text-sm font-medium text-brand-blue transition hover:border-brand-blue/50 hover:bg-blue-100/50"
+                  className="inline-flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50/80 cursor-pointer"
                 >
-                  <span className="font-semibold">Email:</span>
+                  <span className="font-semibold text-brand-charcoal">Email:</span>
                   <span>contact@dyau.ai</span>
                 </a>
               </div>
               
-              <div className="flex flex-col gap-1.5 rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-700 shadow-sm max-w-sm">
-                <span className="font-semibold text-brand-blue uppercase tracking-wider text-xs">Office Address</span>
-                <span className="leading-relaxed mt-1 text-slate-600">
+              <div className="flex flex-col gap-1.5 rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-700 shadow-sm max-w-sm">
+                <span className="font-semibold text-slate-700 uppercase tracking-wider text-xs">Office Address</span>
+                <span className="leading-relaxed mt-1 text-slate-700 font-light">
                   68 CIRCULAR ROAD, #02-01,<br />SINGAPORE 049422
                 </span>
               </div>
@@ -121,27 +121,27 @@ export default function Contact() {
 
           {status === "success" ? (
             <motion.div 
-              className="rounded-[2rem] border border-green-200 bg-green-50/50 p-8 text-center backdrop-blur-2xl md:p-12 flex flex-col items-center justify-center min-h-[420px]"
+              className="rounded-2xl border border-green-200 bg-green-50/50 p-8 text-center backdrop-blur-2xl md:p-12 flex flex-col items-center justify-center min-h-[420px]"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
             >
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-brand-green text-3xl mb-6 shadow-[0_0_20px_rgba(52,168,83,0.1)]">
                 ✓
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">Message Sent!</h3>
-              <p className="text-slate-600 max-w-md leading-relaxed text-sm">
+              <h3 className="text-2xl font-bold text-brand-charcoal mb-3">Message Sent!</h3>
+              <p className="text-slate-700 max-w-md leading-relaxed text-sm font-light">
                 Thank you for reaching out. Your message has been sent successfully to our system. We will review your request and get back to you within 1-2 business days.
               </p>
               <button
                 onClick={() => setStatus("idle")}
-                className="mt-8 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-sm font-medium text-slate-600 transition hover:border-brand-blue/30 hover:bg-blue-50 hover:text-brand-blue cursor-pointer"
+                className="mt-8 rounded-lg border border-slate-200 bg-white px-6 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50 cursor-pointer"
               >
                 Send Another Message
               </button>
             </motion.div>
           ) : (
             <motion.form
-              className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-lg backdrop-blur-2xl md:p-8"
+              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg backdrop-blur-2xl md:p-8"
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
@@ -224,7 +224,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="rounded-full bg-brand-blue px-6 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50 cursor-pointer"
+                  className="w-full sm:w-auto rounded-lg bg-brand-charcoal px-8 py-3.5 text-center text-sm font-bold text-brand-cream transition hover:bg-[#2a2a2a] disabled:opacity-50 cursor-pointer"
                 >
                   {status === "submitting" ? "Sending..." : "Send Message"}
                 </button>

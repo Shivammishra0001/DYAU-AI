@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle";
 import { industries, IndustryItem } from "../data/content";
 
 export default function Industries() {
   const [activeInd, setActiveInd] = useState<IndustryItem | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const hashId = location.hash.replace("#", "");
+      const found = industries.find(
+        (ind) => ind.name.toLowerCase().replace(/\s+/g, "-") === hashId
+      );
+      if (found) {
+        setActiveInd(found);
+      }
+    }
+  }, [location.hash]);
 
   return (
     <>
-      <section className="relative overflow-hidden px-5 pb-16 pt-44 md:px-8 md:pt-52">
+      <section className="relative overflow-hidden px-5 pb-16 pt-28 md:px-8 md:pt-32">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Industries"
@@ -34,20 +47,20 @@ export default function Industries() {
               return (
                 <motion.div
                   key={ind.name}
-                  className="group flex flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-md backdrop-blur-2xl transition duration-300 hover:border-brand-blue/30"
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:shadow-md hover:border-brand-blue/30 text-brand-charcoal"
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.45, delay: i * 0.06 }}
                 >
                   {/* Image header with overlaid badge */}
-                  <div className="relative h-48 w-full overflow-hidden border-b border-slate-100">
+                  <div className="relative h-48 w-full overflow-hidden border-b border-slate-100 rounded-t-2xl">
                     <img
                       src={ind.img}
                       alt={ind.name}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105 rounded-t-2xl"
                     />
-                    <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-full bg-brand-blue/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg backdrop-blur-md border border-brand-blue/20">
+                    <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-lg bg-brand-blue px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-charcoal border-none">
                       <span>{ind.icon}</span>
                       <span>{ind.name.includes(" & ") ? ind.name.split(" & ")[0] : ind.name.split(" ")[0]}</span>
                     </span>
@@ -55,7 +68,7 @@ export default function Industries() {
 
                   {/* Content */}
                   <div className="flex flex-1 flex-col p-6 md:p-8">
-                    <h3 className="text-xl font-semibold text-heading group-hover:text-brand-blue transition duration-300">
+                    <h3 className="text-xl font-bold tracking-tight font-sans text-brand-charcoal group-hover:text-slate-800 transition duration-300">
                       {ind.name}
                     </h3>
                     <p className="mt-4 text-sm leading-6 text-slate-600 font-light flex-1">
@@ -64,7 +77,7 @@ export default function Industries() {
                     <div className="mt-6">
                       <button
                         onClick={() => setActiveInd(ind)}
-                        className="cursor-pointer inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-5 py-2.5 text-xs font-semibold text-slate-700 transition hover:border-brand-blue hover:bg-blue-50 hover:text-brand-blue"
+                        className="cursor-pointer inline-flex items-center gap-1 rounded-lg bg-brand-charcoal px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#2a2a2a] transition duration-200"
                       >
                         Read More →
                       </button>
@@ -96,12 +109,12 @@ export default function Industries() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="relative max-h-[90vh] max-w-2xl w-full rounded-[2rem] border border-slate-200 bg-white shadow-2xl p-6 md:p-8 overflow-y-auto z-10 backdrop-blur-3xl scrollbar-none"
+              className="relative max-h-[90vh] max-w-2xl w-full rounded-[2.5rem] border border-brand-cream-border bg-brand-cream shadow-2xl p-8 overflow-y-auto z-10 scrollbar-none"
             >
               {/* Close Button */}
               <button
                 onClick={() => setActiveInd(null)}
-                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition cursor-pointer"
+                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream-border bg-brand-cream text-brand-charcoal hover:bg-slate-100 transition cursor-pointer"
                 aria-label="Close modal"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -110,32 +123,27 @@ export default function Industries() {
               </button>
 
               {/* Header Image */}
-              <div className="relative h-48 md:h-64 w-full overflow-hidden rounded-2xl border border-slate-200 mb-6 mt-4">
+              <div className="relative h-48 md:h-64 w-full overflow-hidden rounded-2xl border border-brand-cream-border mb-6 mt-4">
                 <img
                   src={activeInd.img}
                   alt={activeInd.name}
                   className="h-full w-full object-cover"
                 />
-                <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-full bg-brand-blue px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg border border-brand-blue/20">
+                <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-lg bg-brand-blue px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-charcoal border-none">
                   <span>{activeInd.icon}</span>
                   <span>{activeInd.name}</span>
                 </span>
               </div>
 
               {/* Text content */}
-              <h3 className="text-2xl font-semibold text-heading md:text-3xl">{activeInd.name}</h3>
-              <p className="mt-4 text-sm leading-7 text-slate-700 md:text-base font-light">{activeInd.desc}</p>
+              <h3 className="text-2xl font-medium tracking-tight font-serif text-brand-charcoal md:text-3xl">{activeInd.name}</h3>
+              <p className="mt-4 text-sm leading-7 text-slate-700 md:text-base font-light font-sans">{activeInd.desc}</p>
 
-              <div className="mt-8 border-t border-slate-200 pt-6">
-                <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-brand-blue mb-4">Key Capabilities & Features</h4>
+              <div className="mt-8 border-t border-brand-cream-border pt-6">
+                <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 mb-4 select-none">Key Capabilities &amp; Features</h4>
                 <ul className="space-y-3">
                   {activeInd.highlights.map((highlight, index) => {
-                    const dotColor = [
-                      "bg-brand-blue shadow-[0_0_8px_rgba(26,115,232,0.4)]",
-                      "bg-brand-red shadow-[0_0_8px_rgba(234,67,53,0.4)]",
-                      "bg-brand-yellow shadow-[0_0_8px_rgba(251,188,5,0.5)]",
-                      "bg-brand-green shadow-[0_0_8px_rgba(52,168,83,0.4)]"
-                    ][index % 4];
+                    const dotColor = "bg-brand-blue";
 
                     return (
                       <li key={index} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
@@ -150,13 +158,13 @@ export default function Industries() {
               <div className="mt-8 flex justify-end gap-3 border-t border-slate-200 pt-6">
                 <button
                   onClick={() => setActiveInd(null)}
-                  className="rounded-full border border-slate-200 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition cursor-pointer"
+                  className="rounded-lg border border-slate-200 bg-slate-50 px-6 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-slate-800 transition cursor-pointer"
                 >
                   Close
                 </button>
                 <Link
                   to="/contact"
-                  className="rounded-full bg-brand-blue px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition text-center"
+                  className="rounded-lg bg-brand-charcoal px-6 py-3 text-sm font-bold text-brand-cream hover:bg-[#2a2a2a] transition text-center"
                 >
                   Consult an Expert
                 </Link>

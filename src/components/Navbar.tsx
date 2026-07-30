@@ -1,88 +1,261 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
-import { navItems } from "../data/content";
+import { motion, AnimatePresence } from "framer-motion";
+import { services, industries } from "../data/content";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<"services" | "industries" | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const lastScrollY = useRef(0);
+  
   const location = useLocation();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
+    setActiveDropdown(null);
+    setMobileServicesOpen(false);
+    setMobileIndustriesOpen(false);
   }, [location.pathname]);
 
+  // Handle click outside to close dropdowns
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Track scroll direction to show/hide header
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 10) {
+        setShowHeader(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        setShowHeader(false); // scrolling down
+      } else {
+        setShowHeader(true); // scrolling up
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header
-      className={`fixed left-0 right-0 top-0 z-50 px-4 transition-all duration-500 md:px-8 lg:px-12 ${
-        scrolled ? "py-3" : "py-6"
-      }`}
+    <motion.header
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={showHeader ? "visible" : "hidden"}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="sticky top-0 z-50 w-full border-b border-white/10 bg-brand-navy font-sans text-white"
     >
-      <nav
-        className={`mx-auto flex min-h-[76px] max-w-[1820px] items-center justify-between gap-3 rounded-[28px] border border-slate-200/80 bg-white/[0.82] px-5 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.04)] backdrop-blur-2xl transition-all duration-500 md:px-7 ${
-          scrolled ? "bg-white/[0.92]" : ""
-        }`}
-        aria-label="Main navigation"
-      >
+      <div className="mx-auto flex h-[96px] max-w-7xl items-center justify-between px-6 md:px-12" ref={dropdownRef}>
+        
+        {/* Left Side: Brand Logo (Anthropic-style uppercase all-caps text with backslash) */}
         <Link
           to="/"
-          className="group flex shrink-0 items-center gap-1.5"
-          aria-label="Dyau home"
+          className="flex items-center gap-0.5 group"
+          aria-label="DYAU Home"
         >
           <img
             src="/images/logo.png"
-            alt="Dyau logo"
-            className="h-12 w-12 object-cover"
+            alt="DYAU logo"
+            className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            style={{ filter: "brightness(0) invert(1)" }}
           />
-          <span className="leading-none text-[25px] font-semibold tracking-[-0.04em] font-sans">
-            <span className="text-[#4285f4]">D</span>
-            <span className="text-[#ea4335]">y</span>
-            <span className="text-[#fbbc05]">a</span>
-            <span className="text-[#34a853]">u</span>
+          <span className="text-[22px] font-semibold tracking-tight text-white select-none">
+            Dyau
           </span>
         </Link>
 
-        <div className="hidden shrink-0 items-center gap-1 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              className={`rounded-full px-4 py-2.5 text-sm font-medium transition hover:bg-slate-100 hover:text-slate-900 ${
-                location.pathname === item.href ? "bg-blue-50 text-brand-blue" : "text-slate-600"
+        {/* Center: Navigation Links */}
+        <nav className="hidden items-center gap-8 lg:flex">
+          {/* Direct Link: Home */}
+          <Link
+            to="/"
+            className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
+          >
+            Home
+          </Link>
+
+          {/* Services Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setActiveDropdown("services")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <button
+              className={`flex items-center gap-1 py-1 text-[15px] font-medium transition duration-200 cursor-pointer border-b text-white ${
+                activeDropdown === "services" ? "border-white" : "border-transparent hover:border-white/40"
               }`}
             >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+              Services
+              <svg
+                viewBox="0 0 24 24"
+                className={`h-3 w-3 transition-transform duration-200 ${
+                  activeDropdown === "services" ? "rotate-180" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
 
-        <div className="hidden shrink-0 items-center gap-3 lg:flex">
+            <AnimatePresence>
+              {activeDropdown === "services" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 6 }}
+                  transition={{ duration: 0.12 }}
+                  className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] w-[260px] rounded-2xl border border-white/10 bg-brand-navy p-5 shadow-[0_16px_36px_rgba(0,0,0,0.15)] z-50"
+                >
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 block select-none">
+                      Capabilities
+                    </span>
+                    <div className="flex flex-col gap-2.5">
+                      {services.map((s) => {
+                        const linkId = s.title.toLowerCase().replace(/\s+/g, "-");
+                        return (
+                          <Link
+                            key={s.title}
+                            to={`/services#${linkId}`}
+                            className="font-serif text-[16px] text-white hover:underline leading-tight"
+                          >
+                            {s.title}
+                          </Link>
+                        );
+                      })}
+                      <div className="mt-2 pt-2 border-t border-white/10">
+                        <Link
+                          to="/services"
+                          className="font-sans text-[12px] font-bold text-slate-400 hover:text-white transition-colors flex items-center gap-1 uppercase tracking-wider"
+                        >
+                          See All Services →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Industries Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setActiveDropdown("industries")}
+            onMouseLeave={() => setActiveDropdown(null)}
+          >
+            <button
+              className={`flex items-center gap-1 py-1 text-[15px] font-medium transition duration-200 cursor-pointer border-b text-white ${
+                activeDropdown === "industries" ? "border-white" : "border-transparent hover:border-white/40"
+              }`}
+            >
+              Industries
+              <svg
+                viewBox="0 0 24 24"
+                className={`h-3 w-3 transition-transform duration-200 ${
+                  activeDropdown === "industries" ? "rotate-180" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+
+            <AnimatePresence>
+              {activeDropdown === "industries" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 6 }}
+                  transition={{ duration: 0.12 }}
+                  className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] w-[260px] rounded-2xl border border-white/10 bg-brand-navy p-5 shadow-[0_16px_36px_rgba(0,0,0,0.15)] z-50"
+                >
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 block select-none">
+                      Sectors
+                    </span>
+                    <div className="flex flex-col gap-2.5">
+                      {industries.map((ind) => {
+                        const linkId = ind.name.toLowerCase().replace(/\s+/g, "-");
+                        return (
+                          <Link
+                            key={ind.name}
+                            to={`/industries#${linkId}`}
+                            className="font-serif text-[16px] text-white hover:underline leading-tight"
+                          >
+                            {ind.name}
+                          </Link>
+                        );
+                      })}
+                      <div className="mt-2 pt-2 border-t border-white/10">
+                        <Link
+                          to="/industries"
+                          className="font-sans text-[12px] font-bold text-slate-400 hover:text-white transition-colors flex items-center gap-1 uppercase tracking-wider"
+                        >
+                          See All Industries →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Direct Link: Why Us */}
+          <Link
+            to="/why-us"
+            className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
+          >
+            Why Us
+          </Link>
+
+          {/* Direct Link: Blog */}
+          <Link
+            to="/blog"
+            className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
+          >
+            Blog
+          </Link>
+        </nav>
+
+        {/* Right Side: Simple CTA Button */}
+        <div className="hidden lg:flex items-center">
           <Link
             to="/contact"
-            className={`rounded-full border px-5 py-3 text-sm font-medium transition ${
-              location.pathname === "/contact"
-                ? "border-brand-blue/30 bg-blue-50 text-brand-blue"
-                : "border-slate-200 bg-white text-slate-700 hover:border-brand-blue/40 hover:bg-blue-50/50 hover:text-brand-blue"
-            }`}
+            className="rounded-lg bg-white px-5 py-2.5 text-[14px] font-bold text-brand-navy shadow-sm hover:bg-white/90 transition duration-200"
           >
-            Contact
+            Contact Us
           </Link>
         </div>
 
+        {/* Mobile Toggle Button */}
         <button
-          className="grid h-12 w-12 place-items-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 lg:hidden"
-          onClick={() => setMobileOpen((v: boolean) => !v)}
+          className="grid h-10 w-10 place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition lg:hidden cursor-pointer"
+          onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
         >
-          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
             {mobileOpen ? (
               <path d="M18 6 6 18M6 6l12 12" />
             ) : (
@@ -90,37 +263,149 @@ export default function Navbar() {
             )}
           </svg>
         </button>
-      </nav>
+      </div>
 
-      <motion.div
-        initial={false}
-        animate={{ height: mobileOpen ? "auto" : 0, opacity: mobileOpen ? 1 : 0 }}
-        className="mx-auto mt-3 max-w-[1820px] overflow-hidden lg:hidden"
-      >
-        <div className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-xl shadow-slate-200/50 backdrop-blur-2xl">
-          <div className="grid gap-1 sm:grid-cols-2">
-            {navItems.map((item) => (
+      {/* Mobile Drawer menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="w-full border-t border-white/10 bg-brand-navy overflow-hidden lg:hidden"
+          >
+            <div className="flex flex-col px-6 py-6 gap-2">
+              {/* Direct Link: Home */}
               <Link
-                key={item.href}
-                to={item.href}
-                className={`rounded-2xl px-4 py-3 text-sm font-medium transition hover:bg-slate-100 hover:text-slate-900 ${
-                  location.pathname === item.href ? "bg-blue-50 text-brand-blue" : "text-slate-600"
-                }`}
+                to="/"
+                className="py-3 text-base font-semibold text-white"
               >
-                {item.label}
+                Home
               </Link>
-            ))}
-          </div>
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-            <Link
-              to="/contact"
-              className="rounded-full border border-brand-blue/30 bg-blue-50 px-5 py-3 text-center text-sm font-semibold text-brand-blue transition hover:border-brand-blue/60 hover:bg-brand-blue hover:text-white"
-            >
-              Contact
-            </Link>
-          </div>
-        </div>
-      </motion.div>
-    </header>
+              
+              {/* Mobile Services Accordion */}
+              <div>
+                <button
+                  onClick={() => setMobileServicesOpen((v) => !v)}
+                  className="flex w-full items-center justify-between py-3 text-base font-semibold text-white"
+                >
+                  Services
+                  <svg
+                    viewBox="0 0 24 24"
+                    className={`h-4 w-4 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {mobileServicesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-4 border-l border-white/10 ml-1 flex flex-col gap-1 mt-1"
+                    >
+                      {services.map((s) => (
+                        <Link
+                          key={s.title}
+                          to={`/services#${s.title.toLowerCase().replace(/\s+/g, "-")}`}
+                          className="py-2 text-sm text-slate-300 hover:text-white"
+                        >
+                          {s.title}
+                        </Link>
+                      ))}
+                      <Link
+                        to="/services"
+                        className="py-2 text-sm font-bold text-slate-400 hover:text-white transition-colors"
+                      >
+                        See All Services →
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Mobile Industries Accordion */}
+              <div>
+                <button
+                  onClick={() => setMobileIndustriesOpen((v) => !v)}
+                  className="flex w-full items-center justify-between py-3 text-base font-semibold text-white"
+                >
+                  Industries
+                  <svg
+                    viewBox="0 0 24 24"
+                    className={`h-4 w-4 transition-transform duration-200 ${mobileIndustriesOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {mobileIndustriesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-4 border-l border-white/10 ml-1 flex flex-col gap-1 mt-1"
+                    >
+                      {industries.map((ind) => {
+                        const linkId = ind.name.toLowerCase().replace(/\s+/g, "-");
+                        return (
+                          <Link
+                            key={ind.name}
+                            to={`/industries#${linkId}`}
+                            className="py-2 text-sm text-slate-300 hover:text-white"
+                          >
+                            {ind.name}
+                          </Link>
+                        );
+                      })}
+                      <Link
+                        to="/industries"
+                        className="py-2 text-sm font-bold text-slate-400 hover:text-white transition-colors"
+                      >
+                        See All Industries →
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Direct Links */}
+              <Link
+                to="/why-us"
+                className="py-3 text-base font-semibold text-white"
+              >
+                Why Us
+              </Link>
+
+              <Link
+                to="/blog"
+                className="py-3 text-base font-semibold text-white"
+              >
+                Blog
+              </Link>
+
+              {/* CTA Section */}
+              <div className="mt-6 flex flex-col gap-3 pt-6 border-t border-white/10">
+                <Link
+                  to="/contact"
+                  className="w-full rounded-lg bg-white py-3 text-center text-sm font-bold text-brand-navy hover:bg-white/90 transition"
+                >
+                  Contact Us
+                </Link>
+              </div>
+
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

@@ -7,7 +7,11 @@ import Services from "./pages/Services";
 import WhyUs from "./pages/WhyUs";
 import Industries from "./pages/Industries";
 import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
+
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 /* Scroll to top on route change */
 function ScrollToTop() {
@@ -18,14 +22,69 @@ function ScrollToTop() {
   return null;
 }
 
+/* Floating button to scroll back to top */
+function ScrollToTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.scrollY > 300) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    };
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          onClick={scrollToTop}
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 20 }}
+          whileHover={{ scale: 1.1, y: -2 }}
+          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-slate-950/80 text-white shadow-2xl backdrop-blur-md hover:bg-slate-900 transition-colors duration-200"
+          style={{ boxShadow: "0 0 20px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.05)" }}
+          aria-label="Scroll to top"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+}
+
 /* Shared layout: Navbar + Footer wrapping all pages */
 function Layout() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#ffffff] text-slate-800 selection:bg-brand-blue selection:text-white">
+    <div className="min-h-screen overflow-hidden bg-brand-cream text-brand-charcoal selection:bg-brand-blue selection:text-white">
       <Navbar />
       <main>
         <Outlet />
       </main>
+      <ScrollToTopButton />
       <Footer />
     </div>
   );
@@ -42,6 +101,7 @@ export default function App() {
           <Route path="/why-us" element={<WhyUs />} />
           <Route path="/industries" element={<Industries />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
