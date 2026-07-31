@@ -79,7 +79,7 @@ export default function Services() {
                   <div className="mt-8">
                     <button
                       onClick={() => setActiveService(s)}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-brand-charcoal px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#2a2a2a] transition duration-200 cursor-pointer"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-brand-navy px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#003875] transition duration-200 cursor-pointer"
                     >
                       Explore service →
                     </button>
@@ -144,7 +144,7 @@ export default function Services() {
                 <div className="mt-8">
                   <Link
                     to="/contact"
-                    className="rounded-lg bg-brand-charcoal px-6 py-3 text-sm font-bold text-brand-cream hover:bg-[#2a2a2a] transition duration-200 text-center inline-block"
+                    className="rounded-lg bg-brand-navy px-6 py-3 text-sm font-bold text-brand-cream hover:bg-[#003875] transition duration-200 text-center inline-block"
                   >
                     Consult an Expert
                   </Link>

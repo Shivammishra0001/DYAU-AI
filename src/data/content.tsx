@@ -56,6 +56,7 @@ export interface Testimonial {
   name: string;
   title: string;
   company: string;
+  industry: string;
 }
 
 export interface FaqItem {
@@ -110,14 +111,14 @@ export const services: ServiceItem[] = [
     ),
     title: "Staffing Solutions",
     desc: "Access vetted, elite tech talent — from dedicated teams to contract and permanent hires for any scale.",
-    features: ["Dedicated Development Teams", "Contract & Permanent Hiring", "Staff Augmentation", "Technical Screening"],
+    features: ["Dedicated Development Teams", "Contract & Permanent Hiring", "Staff Augmentation FDE", "Technical Screening"],
     date: "June 30, 2026",
     category: "Talent Solutions",
     headline: "Access vetted, elite tech talent and specialized engineering squads to accelerate product delivery.",
     longDesc: [
       "Finding top-tier talent in AI engineering, quantum computing, and DevOps is one of the biggest bottlenecks for scaling organizations. We bridge this gap by offering elite technical placement and dedicated squads.",
       "Our rigorous screening process, led by senior architects, ensures every developer and data scientist matches high technical standards and integrates seamlessly into your timezone.",
-      "Whether you need immediate staff augmentation, contract hires, or permanent placements, we supply top 2% engineering talent to keep your roadmap on schedule."
+      "Whether you need immediate staff augmentation FDE, contract hires, or permanent placements, we supply top 2% engineering talent to keep your roadmap on schedule."
     ]
   },
   {
@@ -129,14 +130,14 @@ export const services: ServiceItem[] = [
       </svg>
     ),
     title: "Product Development",
-    desc: "End-to-end custom software, SaaS, and enterprise application development built for scale and performance.",
-    features: ["Custom Software Development", "SaaS Development", "Enterprise Applications", "MVP & Prototyping"],
+    desc: "End-to-end custom software, web, and mobile application development built for scale and performance.",
+    features: ["Custom Software Development", "Web & Mobile Apps", "Enterprise Applications", "MVP & Prototyping"],
     date: "June 28, 2026",
     category: "Engineering",
-    headline: "End-to-end custom software engineering and SaaS platforms built for speed, resilience, and scale.",
+    headline: "End-to-end custom software engineering and robust application platforms built for speed, resilience, and scale.",
     longDesc: [
       "We design, build, and deploy custom software products that solve complex business challenges. Our development team follows modern agile practices, delivering production-ready releases in rapid sprints.",
-      "From early MVP prototyping and user experience design to fully fledged enterprise SaaS architectures, we build robust products using React, Next.js, and Node.js.",
+      "From early MVP prototyping and user experience design to fully fledged enterprise application architectures, we build robust products using React, Next.js, and Node.js.",
       "Our codebases are optimized for high performance, maintaining modular architectures that scale effortlessly as your user base grows."
     ]
   },
@@ -195,6 +196,67 @@ export const services: ServiceItem[] = [
       "Repetitive, manual workflows lead to high operational costs and human errors. We build intelligent process automation engines and autonomous agents that streamline your operations.",
       "By combining LLMs, custom API integrations, and robotic process automation (RPA), we automate complex tasks like contract analysis, customer support, and financial auditing.",
       "Our autonomous agents run continuously, learning from user feedback loops to improve accuracy and optimize organizational efficiency."
+    ]
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <ellipse cx="12" cy="12" rx="3" ry="9" transform="rotate(45 12 12)" />
+        <ellipse cx="12" cy="12" rx="3" ry="9" transform="rotate(-45 12 12)" />
+        <ellipse cx="12" cy="12" rx="9" ry="3" />
+        <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+      </svg>
+    ),
+    title: "Quantum Computing",
+    desc: "Develop advanced quantum algorithms, simulation architectures, and post-quantum security to solve computationally hard problems.",
+    features: ["Quantum Algorithms", "Quantum Simulation", "Post-Quantum Cryptography", "Quantum Machine Learning"],
+    date: "April 12, 2026",
+    category: "Advanced Research",
+    headline: "Harness quantum mechanics and hybrid computing to unlock exponential processing speedups for complex computations.",
+    longDesc: [
+      "Traditional computers have limits that classical architecture cannot exceed. We design quantum simulation models, quantum-native algorithms, and optimization heuristics to solve extremely difficult business challenges.",
+      "Our team integrates classical hardware pipelines with quantum processing units (QPUs) using providers like IBM Quantum, D-Wave, and Rigetti to run proof-of-concepts and speedup experiments.",
+      "We also build comprehensive defense audits using quantum-resistant cryptographic protocols, ensuring your sensitive infrastructure remains safe in the post-quantum era."
+    ]
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+        <polyline points="2 17 12 22 22 17" />
+        <polyline points="2 12 12 17 22 12" />
+      </svg>
+    ),
+    title: "Forward Deployed Engineering",
+    desc: "Deploy elite tech squads who embed directly into your operations to solve complex data, deployment, and platform integration challenges.",
+    features: ["Embedded Engineering Squads", "Custom Enterprise Integrations", "High-Velocity Prototyping", "Production Support"],
+    date: "April 02, 2026",
+    category: "Integration Solutions",
+    headline: "Elite engineers embedded directly into your timezone and codebase to accelerate integration and deployment.",
+    longDesc: [
+      "When integrating sophisticated software platforms into highly complex enterprise environments, desktop consulting is not enough. Our Forward Deployed Engineers (FDEs) embed alongside your developers.",
+      "FDEs collaborate in real-time, building custom APIs, creating robust developer portals, migrating legacy databases, and ensuring security standards are met at every step.",
+      "By acting as an extension of your product team, we dramatically shorten time-to-market and ensure maximum stability and reliability for your production releases."
+    ]
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <circle cx="12" cy="11" r="3" />
+        <path d="M12 14v4" />
+      </svg>
+    ),
+    title: "Cybersecurity & AI Security",
+    desc: "Secure your cloud resources, web applications, and generative AI models with thorough audits, guardrails, and compliance checks.",
+    features: ["Generative AI Guardrails", "Penetration Testing", "Vulnerability Auditing", "Compliance (SOC 2, GDPR)"],
+    date: "March 25, 2026",
+    category: "Security & Trust",
+    headline: "Comprehensive digital defense shields, prompt-injection defense, and certified compliance roadmaps.",
+    longDesc: [
+      "Integrating generative AI introduces new vulnerabilities. We build security guardrails to block prompt injections, sensitive data exfiltration, model poisoning, and jailbreaking attempts.",
+      "Our security experts perform deep penetration testing, code review audits, and cloud-posture checks to proactively catch and fix high-severity vulnerabilities.",
+      "We prepare your infrastructure for enterprise-level audits, helping you configure compliance dashboards and protocols for SOC 2 Type II, HIPAA, and GDPR requirements."
     ]
   },
 ];
@@ -358,18 +420,21 @@ export const testimonials: Testimonial[] = [
     name: "Sarah Chen",
     title: "CTO",
     company: "MedVantage Health",
+    industry: "Healthcare & Life Sciences",
   },
   {
     quote: "We needed 15 senior engineers fast. DYAU AI staffed our team in under two weeks with talent that hit the ground running. The quality and cultural fit exceeded every expectation.",
     name: "Marcus Rivera",
     title: "VP of Engineering",
     company: "FinScale Technologies",
+    industry: "Financial Services",
   },
   {
     quote: "From strategy to deployment, the DYAU AI team delivered a custom AI solution that automated 70% of our manual processes. Their expertise in AI governance gave our board the confidence to scale.",
     name: "Dr. Ananya Patel",
     title: "Chief Digital Officer",
     company: "GlobalRetail Corp",
+    industry: "Retail & E-commerce",
   },
 ];
 

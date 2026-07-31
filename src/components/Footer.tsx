@@ -33,7 +33,10 @@ export default function Footer() {
                 { name: "Product Development", id: "product-development" },
                 { name: "Cloud & DevOps", id: "cloud-devops" },
                 { name: "Data Engineering", id: "data-engineering" },
-                { name: "AI Automation", id: "ai-automation" }
+                { name: "AI Automation", id: "ai-automation" },
+                { name: "Quantum Computing", id: "quantum-computing" },
+                { name: "Forward Deployed Eng.", id: "forward-deployed-engineering" },
+                { name: "Cybersecurity & Security", id: "cybersecurity-&-ai-security" }
               ].map((s) => (
                 <li key={s.name}>
                   <Link

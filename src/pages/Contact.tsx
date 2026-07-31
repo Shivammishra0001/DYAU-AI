@@ -224,7 +224,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full sm:w-auto rounded-lg bg-brand-charcoal px-8 py-3.5 text-center text-sm font-bold text-brand-cream transition hover:bg-[#2a2a2a] disabled:opacity-50 cursor-pointer"
+                  className="w-full sm:w-auto rounded-lg bg-brand-navy px-8 py-3.5 text-center text-sm font-bold text-brand-cream transition hover:bg-[#003875] disabled:opacity-50 cursor-pointer"
                 >
                   {status === "submitting" ? "Sending..." : "Send Message"}
                 </button>

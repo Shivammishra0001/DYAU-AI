@@ -658,7 +658,7 @@ export default function Home() {
           <div className="mt-16 grid gap-8 md:grid-cols-3">
             {testimonials.map((t, i) => (
               <motion.div
-                key={t.name}
+                key={i}
                 className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:border-slate-300 hover:shadow-md md:p-8"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -670,8 +670,9 @@ export default function Home() {
                 </svg>
                 <p className="flex-1 text-base leading-relaxed text-brand-charcoal font-serif italic font-light">"{t.quote}"</p>
                 <div className="mt-6 border-t border-brand-charcoal/10 pt-5">
-                  <p className="text-sm font-bold text-brand-charcoal font-sans uppercase tracking-wider">{t.name}</p>
-                  <p className="text-xs text-brand-charcoal/80 mt-1 font-light">{t.title}, {t.company}</p>
+                  <p className="text-xs text-brand-charcoal/80 font-bold uppercase tracking-wider font-sans">
+                    {t.title} <span className="text-slate-400 font-normal mx-1">•</span> {t.industry}
+                  </p>
                 </div>
               </motion.div>
             ))}

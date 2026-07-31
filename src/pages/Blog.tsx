@@ -155,7 +155,7 @@ export default function Blog() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`rounded-lg px-6 py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 border cursor-pointer ${
                   isActive
-                    ? "bg-brand-charcoal border-brand-charcoal text-brand-cream"
+                    ? "bg-brand-navy border-brand-navy text-brand-cream"
                     : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
                 }`}
               >
@@ -306,7 +306,7 @@ export default function Blog() {
                 <div className="mt-12 pt-6 border-t border-brand-cream-border flex justify-end">
                   <button
                     onClick={() => setActivePost(null)}
-                    className="rounded-lg bg-brand-charcoal px-6 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#2a2a2a] transition cursor-pointer"
+                    className="rounded-lg bg-brand-navy px-6 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#003875] transition cursor-pointer"
                   >
                     Close Article
                   </button>

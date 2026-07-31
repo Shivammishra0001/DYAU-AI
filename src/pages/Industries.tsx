@@ -77,7 +77,7 @@ export default function Industries() {
                     <div className="mt-6">
                       <button
                         onClick={() => setActiveInd(ind)}
-                        className="cursor-pointer inline-flex items-center gap-1 rounded-lg bg-brand-charcoal px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#2a2a2a] transition duration-200"
+                        className="cursor-pointer inline-flex items-center gap-1 rounded-lg bg-brand-navy px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#003875] transition duration-200"
                       >
                         Read More →
                       </button>
@@ -164,7 +164,7 @@ export default function Industries() {
                 </button>
                 <Link
                   to="/contact"
-                  className="rounded-lg bg-brand-charcoal px-6 py-3 text-sm font-bold text-brand-cream hover:bg-[#2a2a2a] transition text-center"
+                  className="rounded-lg bg-brand-navy px-6 py-3 text-sm font-bold text-brand-cream hover:bg-[#003875] transition text-center"
                 >
                   Consult an Expert
                 </Link>
