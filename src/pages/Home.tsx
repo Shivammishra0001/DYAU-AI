@@ -874,69 +874,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Team Qualifications Block */}
-          <div className="mt-24 border-t border-brand-charcoal/10 pt-16">
-            <div className="grid gap-12 lg:grid-cols-12">
-              <div className="lg:col-span-4">
-                <h3 className="text-xl font-bold text-brand-charcoal font-serif md:text-2xl">
-                  Forward Deployed Engineers &amp; AI FDEs
-                </h3>
-                <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
-                  Highly experienced, deeply technical resources with strong leadership and consulting skills. To ensure your project's success, we leverage our extensive partner ecosystem and co-deliver with them as required.
-                </p>
-              </div>
 
-              <div className="lg:col-span-8 grid gap-8 sm:grid-cols-2">
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-navy text-xs font-bold">01</div>
-                  <div>
-                    <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Data &amp; Cloud Infrastructure</h4>
-                    <ul className="mt-2 space-y-1 text-xs text-slate-600 font-light">
-                      <li>• 5+ years of experience in distributed systems.</li>
-                      <li>• Strong big data and data pipeline background.</li>
-                      <li>• Hands-on implementation skills.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-navy text-xs font-bold">02</div>
-                  <div>
-                    <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Program Planning &amp; Execution</h4>
-                    <ul className="mt-2 space-y-1 text-xs text-slate-600 font-light">
-                      <li>• Assist with high-level design &amp; architecture.</li>
-                      <li>• Align projects to cloud and platform capabilities.</li>
-                      <li>• Provide inputs to project timelines &amp; resources.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-navy text-xs font-bold">03</div>
-                  <div>
-                    <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Production Planning</h4>
-                    <ul className="mt-2 space-y-1 text-xs text-slate-600 font-light">
-                      <li>• Architect solutions for enterprise-grade scalability.</li>
-                      <li>• Assist with prototype and POC development.</li>
-                      <li>• Address DevOps and CI/CD integration requirements.</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-navy text-xs font-bold">04</div>
-                  <div>
-                    <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">COE Implementation</h4>
-                    <ul className="mt-2 space-y-1 text-xs text-slate-600 font-light">
-                      <li>• Develop common standards and frameworks.</li>
-                      <li>• Available as shared resource for multiple teams.</li>
-                      <li>• Facilitate interactions with specialized vendor teams.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
