@@ -557,11 +557,11 @@ export default function Home() {
       {/* ───── Section 1: Quantum Computing ───── */}
       <section className="relative px-5 pt-20 pb-0 md:px-8 md:pt-28 md:pb-0 overflow-hidden bg-brand-cream">
         <div className="mx-auto max-w-7xl">
-          {/* Two-Column Grid: Left Side Image, Right Side Content & Services */}
+          {/* Two-Column Grid: Left Side Details, Right Side Image */}
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start pb-20">
-            {/* Left side: Image */}
+            {/* Left side: Image (ordered to right on large screens) */}
             <motion.div
-              className="lg:col-span-5 relative"
+              className="lg:col-span-5 relative order-2 lg:order-2"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -578,7 +578,7 @@ export default function Home() {
 
             {/* Right side: Content & 2x2 Grid of Quantum Services */}
             <motion.div
-              className="lg:col-span-7"
+              className="lg:col-span-7 order-1 lg:order-1"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
