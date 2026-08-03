@@ -584,12 +584,8 @@ export default function Home() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-brand-navy flex items-center gap-2">
-                <span className="h-1.5 w-1.5 bg-brand-blue inline-block shrink-0 rounded-full" />
-                <span>Next-Generation Compute</span>
-              </span>
               <motion.h2
-                className="mt-4 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
+                className="text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -694,12 +690,8 @@ export default function Home() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-               <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-brand-navy flex items-center gap-2">
-                 <span className="h-1.5 w-1.5 bg-brand-blue inline-block shrink-0 rounded-full" />
-                 <span>Cognitive Intelligence</span>
-               </span>
               <motion.h2
-                className="mt-4 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
+                className="mt-0 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
