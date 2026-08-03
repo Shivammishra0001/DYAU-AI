@@ -581,7 +581,7 @@ export default function Home() {
           </div>
 
           {/* Tab Selector */}
-          <div className="mt-10 flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-x-visible justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
+          <div className="mt-10 flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
             {quantumTopics.map((item, idx) => (
               <button
                 key={idx}
@@ -705,7 +705,7 @@ export default function Home() {
           </div>
 
           {/* Tab Selector */}
-          <div className="mt-10 flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-x-visible justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
+          <div className="mt-10 flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
             {aiTopics.map((item, idx) => (
               <button
                 key={idx}
@@ -833,7 +833,7 @@ export default function Home() {
             </div>
 
             {/* Tab Selector */}
-            <div className="mt-10 flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-x-visible justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
+            <div className="mt-10 flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
               {fdeTopics.map((item, idx) => (
                 <button
                   key={idx}
