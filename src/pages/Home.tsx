@@ -581,7 +581,7 @@ export default function Home() {
           </div>
 
           {/* Tab Selector */}
-          <div className="mt-10 flex flex-wrap justify-center gap-2 border-b border-slate-200 pb-4">
+          <div className="mt-10 flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-x-visible justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
             {quantumTopics.map((item, idx) => (
               <button
                 key={idx}
@@ -589,7 +589,7 @@ export default function Home() {
                   const dir = idx > quantumPage ? 1 : -1;
                   setQuantumPage([idx, dir]);
                 }}
-                className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative ${
+                className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative whitespace-nowrap shrink-0 ${
                   activeQuantumTab === idx
                     ? "text-brand-navy text-bold"
                     : "text-slate-500 hover:text-brand-navy"
@@ -705,7 +705,7 @@ export default function Home() {
           </div>
 
           {/* Tab Selector */}
-          <div className="mt-10 flex flex-wrap justify-center gap-2 border-b border-slate-200 pb-4">
+          <div className="mt-10 flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-x-visible justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
             {aiTopics.map((item, idx) => (
               <button
                 key={idx}
@@ -713,7 +713,7 @@ export default function Home() {
                   const dir = idx > aiPage ? 1 : -1;
                   setAiPage([idx, dir]);
                 }}
-                className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative ${
+                className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative whitespace-nowrap shrink-0 ${
                   activeAiTab === idx
                     ? "text-brand-navy text-bold"
                     : "text-slate-500 hover:text-brand-navy"
@@ -833,7 +833,7 @@ export default function Home() {
             </div>
 
             {/* Tab Selector */}
-            <div className="mt-10 flex flex-wrap justify-center gap-2 border-b border-slate-200 pb-4">
+            <div className="mt-10 flex flex-nowrap md:flex-wrap overflow-x-auto md:overflow-x-visible justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
               {fdeTopics.map((item, idx) => (
                 <button
                   key={idx}
@@ -841,7 +841,7 @@ export default function Home() {
                     const dir = idx > page ? 1 : -1;
                     setPage([idx, dir]);
                   }}
-                  className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative ${
+                  className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative whitespace-nowrap shrink-0 ${
                     activeFdeTab === idx
                       ? "text-brand-navy text-bold"
                       : "text-slate-500 hover:text-brand-navy"
