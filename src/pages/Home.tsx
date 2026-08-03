@@ -752,75 +752,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(176,186,153,0.06),transparent_50%)]" />
         
         <div className="mx-auto max-w-7xl relative z-10">
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
-            {/* Left side: Context, details & benefits */}
-            <motion.div
-              className="lg:col-span-7"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-               <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-brand-navy flex items-center gap-2">
-                 <span className="h-1.5 w-1.5 bg-brand-blue inline-block shrink-0 rounded-full" />
-                 <span>Technical Enablement &amp; Delivery Excellence</span>
-               </span>
-              <motion.h2
-                className="mt-4 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              >
-                Forward Deployed Engineering
-              </motion.h2>
-              <p className="mt-6 text-base leading-8 text-slate-700 font-light font-sans">
-                Accelerating client success and advanced technology adoption through world-class technical expertise. We set the benchmark for implementation excellence, enabling your teams to build, optimize, and scale robust AI and data platforms. DYAU AI's Forward Deployed Engineering team is ready to guide you at every stage of your data and AI journey.
-              </p>
-
-              {/* Benefits Section */}
-              <div className="mt-8 grid gap-6 sm:grid-cols-3 border-t border-brand-charcoal/10 pt-8">
-                <div>
-                  <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Accelerate Journey</h4>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600 font-light">
-                    Tailored acceleration from initial architecture design to establishing enterprise-scale MLOps and CoE practices.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">De-risk Projects</h4>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600 font-light">
-                    We serve as your trusted delivery partner to mitigate technical risks and maximize ROI at every milestone.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Scale Operations</h4>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600 font-light">
-                    Transition from local prototypes to production with automated, high-throughput pipelines.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right side: Illustration */}
-            <motion.div
-              className="lg:col-span-5 relative"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="relative z-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md">
-                <img
-                  src="/images/fde_illustration.png"
-                  alt="Forward Deployed Engineering Illustration"
-                  className="w-full h-auto rounded-2xl opacity-95 hover:opacity-100 transition-opacity duration-300"
-                />
-              </div>
-            </motion.div>
-          </div>
-
           {/* Interactive Offerings Section */}
-          <div className="mt-20">
+          <div>
             <div className="text-center max-w-3xl mx-auto">
               <h3 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Forward Deployed Engineering</h3>
               <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
