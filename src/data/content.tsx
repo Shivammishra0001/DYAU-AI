@@ -228,15 +228,22 @@ export const services: ServiceItem[] = [
       </svg>
     ),
     title: "Forward Deployed Engineering",
-    desc: "Deploy elite tech squads who embed directly into your operations to solve complex data, deployment, and platform integration challenges.",
-    features: ["Embedded Engineering Squads", "Custom Enterprise Integrations", "High-Velocity Prototyping", "Production Support"],
+    desc: "Accelerate technology adoption and platform enablement through hands-on technical expertise, structured onboarding, and enterprise-scale MLOps.",
+    features: [
+      "Jumpstart Enablement",
+      "Migration Assurance",
+      "Lakehouse Build-out",
+      "Generative AI & LLMs",
+      "Center of Excellence (CoE)",
+      "Custom Services"
+    ],
     date: "April 02, 2026",
     category: "Integration Solutions",
-    headline: "Elite engineers embedded directly into your timezone and codebase to accelerate integration and deployment.",
+    headline: "Elite engineers embedded directly in your timezone and codebase to accelerate your data, cloud, and AI journey.",
     longDesc: [
-      "When integrating sophisticated software platforms into highly complex enterprise environments, desktop consulting is not enough. Our Forward Deployed Engineers (FDEs) embed alongside your developers.",
-      "FDEs collaborate in real-time, building custom APIs, creating robust developer portals, migrating legacy databases, and ensuring security standards are met at every step.",
-      "By acting as an extension of your product team, we dramatically shorten time-to-market and ensure maximum stability and reliability for your production releases."
+      "Our Forward Deployed Engineering (FDE) team provides tailored technical enablement from initial workspace onboarding to building out DataOps and Center of Excellence (CoE) practices at enterprise scale.",
+      "We serve as your delivery partner—whether you are migrating legacy workloads, deploying custom data products, or architecting generative AI pipelines—to minimize risks and maximize value at each step.",
+      "By acting as a high-performance extension of your team, we help you successfully scale data and AI practices across the company, transitioning smoothly from proofs-of-concept to production."
     ]
   },
   {

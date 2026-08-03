@@ -255,6 +255,159 @@ const aiTopics = [
   }
 ];
 
+const fdeTopics = [
+  {
+    id: "fde-jumpstart",
+    category: "ENABLEMENT",
+    title: "Jumpstart Enablement",
+    image: "/images/thumb_ai_advisory.png",
+    description: "Accelerate your project timelines by onboarding your team with best-practice templates, key architecture frameworks, and developer enablement modules.",
+    detailedExplanation: "Our Jumpstart offerings are designed to fast-track your engineering initiatives. We align your team with the latest platforms, establish secure workspaces, and implement pre-built reference architectures. By skipping the initial trial-and-error phase, you achieve faster time-to-value while establishing a rock-solid foundation for future growth.",
+    capabilities: [
+      "Workspace Onboarding",
+      "Best-Practice Audits",
+      "Reference Architecture Setup",
+      "Developer Enablement Sessions"
+    ],
+    metrics: [
+      { label: "Time-to-Value", value: "3x Faster" },
+      { label: "Onboarding Time", value: "Under 5 Days" },
+      { label: "Adoption Rate", value: "High Parity" }
+    ],
+    logs: [
+      "FDE: Workspace bootstrap initialized...",
+      "FDE: Checking resource groups and VPC configurations.",
+      "FDE: Provisioning landing zone templates... Completed.",
+      "READY: Team workspace and onboarding sandbox online."
+    ]
+  },
+  {
+    id: "fde-migration",
+    category: "MIGRATION",
+    title: "Migration Assurance",
+    image: "/images/thumb_quantum_opt.png",
+    description: "Apply structured, proven migration paths and risk mitigation strategies to seamlessly transition legacy database and AI workloads to modern environments.",
+    detailedExplanation: "Transitioning legacy pipelines and warehouses can introduce operational disruption and data loss risk. Our Migration Assurance program provides structured frameworks, automated translation tools, and side-by-side verification to move your spark, SQL, or Hadoop jobs to modern clouds and lakehouses without missing a beat.",
+    capabilities: [
+      "Legacy Code Translation",
+      "Parallel Workload Validation",
+      "Data Sync & Integrity Checks",
+      "Zero-Downtime Cutover Plans"
+    ],
+    metrics: [
+      { label: "Success Rate", value: "99.9%" },
+      { label: "Data Integrity", value: "100% Verified" },
+      { label: "Execution Speed", value: "2.5x Speedup" }
+    ],
+    logs: [
+      "FDE: Parsing legacy SQL scripts...",
+      "FDE: Generating optimized Spark equivalents.",
+      "FDE: Verification loop: legacy vs target dataset... 0 mismatch.",
+      "READY: Workload migration complete."
+    ]
+  },
+  {
+    id: "fde-lakehouse",
+    category: "INFRASTRUCTURE",
+    title: "Lakehouse Build-out",
+    image: "/images/thumb_quantum_simulation.png",
+    description: "Establish a unified environment for analytics, data science, and machine learning, laying a solid foundation for your modern enterprise data strategy.",
+    detailedExplanation: "Siloed data warehouses and data lakes prevent effective collaboration. We build unified, highly scalable lakehouse environments that combine the reliability of data warehouses with the flexibility of data lakes. Our implementations integrate Delta Lake/Iceberg, Unity Catalog for data governance, and automated ingestion pipelines for real-time analytics.",
+    capabilities: [
+      "Delta Lake & Iceberg Setup",
+      "Unified Governance Catalog",
+      "Automated ETL/ELT Pipelines",
+      "Security & Access Controls"
+    ],
+    metrics: [
+      { label: "Storage Efficiency", value: "Up to 50% increase" },
+      { label: "Query Speedup", value: "5x - 10x Faster" },
+      { label: "Access Control", value: "Role-Based" }
+    ],
+    logs: [
+      "FDE: Designing data lakehouse structures...",
+      "FDE: Setting up fine-grained catalog access control.",
+      "FDE: Streaming ingestion pipeline... Active.",
+      "READY: Data lakehouse environments configured."
+    ]
+  },
+  {
+    id: "fde-llms",
+    category: "GENERATIVE AI",
+    title: "Large Language Models (LLMs)",
+    image: "/images/thumb_ai_llm.png",
+    description: "Deploy specialized generative workflows, semantic search indexes, and custom knowledge-base Q&A agents tuned for your specific business domain.",
+    detailedExplanation: "Unlock the power of your enterprise knowledge base. We build custom RAG (Retrieval-Augmented Generation) systems, orchestrate multi-agent autonomous loops, and fine-tune models to execute specialized domain tasks. All systems are equipped with MLOps guardrails to ensure deterministic, safe, and explainable responses.",
+    capabilities: [
+      "Vector Database Optimization",
+      "Custom RAG Pipelines",
+      "Guardrails & Safety Triggers",
+      "Model Fine-Tuning & Evaluation"
+    ],
+    metrics: [
+      { label: "Answer Accuracy", value: "97.4%" },
+      { label: "Guardrail Parity", value: "Zero Violations" },
+      { label: "Latency", value: "<1.0s TTFT" }
+    ],
+    logs: [
+      "FDE: Pulling raw document chunks from storage...",
+      "FDE: Generating vector embeddings for search indexing.",
+      "FDE: Agent response validation check... Passed.",
+      "READY: Q&A workflow deployed and listening."
+    ]
+  },
+  {
+    id: "fde-coe",
+    category: "GOVERNANCE",
+    title: "Center of Excellence",
+    image: "/images/thumb_ai_governance.png",
+    description: "Establish a sustainable internal Center of Excellence (CoE) using our battle-tested governance methodologies, coding standards, and deployment frameworks.",
+    detailedExplanation: "Technology adoption is a cultural and structural change, not just a technical one. We help you design and stand up a Center of Excellence (CoE) that establishes corporate coding standards, automated CI/CD templates, data stewardship policies, and training paths, enabling self-service analytics across all business units.",
+    capabilities: [
+      "CI/CD & MLOps Standards",
+      "Governance & Policy Frameworks",
+      "Internal Training Playbooks",
+      "Platform Self-Service Portals"
+    ],
+    metrics: [
+      { label: "User Adoption", value: "+300% growth" },
+      { label: "Compliance Level", value: "Fully Audited" },
+      { label: "Template Coverage", value: "100%" }
+    ],
+    logs: [
+      "FDE: Formulating developer template blueprints...",
+      "FDE: Setting up automated code quality gates.",
+      "FDE: Publishing internal training modules... Completed.",
+      "READY: COE Framework active."
+    ]
+  },
+  {
+    id: "fde-custom",
+    category: "CUSTOM ENGINEERING",
+    title: "Custom Services",
+    image: "/images/thumb_ai_automation.png",
+    description: "Engage with us for a custom Statement of Work tailored to your unique enterprise challenges. Our engineers bring a track record of solving highly complex, targeted technical problems.",
+    detailedExplanation: "Every enterprise has unique operational constraints and edge cases. We provide custom, full-lifecycle engineering engagements to solve specific, high-complexity problems. Whether it's custom compiler optimization, real-time edge computing, or specialized mathematical modeling, our engineers work alongside your staff to deliver a tailored solution.",
+    capabilities: [
+      "Full-Lifecycle Delivery",
+      "High-Complexity Problem Solving",
+      "Custom Integrations",
+      "Edge-Case Optimization"
+    ],
+    metrics: [
+      { label: "SLA Adherence", value: "100%" },
+      { label: "Engineering Caliber", value: "Senior Elite" },
+      { label: "Delivery Speed", value: "Agile Sprints" }
+    ],
+    logs: [
+      "FDE: Deep architectural inspection running...",
+      "FDE: Custom solver integration initialized.",
+      "FDE: Tailoring execution loop for hardware target... Optimal.",
+      "READY: Custom statement of work delivery ongoing."
+    ]
+  }
+];
+
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
@@ -290,11 +443,42 @@ const cardFadeUp = {
   },
 };
 
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 80 : -80,
+    opacity: 0
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      x: { type: "spring", stiffness: 300, damping: 30 },
+      opacity: { duration: 0.2 }
+    }
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 80 : -80,
+    opacity: 0,
+    transition: {
+      x: { type: "spring", stiffness: 300, damping: 30 },
+      opacity: { duration: 0.2 }
+    }
+  })
+};
+
 export default function Home() {
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 800], [0, 240]);
   const backgroundOpacity = useTransform(scrollY, [0, 800], [0.8, 0.2]);
   const [selectedTopic, setSelectedTopic] = useState<any | null>(null);
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  const activeFdeTab = page;
+
+  const paginate = (newDirection: number) => {
+    const nextPage = (page + newDirection + fdeTopics.length) % fdeTopics.length;
+    setPage([nextPage, newDirection]);
+  };
 
   return (
     <>
@@ -559,6 +743,280 @@ export default function Home() {
                 ))}
               </motion.div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ───── Section 2.5: Forward Deployed Engineering ───── */}
+      <section className="relative px-5 pt-20 pb-20 md:px-8 md:pt-24 md:pb-28 overflow-hidden bg-brand-cream border-t border-slate-100">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(176,186,153,0.06),transparent_50%)]" />
+        
+        <div className="mx-auto max-w-7xl relative z-10">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+            {/* Left side: Context, details & benefits */}
+            <motion.div
+              className="lg:col-span-7"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+               <span className="text-xs font-sans font-semibold uppercase tracking-[0.25em] text-brand-navy flex items-center gap-2">
+                 <span className="h-1.5 w-1.5 bg-brand-blue inline-block shrink-0 rounded-full" />
+                 <span>Technical Enablement &amp; Delivery Excellence</span>
+               </span>
+              <motion.h2
+                className="mt-4 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              >
+                Forward Deployed Engineering
+              </motion.h2>
+              <p className="mt-6 text-base leading-8 text-slate-700 font-light font-sans">
+                Accelerating client success and advanced technology adoption through world-class technical expertise. We set the benchmark for implementation excellence, enabling your teams to build, optimize, and scale robust AI and data platforms. DYAU AI's Forward Deployed Engineering team is ready to guide you at every stage of your data and AI journey.
+              </p>
+
+              {/* Benefits Section */}
+              <div className="mt-8 grid gap-6 sm:grid-cols-3 border-t border-brand-charcoal/10 pt-8">
+                <div>
+                  <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Accelerate Journey</h4>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600 font-light">
+                    Tailored acceleration from initial architecture design to establishing enterprise-scale MLOps and CoE practices.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">De-risk Projects</h4>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600 font-light">
+                    We serve as your trusted delivery partner to mitigate technical risks and maximize ROI at every milestone.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Scale Operations</h4>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600 font-light">
+                    Transition from local prototypes to production with automated, high-throughput pipelines.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right side: Illustration */}
+            <motion.div
+              className="lg:col-span-5 relative"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="relative z-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md">
+                <img
+                  src="/images/fde_illustration.png"
+                  alt="Forward Deployed Engineering Illustration"
+                  className="w-full h-auto rounded-2xl opacity-95 hover:opacity-100 transition-opacity duration-300"
+                />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Interactive Offerings Section */}
+          <div className="mt-20">
+            <div className="text-center max-w-3xl mx-auto">
+              <h3 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">FDE Offerings</h3>
+              <p className="mt-4 text-sm text-slate-600 font-light">
+                Delivering rapid success on projects with world-class data engineering, data science and program management expertise. Select a capability to view detailed technical specifications.
+              </p>
+            </div>
+
+            {/* Tab Selector */}
+            <div className="mt-10 flex flex-wrap justify-center gap-2 border-b border-slate-200 pb-4">
+              {fdeTopics.map((item, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    const dir = idx > page ? 1 : -1;
+                    setPage([idx, dir]);
+                  }}
+                  className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative ${
+                    activeFdeTab === idx
+                      ? "text-brand-navy text-bold"
+                      : "text-slate-500 hover:text-brand-navy"
+                  }`}
+                >
+                  {item.title}
+                  {activeFdeTab === idx && (
+                    <motion.div
+                      layoutId="activeFdeTabLine"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-blue"
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Active Details Block (rendered exactly like the screenshot, full width) */}
+            <div className="mt-8 bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden group/slider">
+              {/* Left Slide Arrow */}
+              <button
+                onClick={() => paginate(-1)}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-brand-navy shadow-sm transition-all duration-300 opacity-0 group-hover/slider:opacity-100 cursor-pointer"
+                aria-label="Previous offering"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              {/* Right Slide Arrow */}
+              <button
+                onClick={() => paginate(1)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-brand-navy shadow-sm transition-all duration-300 opacity-0 group-hover/slider:opacity-100 cursor-pointer"
+                aria-label="Next offering"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <div className="overflow-hidden">
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={activeFdeTab}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    className="grid gap-12 md:grid-cols-12 items-start text-left"
+                  >
+                    {/* Left Column: Image and Capabilities */}
+                    <div className="md:col-span-5 flex flex-col gap-6">
+                      <img
+                        src={fdeTopics[activeFdeTab].image}
+                        alt={fdeTopics[activeFdeTab].title}
+                        className="w-full object-cover aspect-[1.6] rounded-2xl border border-slate-100 shadow-sm bg-slate-50"
+                      />
+                      
+                      <div>
+                        <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-3.5">
+                          Core Capabilities
+                        </h4>
+                        <ul className="space-y-2.5">
+                          {fdeTopics[activeFdeTab].capabilities.map((cap: string, i: number) => (
+                            <li key={i} className="flex items-center gap-2.5 text-[15px] text-slate-600 font-light font-sans">
+                              <span className="h-1.5 w-1.5 bg-brand-blue shrink-0 rounded-full" />
+                              {cap}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Right Column: Title, Category and Overview */}
+                    <div className="md:col-span-7 flex flex-col gap-6">
+                      <div>
+                        <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-brand-navy uppercase">
+                          {fdeTopics[activeFdeTab].category}
+                        </span>
+                        <h3 className="mt-2 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-4xl font-serif">
+                          {fdeTopics[activeFdeTab].title}
+                        </h3>
+                      </div>
+
+                      <div className="border-t border-brand-charcoal/10 pt-6">
+                        <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-3.5">
+                          Overview
+                        </h4>
+                        <p className="text-base leading-relaxed text-slate-700 font-light font-sans">
+                          {fdeTopics[activeFdeTab].detailedExplanation || fdeTopics[activeFdeTab].description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            {/* Slide Position Indicator Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {fdeTopics.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    const dir = idx > page ? 1 : -1;
+                    setPage([idx, dir]);
+                  }}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    page === idx ? "w-6 bg-brand-navy" : "w-2 bg-slate-300 hover:bg-slate-400"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Team Qualifications Block */}
+          <div className="mt-24 border-t border-brand-charcoal/10 pt-16">
+            <div className="grid gap-12 lg:grid-cols-12">
+              <div className="lg:col-span-4">
+                <h3 className="text-xl font-bold text-brand-charcoal font-serif md:text-2xl">
+                  Forward Deployed Engineers &amp; AI FDEs
+                </h3>
+                <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
+                  Highly experienced, deeply technical resources with strong leadership and consulting skills. To ensure your project's success, we leverage our extensive partner ecosystem and co-deliver with them as required.
+                </p>
+              </div>
+
+              <div className="lg:col-span-8 grid gap-8 sm:grid-cols-2">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-navy text-xs font-bold">01</div>
+                  <div>
+                    <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Data &amp; Cloud Infrastructure</h4>
+                    <ul className="mt-2 space-y-1 text-xs text-slate-600 font-light">
+                      <li>• 5+ years of experience in distributed systems.</li>
+                      <li>• Strong big data and data pipeline background.</li>
+                      <li>• Hands-on implementation skills.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-navy text-xs font-bold">02</div>
+                  <div>
+                    <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Program Planning &amp; Execution</h4>
+                    <ul className="mt-2 space-y-1 text-xs text-slate-600 font-light">
+                      <li>• Assist with high-level design &amp; architecture.</li>
+                      <li>• Align projects to cloud and platform capabilities.</li>
+                      <li>• Provide inputs to project timelines &amp; resources.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-navy text-xs font-bold">03</div>
+                  <div>
+                    <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">Production Planning</h4>
+                    <ul className="mt-2 space-y-1 text-xs text-slate-600 font-light">
+                      <li>• Architect solutions for enterprise-grade scalability.</li>
+                      <li>• Assist with prototype and POC development.</li>
+                      <li>• Address DevOps and CI/CD integration requirements.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 h-8 w-8 rounded-lg bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-navy text-xs font-bold">04</div>
+                  <div>
+                    <h4 className="text-sm font-bold text-brand-charcoal uppercase tracking-wider">COE Implementation</h4>
+                    <ul className="mt-2 space-y-1 text-xs text-slate-600 font-light">
+                      <li>• Develop common standards and frameworks.</li>
+                      <li>• Available as shared resource for multiple teams.</li>
+                      <li>• Facilitate interactions with specialized vendor teams.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
