@@ -822,9 +822,9 @@ export default function Home() {
           {/* Interactive Offerings Section */}
           <div className="mt-20">
             <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">FDE Offerings</h3>
-              <p className="mt-4 text-sm text-slate-600 font-light">
-                Delivering rapid success on projects with world-class data engineering, data science and program management expertise. Select a capability to view detailed technical specifications.
+              <h3 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Forward Deployed Engineering</h3>
+              <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
+                Accelerating client success and advanced technology adoption through world-class technical expertise. We set the benchmark for implementation excellence, enabling your teams to build, optimize, and scale robust AI and data platforms. DYAU AI's Forward Deployed Engineering team is ready to guide you at every stage of your data and AI journey.
               </p>
             </div>
 
@@ -889,27 +889,13 @@ export default function Home() {
                     exit="exit"
                     className="grid gap-12 md:grid-cols-12 items-start text-left"
                   >
-                    {/* Left Column: Image and Capabilities */}
+                    {/* Left Column: Image */}
                     <div className="md:col-span-5 flex flex-col gap-6">
                       <img
                         src={fdeTopics[activeFdeTab].image}
                         alt={fdeTopics[activeFdeTab].title}
                         className="w-full object-cover aspect-[1.6] rounded-2xl border border-slate-100 shadow-sm bg-slate-50"
                       />
-                      
-                      <div>
-                        <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-3.5">
-                          Core Capabilities
-                        </h4>
-                        <ul className="space-y-2.5">
-                          {fdeTopics[activeFdeTab].capabilities.map((cap: string, i: number) => (
-                            <li key={i} className="flex items-center gap-2.5 text-[15px] text-slate-600 font-light font-sans">
-                              <span className="h-1.5 w-1.5 bg-brand-blue shrink-0 rounded-full" />
-                              {cap}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
                     </div>
 
                     {/* Right Column: Title, Category and Overview */}
