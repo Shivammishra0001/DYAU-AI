@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: dyau.ai
 Sitemap: https://dyau.ai/sitemap.xml

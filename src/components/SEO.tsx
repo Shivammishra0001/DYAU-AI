@@ -10,8 +10,36 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   canonicalPath?: string;
-  schema?: Record<string, any>;
+  schema?: Record<string, any> | Array<Record<string, any>>;
   noindex?: boolean;
+  author?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  imageAlt?: string;
+}
+
+function setMetaTag(selector: string, attributes: Record<string, string>) {
+  let element = document.head.querySelector(selector) as HTMLMetaElement | null;
+  if (!element) {
+    element = document.createElement("meta");
+    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+    document.head.appendChild(element);
+  } else {
+    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+  }
+  return element;
+}
+
+function setLinkTag(selector: string, attributes: Record<string, string>) {
+  let element = document.head.querySelector(selector) as HTMLLinkElement | null;
+  if (!element) {
+    element = document.createElement("link");
+    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+    document.head.appendChild(element);
+  } else {
+    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+  }
+  return element;
 }
 
 export default function SEO({
@@ -25,149 +53,151 @@ export default function SEO({
   canonicalPath,
   schema,
   noindex = false,
+  author,
+  publishedTime,
+  modifiedTime,
+  imageAlt,
 }: SEOProps) {
   const location = useLocation();
 
   useEffect(() => {
-    // Update Title
+    const currentUrl = `https://dyau.ai${canonicalPath || location.pathname}`;
+
     document.title = title;
 
-    // Update Meta Description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement("meta");
-      metaDescription.setAttribute("name", "description");
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute("content", description);
-
-    // Update Meta Keywords
+    setMetaTag('meta[name="description"]', {
+      name: "description",
+      content: description,
+    });
     if (keywords) {
-      let metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (!metaKeywords) {
-        metaKeywords = document.createElement("meta");
-        metaKeywords.setAttribute("name", "keywords");
-        document.head.appendChild(metaKeywords);
-      }
-      metaKeywords.setAttribute("content", keywords);
-    } else {
-      const existingKeywords = document.querySelector('meta[name="keywords"]');
-      if (existingKeywords) {
-        existingKeywords.remove();
-      }
+      setMetaTag('meta[name="keywords"]', {
+        name: "keywords",
+        content: keywords,
+      });
+    }
+    setMetaTag('meta[name="robots"]', {
+      name: "robots",
+      content: noindex ? "noindex, nofollow" : "index, follow",
+    });
+    if (author) {
+      setMetaTag('meta[name="author"]', {
+        name: "author",
+        content: author,
+      });
     }
 
-    // Update Robots Meta (for noindex)
-    let metaRobots = document.querySelector('meta[name="robots"]');
-    if (noindex) {
-      if (!metaRobots) {
-        metaRobots = document.createElement("meta");
-        metaRobots.setAttribute("name", "robots");
-        document.head.appendChild(metaRobots);
-      }
-      metaRobots.setAttribute("content", "noindex, nofollow");
-    } else {
-      if (metaRobots) {
-        metaRobots.remove();
-      }
-    }
-
-    // Update OpenGraph Title
-    let ogTitleTag = document.querySelector('meta[property="og:title"]');
-    if (!ogTitleTag) {
-      ogTitleTag = document.createElement("meta");
-      ogTitleTag.setAttribute("property", "og:title");
-      document.head.appendChild(ogTitleTag);
-    }
-    ogTitleTag.setAttribute("content", ogTitle || title);
-
-    // Update OpenGraph Description
-    let ogDescTag = document.querySelector('meta[property="og:description"]');
-    if (!ogDescTag) {
-      ogDescTag = document.createElement("meta");
-      ogDescTag.setAttribute("property", "og:description");
-      document.head.appendChild(ogDescTag);
-    }
-    ogDescTag.setAttribute("content", ogDescription || description);
-
-    // Update OpenGraph Image
-    let ogImgTag = document.querySelector('meta[property="og:image"]');
-    if (!ogImgTag) {
-      ogImgTag = document.createElement("meta");
-      ogImgTag.setAttribute("property", "og:image");
-      document.head.appendChild(ogImgTag);
-    }
-    ogImgTag.setAttribute("content", ogImage || "https://dyau.ai/dyau-logo.jpeg");
-
-    // Update OpenGraph URL
-    let ogUrlTag = document.querySelector('meta[property="og:url"]');
-    if (!ogUrlTag) {
-      ogUrlTag = document.createElement("meta");
-      ogUrlTag.setAttribute("property", "og:url");
-      document.head.appendChild(ogUrlTag);
-    }
-    const currentUrl = `https://dyau.ai${canonicalPath || location.pathname}`;
-    ogUrlTag.setAttribute("content", currentUrl);
-
-    // Update OpenGraph Type
-    let ogTypeTag = document.querySelector('meta[property="og:type"]');
-    if (!ogTypeTag) {
-      ogTypeTag = document.createElement("meta");
-      ogTypeTag.setAttribute("property", "og:type");
-      document.head.appendChild(ogTypeTag);
-    }
-    ogTypeTag.setAttribute("content", ogType);
-
-    // Twitter Card Tags
-    const twitterTags = [
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: ogTitle || title },
-      { name: "twitter:description", content: ogDescription || description },
-      { name: "twitter:image", content: ogImage || "https://dyau.ai/dyau-logo.jpeg" },
-    ];
-    twitterTags.forEach(({ name, content }) => {
-      let tag = document.querySelector(`meta[name="${name}"]`);
-      if (!tag) {
-        tag = document.createElement("meta");
-        tag.setAttribute("name", name);
-        document.head.appendChild(tag);
-      }
-      tag.setAttribute("content", content);
+    setMetaTag('meta[property="og:title"]', {
+      property: "og:title",
+      content: ogTitle || title,
+    });
+    setMetaTag('meta[property="og:description"]', {
+      property: "og:description",
+      content: ogDescription || description,
+    });
+    setMetaTag('meta[property="og:type"]', {
+      property: "og:type",
+      content: ogType,
+    });
+    setMetaTag('meta[property="og:url"]', {
+      property: "og:url",
+      content: currentUrl,
+    });
+    setMetaTag('meta[property="og:site_name"]', {
+      property: "og:site_name",
+      content: "Dyau AI",
+    });
+    setMetaTag('meta[property="og:locale"]', {
+      property: "og:locale",
+      content: "en_US",
+    });
+    setMetaTag('meta[property="og:image"]', {
+      property: "og:image",
+      content: ogImage || "https://dyau.ai/images/logo.png",
+    });
+    setMetaTag('meta[property="og:image:alt"]', {
+      property: "og:image:alt",
+      content: imageAlt || "Dyau AI logo",
     });
 
-    // Update Canonical Link
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement("link");
-      canonicalLink.setAttribute("rel", "canonical");
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.setAttribute("href", currentUrl);
+    setMetaTag('meta[name="twitter:card"]', {
+      name: "twitter:card",
+      content: "summary_large_image",
+    });
+    setMetaTag('meta[name="twitter:site"]', {
+      name: "twitter:site",
+      content: "@DyauAI",
+    });
+    setMetaTag('meta[name="twitter:creator"]', {
+      name: "twitter:creator",
+      content: "@DyauAI",
+    });
+    setMetaTag('meta[name="twitter:title"]', {
+      name: "twitter:title",
+      content: ogTitle || title,
+    });
+    setMetaTag('meta[name="twitter:description"]', {
+      name: "twitter:description",
+      content: ogDescription || description,
+    });
+    setMetaTag('meta[name="twitter:image"]', {
+      name: "twitter:image",
+      content: ogImage || "https://dyau.ai/images/logo.png",
+    });
+    setMetaTag('meta[name="twitter:image:alt"]', {
+      name: "twitter:image:alt",
+      content: imageAlt || "Dyau AI logo",
+    });
 
-    // Update JSON-LD Schema
-    let schemaScript = document.getElementById("json-ld-schema") as HTMLScriptElement;
+    if (publishedTime) {
+      setMetaTag('meta[property="article:published_time"]', {
+        property: "article:published_time",
+        content: publishedTime,
+      });
+    }
+    if (modifiedTime) {
+      setMetaTag('meta[property="article:modified_time"]', {
+        property: "article:modified_time",
+        content: modifiedTime,
+      });
+    }
+    if (author) {
+      setMetaTag('meta[property="article:author"]', {
+        property: "article:author",
+        content: author,
+      });
+    }
+
+    setLinkTag('link[rel="canonical"]', {
+      rel: "canonical",
+      href: currentUrl,
+    });
+    setLinkTag('link[rel="alternate"]', {
+      rel: "alternate",
+      href: currentUrl,
+      hreflang: "en",
+    });
+
+    const schemaScriptId = "json-ld-schema";
+    let schemaScript = document.getElementById(schemaScriptId) as HTMLScriptElement | null;
     if (schema) {
       if (!schemaScript) {
         schemaScript = document.createElement("script");
-        schemaScript.id = "json-ld-schema";
+        schemaScript.id = schemaScriptId;
         schemaScript.type = "application/ld+json";
-        document.body.appendChild(schemaScript);
+        document.head.appendChild(schemaScript);
       }
       schemaScript.textContent = JSON.stringify(schema);
-    } else {
-      if (schemaScript) {
-        schemaScript.remove();
-      }
+    } else if (schemaScript) {
+      schemaScript.remove();
     }
 
-    // Cleanup schema script on unmount
     return () => {
-      const script = document.getElementById("json-ld-schema");
+      const script = document.getElementById(schemaScriptId);
       if (script) {
         script.remove();
       }
     };
-  }, [title, description, keywords, ogTitle, ogDescription, ogImage, ogType, canonicalPath, schema, noindex, location.pathname]);
+  }, [title, description, keywords, ogTitle, ogDescription, ogImage, ogType, canonicalPath, schema, noindex, author, publishedTime, modifiedTime, imageAlt, location.pathname]);
 
   return null;
 }

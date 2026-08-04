@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useParams } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle";
 import SEO from "../components/SEO";
 
@@ -138,8 +139,19 @@ const blogPageSchema = {
 };
 
 export default function Blog() {
+  const navigate = useNavigate();
+  const { postId } = useParams();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
+
+  useEffect(() => {
+    if (postId) {
+      const foundPost = blogPosts.find((post) => post.id === postId);
+      if (foundPost) {
+        setActivePost(foundPost);
+      }
+    }
+  }, [postId]);
 
   const filteredPosts = selectedCategory === "All"
     ? blogPosts
@@ -162,7 +174,7 @@ export default function Blog() {
         "headline": activePost.title,
         "description": activePost.desc,
         "image": `https://dyau.ai${activePost.image}`,
-        "datePublished": "2026-07-29T12:00:00+05:30",
+        "datePublished": new Date(activePost.date).toISOString(),
         "author": {
           "@type": "Person",
           "name": activePost.author
@@ -170,11 +182,14 @@ export default function Blog() {
         "publisher": {
           "@type": "Organization",
           "name": "Dyau",
-          "logo": "https://dyau.ai/dyau-logo.jpeg"
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://dyau.ai/dyau-logo.jpeg"
+          }
         },
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": `https://dyau.ai/blog#${activePost.id}`
+          "@id": `https://dyau.ai/blog/${activePost.id}`
         }
       }
     : blogPageSchema;
@@ -186,6 +201,11 @@ export default function Blog() {
         description={seoDesc}
         keywords={seoKeywords}
         schema={activePostSchema}
+        canonicalPath={activePost ? `/blog/${activePost.id}` : "/blog"}
+        ogImage={activePost ? `https://dyau.ai${activePost.image}` : undefined}
+        author={activePost?.author}
+        publishedTime={activePost ? new Date(activePost.date).toISOString() : undefined}
+        modifiedTime={activePost ? new Date(activePost.date).toISOString() : undefined}
       />
       {/* ───── Page Header ───── */}
       <section className="relative overflow-hidden px-5 pb-12 pt-28 md:px-8 md:pt-32">
@@ -242,6 +262,8 @@ export default function Blog() {
                     <img
                       src={post.image}
                       alt={post.title}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-2xl"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />

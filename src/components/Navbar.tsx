@@ -8,8 +8,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
-  const [showHeader, setShowHeader] = useState(true);
-  const lastScrollY = useRef(0);
+
   
   const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -33,34 +32,9 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Track scroll direction to show/hide header
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY < 10) {
-        setShowHeader(true);
-      } else if (currentScrollY > lastScrollY.current) {
-        setShowHeader(false); // scrolling down
-      } else {
-        setShowHeader(true); // scrolling up
-      }
-      lastScrollY.current = currentScrollY;
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <motion.header
-      variants={{
-        visible: { y: 0 },
-        hidden: { y: "-100%" },
-      }}
-      animate={showHeader ? "visible" : "hidden"}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="sticky top-0 z-50 w-full border-b border-white/10 bg-brand-navy font-sans text-white"
-    >
-      <div className="mx-auto flex h-[96px] max-w-7xl items-center justify-between px-6 md:px-12" ref={dropdownRef}>
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-brand-navy font-sans text-white">
+      <div className="mx-auto flex h-[80px] max-w-7xl items-center justify-between px-6 md:px-12" ref={dropdownRef}>
         
         {/* Left Side: Brand Logo (Anthropic-style uppercase all-caps text with backslash) */}
         <Link
@@ -71,7 +45,7 @@ export default function Navbar() {
           <img
             src="/images/logo.png"
             alt="DYAU logo"
-            className="h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             style={{ filter: "brightness(0) invert(1)" }}
           />
           <span className="text-[22px] font-semibold tracking-tight text-white select-none">
@@ -413,6 +387,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }

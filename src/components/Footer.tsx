@@ -98,8 +98,8 @@ export default function Footer() {
             © {new Date().getFullYear()} DYAU AI. All rights reserved. Wisdom Beyond Intelligence.
           </p>
           <div className="flex gap-6 text-xs text-white font-light">
-            <Link to="/" className="hover:underline transition">Privacy Policy</Link>
-            <Link to="/" className="hover:underline transition">Terms of Service</Link>
+            <Link id="footer-link-privacy" to="/privacy-policy" className="hover:underline transition">Privacy Policy</Link>
+            <Link id="footer-link-terms" to="/terms-of-service" className="hover:underline transition">Terms of Service</Link>
           </div>
         </div>
       </div>

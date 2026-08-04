@@ -513,21 +513,7 @@ export default function Home() {
     setPage([nextPage, newDirection]);
   };
 
-  // Quantum Slider State
-  const [[quantumPage, quantumDirection], setQuantumPage] = useState([0, 0]);
-  const activeQuantumTab = quantumPage;
-  const paginateQuantum = (newDirection: number) => {
-    const nextPage = (quantumPage + newDirection + quantumTopics.length) % quantumTopics.length;
-    setQuantumPage([nextPage, newDirection]);
-  };
 
-  // AI Slider State
-  const [[aiPage, aiDirection], setAiPage] = useState([0, 0]);
-  const activeAiTab = aiPage;
-  const paginateAi = (newDirection: number) => {
-    const nextPage = (aiPage + newDirection + aiTopics.length) % aiTopics.length;
-    setAiPage([nextPage, newDirection]);
-  };
 
   return (
     <>
@@ -612,251 +598,192 @@ export default function Home() {
       </section>
 
       {/* ───── Section 1: Quantum Computing ───── */}
-      <section className="relative px-5 pt-20 pb-20 md:px-8 md:pt-28 md:pb-28 overflow-hidden bg-brand-cream border-b border-slate-100">
-        <div className="mx-auto max-w-7xl relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Quantum Computing</h2>
-            <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
-              Preparing forward-looking enterprises for the post-classical computing era. We engineer quantum-inspired optimizations, develop simulators, and design robust security protocols.
-            </p>
-          </div>
+      <section className="relative px-5 pt-20 pb-0 md:px-8 md:pt-28 md:pb-0 overflow-hidden bg-brand-cream">
+        <div className="mx-auto max-w-7xl">
+          {/* Two-Column Grid: Left Side Image, Right Side Details */}
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start pb-20">
+            {/* Left side: Image */}
+            <motion.div
+              className="lg:col-span-5 relative order-1 lg:order-1"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="relative z-10 overflow-hidden rounded-2xl border border-brand-cream-border bg-white shadow-md">
+                <img
+                  src="/images/quantum_hero.png"
+                  alt="Quantum Computing Research"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover aspect-[4/3] md:aspect-[1.3] lg:aspect-[1.1] xl:aspect-[1.2] rounded-2xl"
+                />
+              </div>
+            </motion.div>
 
-          {/* Tab Selector */}
-          <div className="mt-10 flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
-            {quantumTopics.map((item, idx) => (
-              <button
-                key={idx}
-                id={`home-quantum-tab-${idx}`}
-                onClick={() => {
-                  const dir = idx > quantumPage ? 1 : -1;
-                  setQuantumPage([idx, dir]);
-                }}
-                className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative whitespace-nowrap shrink-0 ${
-                  activeQuantumTab === idx
-                    ? "text-brand-navy text-bold"
-                    : "text-slate-500 hover:text-brand-navy"
-                }`}
+            {/* Right side: Content & 2x2 Grid of Quantum Services */}
+            <motion.div
+              className="lg:col-span-7 order-2 lg:order-2"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <motion.h2
+                className="text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               >
-                {item.title}
-                {activeQuantumTab === idx && (
+                Quantum Computing
+              </motion.h2>
+              <p className="mt-4 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
+                Preparing forward-looking enterprises for the post-classical computing era. We engineer quantum-inspired optimizations, develop simulators, and design robust security protocols.
+              </p>
+              
+              <motion.div
+                className="mt-10 grid gap-6 sm:grid-cols-2"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                {[
+                  {
+                    id: "quantum-research",
+                    category: "ALGORITHM DESIGN",
+                    title: "Quantum Computing Research & Algorithm Design",
+                    image: "/images/thumb_quantum_research.png",
+                  },
+                  {
+                    id: "quantum-optimization",
+                    category: "OPTIMIZATION",
+                    title: "Quantum-Inspired Optimization Solutions",
+                    image: "/images/thumb_quantum_opt.png",
+                  },
+                  {
+                    id: "quantum-simulation",
+                    category: "SIMULATION",
+                    title: "Quantum Simulation, Modeling & Readiness",
+                    image: "/images/thumb_quantum_simulation.png",
+                  },
+                  {
+                    id: "quantum-cryptography",
+                    category: "SECURITY",
+                    title: "Quantum Cryptography & Security Consulting",
+                    image: "/images/thumb_quantum_security.png",
+                  },
+                ].map((item, idx) => (
                   <motion.div
-                    layoutId="activeQuantumTabLine"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-blue"
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Active Details Block */}
-          <div className="mt-8 bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden group/slider-quantum">
-            {/* Left Slide Arrow */}
-            <button
-              onClick={() => paginateQuantum(-1)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-brand-navy shadow-sm transition-all duration-300 opacity-0 group-hover/slider-quantum:opacity-100 cursor-pointer"
-              aria-label="Previous offering"
-            >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {/* Right Slide Arrow */}
-            <button
-              onClick={() => paginateQuantum(1)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-brand-navy shadow-sm transition-all duration-300 opacity-0 group-hover/slider-quantum:opacity-100 cursor-pointer"
-              aria-label="Next offering"
-            >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            <div className="overflow-hidden">
-              <AnimatePresence mode="wait" custom={quantumDirection}>
-                <motion.div
-                  key={activeQuantumTab}
-                  custom={quantumDirection}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="grid gap-12 md:grid-cols-12 items-start text-left"
-                >
-                  {/* Left Column: Image */}
-                  <div className="md:col-span-5 flex flex-col gap-6">
+                    key={idx}
+                    id={`home-quantum-card-${item.id}`}
+                    variants={cardFadeUp}
+                    onClick={() => {
+                      const topic = quantumTopics.find(t => t.id === item.id);
+                      setSelectedTopic(topic);
+                    }}
+                    className="flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-brand-blue/30 hover:shadow-md transition duration-300 cursor-pointer"
+                  >
                     <img
-                      src={quantumTopics[activeQuantumTab].image}
-                      alt={quantumTopics[activeQuantumTab].title}
-                      className="w-full object-cover aspect-[1.6] rounded-2xl border border-slate-100 shadow-sm bg-slate-50"
+                      src={item.image}
+                      alt={item.title}
+                      className="h-14 w-14 rounded-[1.25rem] object-cover shrink-0 border border-slate-100"
                     />
-                  </div>
-
-                  {/* Right Column: Title, Category and Overview */}
-                  <div className="md:col-span-7 flex flex-col gap-6">
-                    <div>
-                      <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-brand-navy uppercase">
-                        {quantumTopics[activeQuantumTab].category}
+                    <div className="flex flex-col">
+                      <span className="text-[9px] font-bold tracking-[0.12em] text-slate-500 uppercase">
+                        {item.category}
                       </span>
-                      <h3 className="mt-2 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-4xl font-serif">
-                        {quantumTopics[activeQuantumTab].title}
-                      </h3>
-                    </div>
-
-                    <div className="border-t border-brand-charcoal/10 pt-6">
-                      <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-3.5">
-                        Overview
+                      <h4 className="text-xs font-bold text-brand-charcoal mt-1.5 leading-snug">
+                        {item.title}
                       </h4>
-                      <p className="text-base leading-relaxed text-slate-700 font-light font-sans">
-                        {quantumTopics[activeQuantumTab].detailedExplanation || quantumTopics[activeQuantumTab].description}
-                      </p>
                     </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-
-          {/* Slide Position Indicator Dots */}
-          <div className="flex justify-center gap-2 mt-6">
-            {quantumTopics.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  const dir = idx > quantumPage ? 1 : -1;
-                  setQuantumPage([idx, dir]);
-                }}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  quantumPage === idx ? "w-6 bg-brand-navy" : "w-2 bg-slate-300 hover:bg-slate-400"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ───── Section 2: Artificial Intelligence ───── */}
-      <section className="relative px-5 pt-20 pb-20 md:px-8 md:pt-28 md:pb-28 overflow-hidden bg-brand-cream border-b border-slate-100">
-        <div className="mx-auto max-w-7xl relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Artificial Intelligence</h2>
-            <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
-              Empowering organizations with state-of-the-art predictive algorithms, natural language processing models, and robust governance strategies. We help build ethical, compliant, and highly automated intelligence pipelines.
-            </p>
-          </div>
-
-          {/* Tab Selector */}
-          <div className="mt-10 flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
-            {aiTopics.map((item, idx) => (
-              <button
-                key={idx}
-                id={`home-ai-tab-${idx}`}
-                onClick={() => {
-                  const dir = idx > aiPage ? 1 : -1;
-                  setAiPage([idx, dir]);
-                }}
-                className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative whitespace-nowrap shrink-0 ${
-                  activeAiTab === idx
-                    ? "text-brand-navy text-bold"
-                    : "text-slate-500 hover:text-brand-navy"
-                }`}
+      <section className="relative px-5 pt-12 pb-20 md:px-8 md:pt-16 md:pb-28 overflow-hidden bg-brand-cream">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
+            {/* Left side: Content & 2x2 Grid of AI Services */}
+            <motion.div
+              className="lg:col-span-7 order-2 lg:order-1"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <motion.h2
+                className="mt-0 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               >
-                {item.title}
-                {activeAiTab === idx && (
+                Artificial Intelligence
+              </motion.h2>
+              <p className="mt-6 text-base leading-8 text-slate-700 font-light font-sans">
+                Empowering organizations with state-of-the-art predictive algorithms, natural language processing models, and robust governance strategies. We help build ethical, compliant, and highly automated intelligence pipelines.
+              </p>
+              
+              {/* 2x2 Grid of Points */}
+              <motion.div
+                className="mt-10 grid gap-6 sm:grid-cols-2"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                {aiTopics.map((item, idx) => (
                   <motion.div
-                    layoutId="activeAiTabLine"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-blue"
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Active Details Block */}
-          <div className="mt-8 bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden group/slider-ai">
-            {/* Left Slide Arrow */}
-            <button
-              onClick={() => paginateAi(-1)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-brand-navy shadow-sm transition-all duration-300 opacity-0 group-hover/slider-ai:opacity-100 cursor-pointer"
-              aria-label="Previous offering"
-            >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {/* Right Slide Arrow */}
-            <button
-              onClick={() => paginateAi(1)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-brand-navy shadow-sm transition-all duration-300 opacity-0 group-hover/slider-ai:opacity-100 cursor-pointer"
-              aria-label="Next offering"
-            >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            <div className="overflow-hidden">
-              <AnimatePresence mode="wait" custom={aiDirection}>
-                <motion.div
-                  key={activeAiTab}
-                  custom={aiDirection}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="grid gap-12 md:grid-cols-12 items-start text-left"
-                >
-                  {/* Left Column: Image */}
-                  <div className="md:col-span-5 flex flex-col gap-6">
+                    key={idx}
+                    id={`home-ai-card-${item.id}`}
+                    variants={cardFadeUp}
+                    onClick={() => setSelectedTopic(item)}
+                    className="flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-brand-blue/30 hover:shadow-md transition duration-300 cursor-pointer"
+                  >
                     <img
-                      src={aiTopics[activeAiTab].image}
-                      alt={aiTopics[activeAiTab].title}
-                      className="w-full object-cover aspect-[1.6] rounded-2xl border border-slate-100 shadow-sm bg-slate-50"
+                      src={item.image}
+                      alt={item.title}
+                      className="h-14 w-14 rounded-[1.25rem] object-cover shrink-0 border border-slate-100"
                     />
-                  </div>
-
-                  {/* Right Column: Title, Category and Overview */}
-                  <div className="md:col-span-7 flex flex-col gap-6">
-                    <div>
-                      <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-brand-navy uppercase">
-                        {aiTopics[activeAiTab].category}
+                    <div className="flex flex-col">
+                      <span className="text-[9px] font-bold tracking-[0.12em] text-slate-500 uppercase">
+                        {item.category}
                       </span>
-                      <h3 className="mt-2 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-4xl font-serif">
-                        {aiTopics[activeAiTab].title}
-                      </h3>
-                    </div>
-
-                    <div className="border-t border-brand-charcoal/10 pt-6">
-                      <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-3.5">
-                        Overview
+                      <h4 className="text-xs font-bold text-brand-charcoal mt-1.5 leading-snug">
+                        {item.title}
                       </h4>
-                      <p className="text-base leading-relaxed text-slate-700 font-light font-sans">
-                        {aiTopics[activeAiTab].detailedExplanation || aiTopics[activeAiTab].description}
-                      </p>
                     </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
 
-          {/* Slide Position Indicator Dots */}
-          <div className="flex justify-center gap-2 mt-6">
-            {aiTopics.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  const dir = idx > aiPage ? 1 : -1;
-                  setAiPage([idx, dir]);
-                }}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  aiPage === idx ? "w-6 bg-brand-navy" : "w-2 bg-slate-300 hover:bg-slate-400"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
+            {/* Right side: Hero Image & Diagnostic Terminal */}
+            <motion.div
+              className="lg:col-span-5 relative order-1 lg:order-2"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* Main Image Container */}
+              <div className="relative z-10 overflow-hidden rounded-2xl border border-brand-cream-border bg-white shadow-md">
+                <img
+                  src="/images/ai_services_infographic.png"
+                  alt="Artificial Intelligence Services Diagram"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover aspect-[4/3] md:aspect-[1.3] lg:aspect-[1.1] xl:aspect-[1.2] rounded-2xl"
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -942,6 +869,8 @@ export default function Home() {
                       <img
                         src={fdeTopics[activeFdeTab].image}
                         alt={fdeTopics[activeFdeTab].title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full object-cover aspect-[1.6] rounded-2xl border border-slate-100 shadow-sm bg-slate-50"
                       />
                     </div>
@@ -1039,6 +968,8 @@ export default function Home() {
                   <img
                     src={post.image}
                     alt={post.title}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-2xl"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
@@ -1159,6 +1090,8 @@ export default function Home() {
                     <img
                       src={selectedTopic.image}
                       alt={selectedTopic.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full object-cover aspect-[1.6] rounded-xl border border-slate-100 shadow-sm bg-slate-50"
                     />
                     
