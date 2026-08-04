@@ -83,6 +83,7 @@ export default function Navbar() {
         <nav className="hidden items-center gap-8 lg:flex">
           {/* Direct Link: Home */}
           <Link
+            id="nav-link-home"
             to="/"
             className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
           >
@@ -96,6 +97,7 @@ export default function Navbar() {
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <button
+              id="nav-btn-services"
               className={`flex items-center gap-1 py-1 text-[15px] font-medium transition duration-200 cursor-pointer border-b text-white ${
                 activeDropdown === "services" ? "border-white" : "border-transparent hover:border-white/40"
               }`}
@@ -162,6 +164,7 @@ export default function Navbar() {
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <button
+              id="nav-btn-industries"
               className={`flex items-center gap-1 py-1 text-[15px] font-medium transition duration-200 cursor-pointer border-b text-white ${
                 activeDropdown === "industries" ? "border-white" : "border-transparent hover:border-white/40"
               }`}
@@ -223,6 +226,7 @@ export default function Navbar() {
 
           {/* Direct Link: Why Us */}
           <Link
+            id="nav-link-why-us"
             to="/why-us"
             className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
           >
@@ -231,6 +235,7 @@ export default function Navbar() {
 
           {/* Direct Link: Blog */}
           <Link
+            id="nav-link-blog"
             to="/blog"
             className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
           >
@@ -241,6 +246,7 @@ export default function Navbar() {
         {/* Right Side: Simple CTA Button */}
         <div className="hidden lg:flex items-center">
           <Link
+            id="nav-btn-contact"
             to="/contact"
             className="rounded-lg bg-white px-5 py-2.5 text-[14px] font-bold text-brand-navy shadow-sm hover:bg-white/90 transition duration-200"
           >
@@ -250,6 +256,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle Button */}
         <button
+          id="nav-btn-mobile-toggle"
           className="grid h-10 w-10 place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition lg:hidden cursor-pointer"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"

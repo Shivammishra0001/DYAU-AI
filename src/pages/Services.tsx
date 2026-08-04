@@ -2,7 +2,50 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle";
+import SEO from "../components/SEO";
 import { services, ServiceItem } from "../data/content";
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "AI Consulting & Quantum Computing Optimization Research Services",
+  "provider": {
+    "@type": "Organization",
+    "name": "Dyau",
+    "url": "https://dyau.ai"
+  },
+  "areaServed": "Worldwide",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Dyau Technology Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "AI Consulting & Integration",
+          "description": "State-of-the-art predictive algorithms, natural language processing models, and robust governance strategies."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Quantum Computing Research & Optimization",
+          "description": "Preparing forward-looking enterprises for the post-classical computing era with quantum-inspired optimization solutions."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Forward Deployed Engineering",
+          "description": "Elite technical talent deploying production-grade MLOps pipelines and scaling complex datasets."
+        }
+      }
+    ]
+  }
+};
 
 export default function Services() {
   const [activeService, setActiveService] = useState<ServiceItem | null>(null);
@@ -20,14 +63,44 @@ export default function Services() {
     }
   }, [location.hash]);
 
+  const seoTitle = activeService
+    ? `${activeService.title} | Dyau Services`
+    : "Comprehensive Technology Services | Dyau AI Consulting";
+  const seoDesc = activeService
+    ? activeService.desc
+    : "Explore Dyau's end-to-end cognitive solutions spanning AI strategy, quantum computing optimization, specialized IT staffing, and elite product engineering.";
+  const seoKeywords = activeService
+    ? `${activeService.title.toLowerCase()}, AI services, deep tech consulting, Dyau`
+    : "AI consulting, quantum optimization, machine learning engineering, MLOps automation, IT staffing, deep tech solutions";
+  const activeServiceSchema = activeService
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": activeService.title,
+        "description": activeService.desc,
+        "provider": {
+          "@type": "Organization",
+          "name": "Dyau",
+          "url": "https://dyau.ai"
+        }
+      }
+    : servicesSchema;
+
   return (
     <>
+      <SEO
+        title={seoTitle}
+        description={seoDesc}
+        keywords={seoKeywords}
+        schema={activeServiceSchema}
+      />
       <section className="relative overflow-hidden px-5 pb-16 pt-28 md:px-8 md:pt-32 bg-brand-cream">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Capabilities & Studio"
             title="Comprehensive Technology Services"
             text="End-to-end cognitive solutions spanning AI strategy, specialized staffing, and product engineering built to transform your organization."
+            isPageHeader={true}
           />
         </div>
       </section>
@@ -58,6 +131,7 @@ export default function Services() {
                       {s.desc}
                     </p>
                     <button
+                      id={`service-card-${s.title.toLowerCase().replace(/\s+/g, "-")}-details-btn`}
                       onClick={() => setActiveService(s)}
                       className="mt-4 inline-flex items-center text-xs font-semibold text-brand-charcoal hover:underline cursor-pointer"
                     >
@@ -78,6 +152,7 @@ export default function Services() {
                   {/* Card Content Bottom */}
                   <div className="mt-8">
                     <button
+                      id={`service-card-${s.title.toLowerCase().replace(/\s+/g, "-")}-explore-btn`}
                       onClick={() => setActiveService(s)}
                       className="inline-flex items-center gap-1.5 rounded-lg bg-brand-navy px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#003875] transition duration-200 cursor-pointer"
                     >
@@ -114,6 +189,7 @@ export default function Services() {
             >
               {/* Close Button */}
               <button
+                id="service-modal-close-btn"
                 onClick={() => setActiveService(null)}
                 className="absolute top-6 right-6 flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream-border bg-brand-cream text-brand-charcoal hover:bg-slate-100 transition cursor-pointer"
                 aria-label="Close details"

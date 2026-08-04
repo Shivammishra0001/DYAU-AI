@@ -23,7 +23,17 @@ export function ColorizedWords({ text }: { text: string }) {
   );
 }
 
-export default function SectionTitle({ eyebrow, title, text }: { eyebrow?: string; title: React.ReactNode; text?: string }) {
+export default function SectionTitle({
+  eyebrow,
+  title,
+  text,
+  isPageHeader = false,
+}: {
+  eyebrow?: string;
+  title: React.ReactNode;
+  text?: string;
+  isPageHeader?: boolean;
+}) {
   return (
     <motion.div
       className="mx-auto max-w-3xl text-center"
@@ -39,9 +49,15 @@ export default function SectionTitle({ eyebrow, title, text }: { eyebrow?: strin
           <span className="h-1.5 w-1.5 bg-brand-blue inline-block shrink-0 rounded-sm shadow-[0_0_6px_rgba(26,115,232,0.3)]" />
         </p>
       ) : null}
-      <h2 className="text-3xl font-semibold tracking-tight text-heading md:text-5xl">
-        {title}
-      </h2>
+      {isPageHeader ? (
+        <h1 className="text-3xl font-semibold tracking-tight text-heading md:text-5xl">
+          {title}
+        </h1>
+      ) : (
+        <h2 className="text-3xl font-semibold tracking-tight text-heading md:text-5xl">
+          {title}
+        </h2>
+      )}
       {text ? <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg font-light">{text}</p> : null}
     </motion.div>
   );

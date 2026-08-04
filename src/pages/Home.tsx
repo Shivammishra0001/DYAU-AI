@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion, useInView, useScroll, useTransform } from "framer-motion";
 import SectionTitle, { ColorizedWords } from "../components/SectionTitle";
+import SEO from "../components/SEO";
 import { stats, testimonials } from "../data/content";
 import MagicRings from "../components/MagicRings";
 
@@ -260,7 +261,7 @@ const fdeTopics = [
     id: "fde-jumpstart",
     category: "ENABLEMENT",
     title: "Jumpstart Enablement",
-    image: "/images/thumb_ai_advisory.png",
+    image: "/images/thumb_fde_jumpstart.png",
     description: "Accelerate your project timelines by onboarding your team with best-practice templates, key architecture frameworks, and developer enablement modules.",
     detailedExplanation: "Our Jumpstart offerings are designed to fast-track your engineering initiatives. We align your team with the latest platforms, establish secure workspaces, and implement pre-built reference architectures. By skipping the initial trial-and-error phase, you achieve faster time-to-value while establishing a rock-solid foundation for future growth.",
     capabilities: [
@@ -285,7 +286,7 @@ const fdeTopics = [
     id: "fde-migration",
     category: "MIGRATION",
     title: "Migration Assurance",
-    image: "/images/thumb_quantum_opt.png",
+    image: "/images/thumb_fde_migration.png",
     description: "Apply structured, proven migration paths and risk mitigation strategies to seamlessly transition legacy database and AI workloads to modern environments.",
     detailedExplanation: "Transitioning legacy pipelines and warehouses can introduce operational disruption and data loss risk. Our Migration Assurance program provides structured frameworks, automated translation tools, and side-by-side verification to move your spark, SQL, or Hadoop jobs to modern clouds and lakehouses without missing a beat.",
     capabilities: [
@@ -310,7 +311,7 @@ const fdeTopics = [
     id: "fde-lakehouse",
     category: "INFRASTRUCTURE",
     title: "Lakehouse Build-out",
-    image: "/images/thumb_quantum_simulation.png",
+    image: "/images/thumb_fde_lakehouse.png",
     description: "Establish a unified environment for analytics, data science, and machine learning, laying a solid foundation for your modern enterprise data strategy.",
     detailedExplanation: "Siloed data warehouses and data lakes prevent effective collaboration. We build unified, highly scalable lakehouse environments that combine the reliability of data warehouses with the flexibility of data lakes. Our implementations integrate Delta Lake/Iceberg, Unity Catalog for data governance, and automated ingestion pipelines for real-time analytics.",
     capabilities: [
@@ -335,7 +336,7 @@ const fdeTopics = [
     id: "fde-llms",
     category: "GENERATIVE AI",
     title: "Large Language Models (LLMs)",
-    image: "/images/thumb_ai_llm.png",
+    image: "/images/thumb_fde_llms.png",
     description: "Deploy specialized generative workflows, semantic search indexes, and custom knowledge-base Q&A agents tuned for your specific business domain.",
     detailedExplanation: "Unlock the power of your enterprise knowledge base. We build custom RAG (Retrieval-Augmented Generation) systems, orchestrate multi-agent autonomous loops, and fine-tune models to execute specialized domain tasks. All systems are equipped with MLOps guardrails to ensure deterministic, safe, and explainable responses.",
     capabilities: [
@@ -360,7 +361,7 @@ const fdeTopics = [
     id: "fde-coe",
     category: "GOVERNANCE",
     title: "Center of Excellence",
-    image: "/images/thumb_ai_governance.png",
+    image: "/images/thumb_fde_coe.png",
     description: "Establish a sustainable internal Center of Excellence (CoE) using our battle-tested governance methodologies, coding standards, and deployment frameworks.",
     detailedExplanation: "Technology adoption is a cultural and structural change, not just a technical one. We help you design and stand up a Center of Excellence (CoE) that establishes corporate coding standards, automated CI/CD templates, data stewardship policies, and training paths, enabling self-service analytics across all business units.",
     capabilities: [
@@ -385,7 +386,7 @@ const fdeTopics = [
     id: "fde-custom",
     category: "CUSTOM ENGINEERING",
     title: "Custom Services",
-    image: "/images/thumb_ai_automation.png",
+    image: "/images/thumb_fde_custom.png",
     description: "Engage with us for a custom Statement of Work tailored to your unique enterprise challenges. Our engineers bring a track record of solving highly complex, targeted technical problems.",
     detailedExplanation: "Every enterprise has unique operational constraints and edge cases. We provide custom, full-lifecycle engineering engagements to solve specific, high-complexity problems. Whether it's custom compiler optimization, real-time edge computing, or specialized mathematical modeling, our engineers work alongside your staff to deliver a tailored solution.",
     capabilities: [
@@ -466,6 +467,38 @@ const slideVariants = {
   })
 };
 
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://dyau.ai/#organization",
+      "name": "Dyau",
+      "alternateName": "Dyau AI",
+      "url": "https://dyau.ai",
+      "logo": "https://dyau.ai/dyau-logo.jpeg",
+      "description": "Dyau is a premium AI consulting and automation studio blending ancient Vedic wisdom with artificial intelligence, data intelligence, and future technology.",
+      "sameAs": [
+        "https://github.com/Shivammishra0001/DYAU-AI"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://dyau.ai/#website",
+      "url": "https://dyau.ai",
+      "name": "Dyau",
+      "publisher": {
+        "@id": "https://dyau.ai/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://dyau.ai/blog?search={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+};
+
 export default function Home() {
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 800], [0, 240]);
@@ -498,6 +531,12 @@ export default function Home() {
 
   return (
     <>
+      <SEO
+        title="Dyau | Wisdom Beyond Intelligence | Premium AI Consulting & Automation"
+        description="Dyau is a premium AI consulting and automation studio blending ancient Vedic wisdom with artificial intelligence, data intelligence, and future technology."
+        keywords="AI consulting, quantum computing, deep tech, forward deployed engineering, machine learning, Vedic wisdom, automation studio"
+        schema={homeSchema}
+      />
       <section className="relative flex min-h-[calc(100vh-96px)] items-center overflow-hidden px-6 py-24 md:px-12 lg:px-20 bg-slate-950 text-white">
         {/* Background Video Container */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
@@ -554,12 +593,14 @@ export default function Home() {
               variants={itemVariants}
             >
               <Link
+                id="hero-cta-services"
                 to="/services"
                 className="px-8 py-4 rounded-xl bg-white text-slate-950 font-medium hover:bg-slate-100 transition duration-300 shadow-lg shadow-white/5"
               >
                 Explore Our Services
               </Link>
               <Link
+                id="hero-cta-contact"
                 to="/contact"
                 className="px-8 py-4 rounded-xl border border-white/20 text-white font-medium hover:bg-white/10 transition duration-300"
               >
@@ -574,7 +615,7 @@ export default function Home() {
       <section className="relative px-5 pt-20 pb-20 md:px-8 md:pt-28 md:pb-28 overflow-hidden bg-brand-cream border-b border-slate-100">
         <div className="mx-auto max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Quantum Computing</h3>
+            <h2 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Quantum Computing</h2>
             <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
               Preparing forward-looking enterprises for the post-classical computing era. We engineer quantum-inspired optimizations, develop simulators, and design robust security protocols.
             </p>
@@ -585,6 +626,7 @@ export default function Home() {
             {quantumTopics.map((item, idx) => (
               <button
                 key={idx}
+                id={`home-quantum-tab-${idx}`}
                 onClick={() => {
                   const dir = idx > quantumPage ? 1 : -1;
                   setQuantumPage([idx, dir]);
@@ -698,7 +740,7 @@ export default function Home() {
       <section className="relative px-5 pt-20 pb-20 md:px-8 md:pt-28 md:pb-28 overflow-hidden bg-brand-cream border-b border-slate-100">
         <div className="mx-auto max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto">
-            <h3 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Artificial Intelligence</h3>
+            <h2 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Artificial Intelligence</h2>
             <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
               Empowering organizations with state-of-the-art predictive algorithms, natural language processing models, and robust governance strategies. We help build ethical, compliant, and highly automated intelligence pipelines.
             </p>
@@ -709,6 +751,7 @@ export default function Home() {
             {aiTopics.map((item, idx) => (
               <button
                 key={idx}
+                id={`home-ai-tab-${idx}`}
                 onClick={() => {
                   const dir = idx > aiPage ? 1 : -1;
                   setAiPage([idx, dir]);
@@ -826,7 +869,7 @@ export default function Home() {
           {/* Interactive Offerings Section */}
           <div>
             <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Forward Deployed Engineering</h3>
+              <h2 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Forward Deployed Engineering</h2>
               <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
                 Accelerating client success and advanced technology adoption through world-class technical expertise. We set the benchmark for implementation excellence, enabling your teams to build, optimize, and scale robust AI and data platforms. DYAU AI's Forward Deployed Engineering team is ready to guide you at every stage of your data and AI journey.
               </p>
@@ -837,6 +880,7 @@ export default function Home() {
               {fdeTopics.map((item, idx) => (
                 <button
                   key={idx}
+                  id={`home-fde-tab-${idx}`}
                   onClick={() => {
                     const dir = idx > page ? 1 : -1;
                     setPage([idx, dir]);

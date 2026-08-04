@@ -40,6 +40,7 @@ export default function Footer() {
               ].map((s) => (
                 <li key={s.name}>
                   <Link
+                    id={`footer-link-service-${s.id}`}
                     to={`/services#${s.id}`}
                     className="text-[14px] text-white font-light transition hover:underline"
                   >
@@ -62,6 +63,7 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.label}>
                   <Link
+                    id={`footer-link-company-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                     to={item.href}
                     className="text-[14px] text-white font-light transition hover:underline"
                   >

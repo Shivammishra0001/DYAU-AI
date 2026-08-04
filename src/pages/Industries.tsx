@@ -2,7 +2,16 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle";
+import SEO from "../components/SEO";
 import { industries, IndustryItem } from "../data/content";
+
+const industriesSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Industries We Serve | Dyau AI",
+  "description": "Deep domain expertise across verticals that demand precision, compliance, and innovation: Logistics, Finance, Healthcare, Manufacturing, Defense.",
+  "url": "https://dyau.ai/industries"
+};
 
 export default function Industries() {
   const [activeInd, setActiveInd] = useState<IndustryItem | null>(null);
@@ -20,14 +29,40 @@ export default function Industries() {
     }
   }, [location.hash]);
 
+  const seoTitle = activeInd
+    ? `${activeInd.name} Solutions | Dyau Industries`
+    : "Industries We Serve | Dyau AI Consulting";
+  const seoDesc = activeInd
+    ? activeInd.desc
+    : "Deep domain expertise across verticals that demand precision, compliance, and innovation. We serve Logistics, Financial Services, Healthcare, and more.";
+  const seoKeywords = activeInd
+    ? `${activeInd.name.toLowerCase()} automation, AI in ${activeInd.name.toLowerCase()}, Dyau`
+    : "AI industries, logistics optimization, fintech consulting, healthcare AI, robotics deep tech, manufacturing intelligence";
+  const activeIndSchema = activeInd
+    ? {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": `${activeInd.name} Solutions | Dyau Industries`,
+        "description": activeInd.desc,
+        "url": `https://dyau.ai/industries#${activeInd.name.toLowerCase().replace(/\s+/g, "-")}`
+      }
+    : industriesSchema;
+
   return (
     <>
+      <SEO
+        title={seoTitle}
+        description={seoDesc}
+        keywords={seoKeywords}
+        schema={activeIndSchema}
+      />
       <section className="relative overflow-hidden px-5 pb-16 pt-28 md:px-8 md:pt-32">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Industries"
             title="Industries We Serve"
             text="Deep domain expertise across verticals that demand precision, compliance, and innovation."
+            isPageHeader={true}
           />
         </div>
       </section>
@@ -76,6 +111,7 @@ export default function Industries() {
                     </p>
                     <div className="mt-6">
                       <button
+                        id={`industry-card-${ind.name.toLowerCase().replace(/\s+/g, "-")}-read-more-btn`}
                         onClick={() => setActiveInd(ind)}
                         className="cursor-pointer inline-flex items-center gap-1 rounded-lg bg-brand-navy px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#003875] transition duration-200"
                       >
@@ -113,6 +149,7 @@ export default function Industries() {
             >
               {/* Close Button */}
               <button
+                id="industry-modal-close-btn"
                 onClick={() => setActiveInd(null)}
                 className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream-border bg-brand-cream text-brand-charcoal hover:bg-slate-100 transition cursor-pointer"
                 aria-label="Close modal"

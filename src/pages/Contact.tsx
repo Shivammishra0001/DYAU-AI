@@ -1,7 +1,22 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionTitle, { ColorizedWords } from "../components/SectionTitle";
+import SEO from "../components/SEO";
 import { faqs, FaqAccordionItem } from "../data/content";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Dyau AI | Get in Touch",
+  "description": "Contact Dyau to discuss your premium AI consulting, quantum optimization, and forward deployed engineering projects.",
+  "url": "https://dyau.ai/contact",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Dyau",
+    "url": "https://dyau.ai",
+    "email": "contact@dyau.ai"
+  }
+};
 
 export default function Contact() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -87,6 +102,12 @@ export default function Contact() {
 
   return (
     <>
+      <SEO
+        title="Contact Dyau AI | Get in Touch for Premium AI & Deep Tech Services"
+        description="Contact Dyau to discuss your premium AI consulting, quantum optimization, and forward deployed engineering projects. Let's build something extraordinary together."
+        keywords="contact Dyau, AI consulting contact, hire AI engineers, deep tech inquiries, quantum computing consultation"
+        schema={contactSchema}
+      />
       <section className="relative overflow-hidden px-5 pb-24 pt-28 md:px-8 md:pb-32 md:pt-32">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.45 }} transition={{ duration: 0.75 }}>
@@ -152,6 +173,7 @@ export default function Contact() {
                 <label className="block">
                   <span className="sr-only">Name</span>
                   <input
+                    id="contact-form-name"
                     type="text"
                     required
                     placeholder="Name"
@@ -163,6 +185,7 @@ export default function Contact() {
                 <label className="block">
                   <span className="sr-only">Email</span>
                   <input
+                    id="contact-form-email"
                     type="email"
                     required
                     placeholder="Email"
@@ -174,6 +197,7 @@ export default function Contact() {
                 <label className="block">
                   <span className="sr-only">Phone</span>
                   <input
+                    id="contact-form-phone"
                     type="tel"
                     placeholder="Phone"
                     value={formData.phone}
@@ -184,6 +208,7 @@ export default function Contact() {
                 <label className="block">
                   <span className="sr-only">Company</span>
                   <input
+                    id="contact-form-company"
                     type="text"
                     placeholder="Company"
                     value={formData.company}
@@ -195,6 +220,7 @@ export default function Contact() {
               <label className="mt-4 block">
                 <span className="sr-only">How can we help?</span>
                 <select 
+                  id="contact-form-service"
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                   className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-500 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue [&:has(option:checked:not([value='']))]:text-slate-900"
@@ -212,6 +238,7 @@ export default function Contact() {
               <label className="mt-4 block">
                 <span className="sr-only">Message</span>
                 <textarea
+                  id="contact-form-message"
                   required
                   placeholder="Tell us about your project..."
                   rows={5}
@@ -222,6 +249,7 @@ export default function Contact() {
               </label>
               <div className="mt-6 flex flex-col gap-4 sm:flex-row">
                 <button
+                  id="contact-form-submit-btn"
                   type="submit"
                   disabled={status === "submitting"}
                   className="w-full sm:w-auto rounded-lg bg-brand-navy px-8 py-3.5 text-center text-sm font-bold text-brand-cream transition hover:bg-[#003875] disabled:opacity-50 cursor-pointer"

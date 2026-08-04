@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionTitle from "../components/SectionTitle";
+import SEO from "../components/SEO";
 
 interface BlogPost {
   id: string;
@@ -123,6 +124,19 @@ const blogPosts: BlogPost[] = [
 
 const categories = ["All", "AI & Automation", "Quantum", "Tech Staffing", "Research"];
 
+const blogPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Dyau AI Insights | Premium AI & Quantum Blog",
+  "description": "Stay ahead of the curve with insights on quantum computing, generative AI agents, MLOps automation, and deep tech research from Dyau AI.",
+  "url": "https://dyau.ai/blog",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dyau",
+    "logo": "https://dyau.ai/dyau-logo.jpeg"
+  }
+};
+
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
@@ -131,8 +145,48 @@ export default function Blog() {
     ? blogPosts
     : blogPosts.filter(p => p.category === selectedCategory);
 
+  const seoTitle = activePost
+    ? `${activePost.title} | Dyau Blog`
+    : "Dyau AI Insights | Premium AI & Quantum Blog";
+  const seoDesc = activePost
+    ? activePost.desc
+    : "Stay ahead of the curve with insights on quantum computing, generative AI agents, MLOps automation, and deep tech research from Dyau AI.";
+  const seoKeywords = activePost
+    ? `${activePost.category.toLowerCase()}, ${activePost.title.toLowerCase()}, Dyau`
+    : "quantum computing articles, AI automation blog, deep tech research, MLOps insights, tech staffing articles";
+
+  const activePostSchema = activePost
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": activePost.title,
+        "description": activePost.desc,
+        "image": `https://dyau.ai${activePost.image}`,
+        "datePublished": "2026-07-29T12:00:00+05:30",
+        "author": {
+          "@type": "Person",
+          "name": activePost.author
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Dyau",
+          "logo": "https://dyau.ai/dyau-logo.jpeg"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://dyau.ai/blog#${activePost.id}`
+        }
+      }
+    : blogPageSchema;
+
   return (
     <div className="min-h-screen bg-brand-cream">
+      <SEO
+        title={seoTitle}
+        description={seoDesc}
+        keywords={seoKeywords}
+        schema={activePostSchema}
+      />
       {/* ───── Page Header ───── */}
       <section className="relative overflow-hidden px-5 pb-12 pt-28 md:px-8 md:pt-32">
         <div className="mx-auto max-w-7xl">
@@ -140,6 +194,7 @@ export default function Blog() {
             eyebrow="Insights & Research"
             title="Our Blog & Articles"
             text="Explore deep dives, research papers, and technical analyses written by our software developers, AI consultants, and talent acquisition teams."
+            isPageHeader={true}
           />
         </div>
       </section>
@@ -152,6 +207,7 @@ export default function Blog() {
             return (
               <button
                 key={cat}
+                id={`blog-category-${cat.toLowerCase().replace(/\s+/g, "-")}-btn`}
                 onClick={() => setSelectedCategory(cat)}
                 className={`rounded-lg px-6 py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 border cursor-pointer ${
                   isActive
@@ -211,6 +267,7 @@ export default function Blog() {
 
                     <div className="mt-6 pt-5 border-t border-brand-charcoal/10 mt-auto flex items-center justify-between">
                       <button
+                        id={`blog-post-card-${post.id}-read-btn`}
                         onClick={() => setActivePost(post)}
                         className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-charcoal hover:underline transition duration-200 cursor-pointer"
                       >
@@ -258,6 +315,7 @@ export default function Blog() {
 
                 {/* Close Button */}
                 <button
+                  id="blog-modal-close-btn"
                   onClick={() => setActivePost(null)}
                   className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/45 text-white hover:bg-black/65 transition cursor-pointer"
                   aria-label="Close article"
