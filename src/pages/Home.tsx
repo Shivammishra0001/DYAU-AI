@@ -518,9 +518,9 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Dyau | Wisdom Beyond Intelligence | Premium AI Consulting & Automation"
-        description="Dyau is a premium AI consulting and automation studio blending ancient Vedic wisdom with artificial intelligence, data intelligence, and future technology."
-        keywords="AI consulting, quantum computing, deep tech, forward deployed engineering, machine learning, Vedic wisdom, automation studio"
+        title="Dyau AI Consulting | Premium AI Consulting, Automation & Quantum Services"
+        description="Dyau AI Consulting delivers premium AI consulting, automation, and quantum optimization for enterprises seeking deep tech transformation."
+        keywords="Dyau AI consulting, dyau, AI consulting, AI automation, quantum consulting, enterprise AI services, machine learning, deep tech innovation"
         schema={homeSchema}
       />
       <section className="relative flex min-h-[calc(100vh-96px)] items-center overflow-hidden px-6 py-24 md:px-12 lg:px-20 bg-slate-950 text-white">
