@@ -558,19 +558,19 @@ export default function Home() {
               style={{ color: '#ffffff' }}
               variants={itemVariants}
             >
-              Quantum Computing & Quantum AI Consulting in Singapore
+              Deep Tech Company
             </motion.h1>
             <motion.p
               className="mt-6 text-xl font-medium tracking-wide text-slate-300 md:text-2xl lg:text-3xl font-heading"
               variants={itemVariants}
             >
-              Singapore's premium quantum computing, quantum AI, and enterprise AI consulting studio.
+              Focused on AI &amp; Quantum
             </motion.p>
             <motion.p
               className="mt-6 text-base md:text-lg text-slate-400 font-light max-w-2xl leading-relaxed"
               variants={itemVariants}
             >
-              We engineer high-impact quantum computing solutions, quantum AI systems, and advanced AI models that accelerate deep tech transformation for forward-looking enterprises.
+              We leverage future compute and cognitive systems to engineer high-impact AI models, advanced optimization algorithms, and quantum-inspired architectures for forward-looking enterprises.
             </motion.p>
             
             {/* Call to Actions */}
