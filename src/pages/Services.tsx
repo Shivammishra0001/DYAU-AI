@@ -8,7 +8,7 @@ import { services, ServiceItem } from "../data/content";
 const servicesSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "serviceType": "AI Consulting & Quantum Computing Optimization Research Services",
+  "serviceType": "AI Consulting, Quantum Computing, and Quantum AI Optimization Services",
   "provider": {
     "@type": "Organization",
     "name": "Dyau",
@@ -65,13 +65,13 @@ export default function Services() {
 
   const seoTitle = activeService
     ? `${activeService.title} | Dyau Services`
-    : "Comprehensive Technology Services | Dyau AI Consulting";
+    : "Comprehensive Technology Services | Dyau AI Consulting | Quantum Computing Singapore";
   const seoDesc = activeService
     ? activeService.desc
-    : "Explore Dyau's end-to-end cognitive solutions spanning AI strategy, quantum computing optimization, specialized IT staffing, and elite product engineering.";
+    : "Explore Dyau's end-to-end cognitive solutions spanning AI strategy, quantum computing, quantum AI, specialized IT staffing, and elite product engineering.";
   const seoKeywords = activeService
     ? `${activeService.title.toLowerCase()}, AI services, deep tech consulting, Dyau`
-    : "AI consulting, quantum optimization, machine learning engineering, MLOps automation, IT staffing, deep tech solutions";
+    : "AI consulting, quantum computing, quantum AI, Singapore quantum consulting, quantum optimization, machine learning engineering, MLOps automation, IT staffing, deep tech solutions";
   const activeServiceSchema = activeService
     ? {
         "@context": "https://schema.org",
@@ -98,8 +98,8 @@ export default function Services() {
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Capabilities & Studio"
-            title="Comprehensive Technology Services"
-            text="End-to-end cognitive solutions spanning AI strategy, specialized staffing, and product engineering built to transform your organization."
+            title="Comprehensive AI, Quantum Computing & Quantum AI Services"
+            text="End-to-end quantum computing, quantum AI, and AI consulting solutions built to transform enterprises in Singapore and worldwide."
             isPageHeader={true}
           />
         </div>

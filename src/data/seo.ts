@@ -1,6 +1,6 @@
 export const siteUrl = "https://dyau.ai";
 export const siteName = "Dyau AI";
-export const siteDescription = "Dyau AI Consulting is a premium artificial intelligence and quantum consulting studio delivering enterprise-grade automation, machine learning, and deep tech engineering.";
+export const siteDescription = "Dyau AI Consulting is a Singapore-based premium artificial intelligence, quantum computing, and quantum AI consulting studio delivering enterprise-grade automation, machine learning, and deep tech engineering.";
 export const siteAuthor = "Dyau AI";
 export const siteLogo = `${siteUrl}/images/logo.png`;
 export const defaultOgImage = `${siteUrl}/images/logo.png`;

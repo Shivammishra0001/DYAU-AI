@@ -10,9 +10,9 @@ export default function Footer() {
             <Link to="/" className="group inline-flex items-center gap-1">
               <img
                 src="/images/logo.png"
-                alt="DYAU AI logo"
-                className="h-18 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                style={{ filter: "brightness(0) invert(1)" }}
+                alt="Dyau AI logo"
+                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                style={{ filter: "invert(1)", display: "block" }}
               />
               <span className="text-[18px] font-semibold tracking-tight text-white select-none">
                 Dyau <span className="font-light text-white ml-0.5">AI</span>

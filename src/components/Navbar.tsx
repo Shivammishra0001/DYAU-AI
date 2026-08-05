@@ -44,9 +44,9 @@ export default function Navbar() {
         >
           <img
             src="/images/logo.png"
-            alt="DYAU logo"
+            alt="Dyau AI logo"
             className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            style={{ filter: "brightness(0) invert(1)" }}
+            style={{ filter: "invert(1)", display: "block" }}
           />
           <span className="text-[22px] font-semibold tracking-tight text-white select-none">
             Dyau

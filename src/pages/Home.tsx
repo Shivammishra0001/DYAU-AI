@@ -518,9 +518,9 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Dyau AI Consulting | Premium AI Consulting, Automation & Quantum Services"
-        description="Dyau AI Consulting delivers premium AI consulting, automation, and quantum optimization for enterprises seeking deep tech transformation."
-        keywords="Dyau AI consulting, dyau, AI consulting, AI automation, quantum consulting, enterprise AI services, machine learning, deep tech innovation"
+        title="Dyau AI Consulting | Quantum Computing Singapore | Premium AI & Quantum Services"
+        description="Dyau AI Consulting delivers premium AI consulting, quantum computing, and quantum AI services from Singapore for enterprises seeking deep tech transformation."
+        keywords="Dyau AI consulting, dyau, AI consulting, AI automation, quantum computing, quantum AI, quantum consulting, Singapore quantum computing, enterprise AI services, deep tech innovation"
         schema={homeSchema}
       />
       <section className="relative flex min-h-[calc(100vh-96px)] items-center overflow-hidden px-6 py-24 md:px-12 lg:px-20 bg-slate-950 text-white">
@@ -558,19 +558,19 @@ export default function Home() {
               style={{ color: '#ffffff' }}
               variants={itemVariants}
             >
-              Deep Tech Company
+              Quantum Computing & Quantum AI Consulting in Singapore
             </motion.h1>
             <motion.p
               className="mt-6 text-xl font-medium tracking-wide text-slate-300 md:text-2xl lg:text-3xl font-heading"
               variants={itemVariants}
             >
-              Focused on AI &amp; Quantum
+              Singapore's premium quantum computing, quantum AI, and enterprise AI consulting studio.
             </motion.p>
             <motion.p
               className="mt-6 text-base md:text-lg text-slate-400 font-light max-w-2xl leading-relaxed"
               variants={itemVariants}
             >
-              We leverage future compute and cognitive systems to engineer high-impact AI models, advanced optimization algorithms, and quantum-inspired architectures for forward-looking enterprises.
+              We engineer high-impact quantum computing solutions, quantum AI systems, and advanced AI models that accelerate deep tech transformation for forward-looking enterprises.
             </motion.p>
             
             {/* Call to Actions */}
@@ -639,7 +639,10 @@ export default function Home() {
                 Quantum Computing
               </motion.h2>
               <p className="mt-4 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
-                Preparing forward-looking enterprises for the post-classical computing era. We engineer quantum-inspired optimizations, develop simulators, and design robust security protocols.
+                Preparing forward-looking enterprises for the post-classical computing era. We engineer quantum computing systems, quantum AI applications, quantum-inspired optimizations, high-performance simulators, and robust post-quantum security protocols.
+              </p>
+              <p className="mt-6 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
+                Our Singapore-based quantum computing and quantum AI consulting team helps enterprises deploy practical research, production-ready algorithms, and next-generation hybrid AI systems.
               </p>
               
               <motion.div
