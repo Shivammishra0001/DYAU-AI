@@ -785,13 +785,10 @@ export default function Home() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }}
               >
-                Forward Deployed Engineering
+                Forward Deployed Engineers (FDEs) and AI FDEs
               </motion.h2>
               <p className="mt-4 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
-                Accelerating client success and advanced technology adoption through world-class technical expertise. We set the benchmark for implementation excellence, enabling your teams to build, optimize, and scale robust AI and data platforms.
-              </p>
-              <p className="mt-6 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
-                Our Singapore-based Forward Deployed Engineering team is ready to guide you at every stage of your data and AI journey, from pilot to global production.
+                Highly experienced and technical resources with strong leadership and consulting skills. To ensure your success, we leverage our extensive partner ecosystem and co-deliver with them as required.
               </p>
               
               <motion.div
