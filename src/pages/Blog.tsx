@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import SectionTitle from "../components/SectionTitle";
 import SEO from "../components/SEO";
 
@@ -139,7 +139,6 @@ const blogPageSchema = {
 };
 
 export default function Blog() {
-  const navigate = useNavigate();
   const { postId } = useParams();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
@@ -231,8 +230,8 @@ export default function Blog() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`rounded-lg px-6 py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 border cursor-pointer ${
                   isActive
-                    ? "bg-brand-navy border-brand-navy text-brand-cream"
-                    : "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
+                    ? "bg-gradient-brand border-transparent text-white shadow-md shadow-brand-blue/10"
+                    : "bg-slate-100 border-slate-200/30 text-white hover:bg-slate-100/80"
                 }`}
               >
                 {cat}
@@ -251,52 +250,46 @@ export default function Blog() {
                 <motion.div
                   layout
                   key={post.id}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:shadow-md hover:border-brand-blue/30 text-brand-charcoal"
+                  className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-100 p-8 shadow-sm transition duration-300 hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 text-brand-charcoal min-h-[480px] card-gradient-border-hover"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                 >
-                  {/* Image */}
-                  <div className="relative h-52 w-full overflow-hidden bg-slate-100 rounded-t-2xl">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-2xl"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-                  </div>
-
-                  {/* Body */}
-                  <div className="flex flex-1 flex-col p-6 md:p-8">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono font-bold tracking-wider text-slate-600 uppercase">
-                        {post.category}
-                      </span>
-                      <span className="h-1 w-1 rounded-full bg-brand-charcoal/20" />
-                      <span className="text-xs text-slate-700 font-light">{post.date}</span>
-                    </div>
-
-                    <h3 className="mt-4 text-base font-bold text-brand-charcoal leading-snug line-clamp-2 transition duration-200">
+                  {/* Card Content Top */}
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-500/80 block select-none">
+                      {post.category} • {post.date}
+                    </span>
+                    <h3 className="mt-4 text-2xl font-extrabold tracking-tight font-sans text-brand-charcoal leading-snug line-clamp-2">
                       {post.title}
                     </h3>
-
-                    <p className="mt-3 text-sm leading-relaxed text-slate-700 font-light line-clamp-3">
+                    <p className="mt-3 text-[15.5px] font-serif leading-relaxed text-brand-charcoal/85 line-clamp-4">
                       {post.desc}
                     </p>
-
-                    <div className="mt-6 pt-5 border-t border-brand-charcoal/10 mt-auto flex items-center justify-between">
-                      <button
-                        id={`blog-post-card-${post.id}-read-btn`}
-                        onClick={() => setActivePost(post)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-charcoal hover:underline transition duration-200 cursor-pointer"
-                      >
-                        Read Article <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                      </button>
-                      <span className="text-[11px] text-slate-700 font-light">{post.readTime}</span>
+                    <button
+                      id={`blog-post-card-${post.id}-details-btn`}
+                      onClick={() => setActivePost(post)}
+                      className="mt-4 inline-flex items-center text-xs font-semibold text-brand-charcoal hover:underline cursor-pointer"
+                    >
+                      Read details →
+                    </button>
+                    
+                    {/* Read Time Info */}
+                    <div className="mt-6 border-t border-brand-charcoal/10 pt-4 text-xs text-brand-charcoal/70 font-sans">
+                      Estimated Read: {post.readTime}
                     </div>
+                  </div>
+
+                  {/* Card Content Bottom */}
+                  <div className="mt-8">
+                    <button
+                      id={`blog-post-card-${post.id}-explore-btn`}
+                      onClick={() => setActivePost(post)}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-brand px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition duration-200 cursor-pointer"
+                    >
+                      Read Article →
+                    </button>
                   </div>
                 </motion.div>
               ))}
@@ -386,7 +379,7 @@ export default function Blog() {
                 <div className="mt-12 pt-6 border-t border-brand-cream-border flex justify-end">
                   <button
                     onClick={() => setActivePost(null)}
-                    className="rounded-lg bg-brand-navy px-6 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#003875] transition cursor-pointer"
+                    className="rounded-lg bg-slate-800 px-6 py-2.5 text-xs font-bold text-white hover:bg-slate-700 transition cursor-pointer"
                   >
                     Close Article
                   </button>

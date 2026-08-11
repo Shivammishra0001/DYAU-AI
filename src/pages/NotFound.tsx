@@ -28,7 +28,7 @@ export default function NotFound() {
           <Link
             id="not-found-back-home-btn"
             to="/"
-            className="mt-8 inline-block rounded-full bg-brand-blue px-8 py-4 text-sm font-semibold text-white transition hover:bg-blue-700"
+            className="mt-8 inline-block rounded-full bg-gradient-brand px-8 py-4 text-sm font-semibold text-white transition hover:opacity-90 hover:scale-[1.02] shadow-md shadow-brand-purple/20"
           >
             Back to Home
           </Link>

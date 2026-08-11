@@ -98,7 +98,7 @@ export default function Services() {
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Capabilities & Studio"
-            title="Comprehensive AI, Quantum Computing & Quantum AI Services"
+            title="AI & Quantum Services"
             text="End-to-end quantum computing, quantum AI, and AI consulting solutions built to transform enterprises in Singapore and worldwide."
             isPageHeader={true}
           />
@@ -113,7 +113,7 @@ export default function Services() {
               return (
                 <motion.div
                   key={s.title}
-                  className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition duration-300 hover:shadow-md text-brand-charcoal min-h-[480px]"
+                  className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-100 p-8 shadow-sm transition duration-300 hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 text-brand-charcoal min-h-[480px] card-gradient-border-hover"
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
@@ -154,7 +154,7 @@ export default function Services() {
                     <button
                       id={`service-card-${s.title.toLowerCase().replace(/\s+/g, "-")}-explore-btn`}
                       onClick={() => setActiveService(s)}
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-brand-navy px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#003875] transition duration-200 cursor-pointer"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-brand px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition duration-200 cursor-pointer"
                     >
                       Explore service →
                     </button>
@@ -191,7 +191,7 @@ export default function Services() {
               <button
                 id="service-modal-close-btn"
                 onClick={() => setActiveService(null)}
-                className="absolute top-6 right-6 flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream-border bg-brand-cream text-brand-charcoal hover:bg-slate-100 transition cursor-pointer"
+                className="absolute top-6 right-6 flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream-border bg-slate-100 text-brand-charcoal hover:bg-slate-200 transition cursor-pointer"
                 aria-label="Close details"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -220,7 +220,7 @@ export default function Services() {
                 <div className="mt-8">
                   <Link
                     to="/contact"
-                    className="rounded-lg bg-brand-navy px-6 py-3 text-sm font-bold text-brand-cream hover:bg-[#003875] transition duration-200 text-center inline-block"
+                    className="rounded-lg bg-gradient-brand px-6 py-3 text-sm font-bold text-white hover:opacity-90 transition duration-200 text-center inline-block hover:scale-[1.02] shadow-md shadow-brand-purple/10"
                   >
                     Consult an Expert
                   </Link>
@@ -262,7 +262,7 @@ export default function Services() {
               <div className="mt-12 pt-6 border-t border-brand-cream-border flex justify-end gap-3">
                 <button
                   onClick={() => setActiveService(null)}
-                  className="rounded-lg border border-brand-cream-border bg-brand-cream px-5 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 hover:text-brand-charcoal transition cursor-pointer"
+                  className="rounded-lg border border-brand-cream-border bg-slate-100 px-5 py-2.5 text-xs font-semibold text-slate-400 hover:bg-slate-200 hover:text-brand-charcoal transition cursor-pointer"
                 >
                   Close Detail
                 </button>

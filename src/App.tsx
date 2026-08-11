@@ -57,8 +57,8 @@ function ScrollToTopButton() {
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           whileHover={{ scale: 1.1, y: -2 }}
           whileTap={{ scale: 0.9 }}
-          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-slate-950/80 text-white shadow-2xl backdrop-blur-md hover:bg-slate-900 transition-colors duration-200"
-          style={{ boxShadow: "0 0 20px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.05)" }}
+          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-gradient-brand text-white shadow-lg shadow-brand-blue/30 transition-transform duration-200"
+          style={{ boxShadow: "0 4px 20px rgba(223, 36, 255, 0.35)" }}
           aria-label="Scroll to top"
         >
           <svg

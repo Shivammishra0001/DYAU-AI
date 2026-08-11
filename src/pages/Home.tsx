@@ -1,53 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { AnimatePresence, motion, useInView, useScroll, useTransform } from "framer-motion";
-import SectionTitle, { ColorizedWords } from "../components/SectionTitle";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import SectionTitle from "../components/SectionTitle";
 import SEO from "../components/SEO";
-import { stats, testimonials } from "../data/content";
-import MagicRings from "../components/MagicRings";
+import { testimonials } from "../data/content";
 
-function StatCounter({ value }: { value: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-  
-  // Extract number and suffix
-  const numMatch = value.match(/\d+/);
-  const suffix = value.replace(/\d+/, "");
-  const targetNumber = numMatch ? parseInt(numMatch[0], 10) : 0;
 
-  useEffect(() => {
-    if (!isInView) return;
-
-    let start = 0;
-    const duration = 1800; // 1.8 seconds animation duration
-    const startTime = performance.now();
-
-    const animateCount = (timestamp: number) => {
-      const elapsed = timestamp - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // Easing out quadratic
-      const easeOutQuad = (t: number) => t * (2 - t);
-      const currentCount = Math.round(easeOutQuad(progress) * targetNumber);
-
-      setCount(currentCount);
-
-      if (progress < 1) {
-        requestAnimationFrame(animateCount);
-      }
-    };
-
-    requestAnimationFrame(animateCount);
-  }, [isInView, targetNumber]);
-
-  return (
-    <span ref={ref}>
-      {count}
-      {suffix}
-    </span>
-  );
-}
 
 
 const quantumTopics = [
@@ -427,7 +385,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.16, 1, 0.3, 1], // easeOutExpo
+      ease: [0.16, 1, 0.3, 1] as const, // easeOutExpo
     },
   },
 };
@@ -439,33 +397,12 @@ const cardFadeUp = {
     y: 0,
     transition: {
       duration: 0.7,
-      ease: [0.16, 1, 0.3, 1], // easeOutExpo
+      ease: [0.16, 1, 0.3, 1] as const, // easeOutExpo
     },
   },
 };
 
-const slideVariants = {
-  enter: (direction: number) => ({
-    x: direction > 0 ? 80 : -80,
-    opacity: 0
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      x: { type: "spring", stiffness: 300, damping: 30 },
-      opacity: { duration: 0.2 }
-    }
-  },
-  exit: (direction: number) => ({
-    x: direction < 0 ? 80 : -80,
-    opacity: 0,
-    transition: {
-      x: { type: "spring", stiffness: 300, damping: 30 },
-      opacity: { duration: 0.2 }
-    }
-  })
-};
+
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -505,13 +442,7 @@ export default function Home() {
   const backgroundOpacity = useTransform(scrollY, [0, 800], [0.8, 0.2]);
   const [selectedTopic, setSelectedTopic] = useState<any | null>(null);
   
-  // FDE Slider State
-  const [[page, direction], setPage] = useState([0, 0]);
-  const activeFdeTab = page;
-  const paginate = (newDirection: number) => {
-    const nextPage = (page + newDirection + fdeTopics.length) % fdeTopics.length;
-    setPage([nextPage, newDirection]);
-  };
+
 
 
 
@@ -523,26 +454,29 @@ export default function Home() {
         keywords="Dyau AI consulting, dyau, AI consulting, AI automation, quantum computing, quantum AI, quantum consulting, Singapore quantum computing, enterprise AI services, deep tech innovation"
         schema={homeSchema}
       />
-      <section className="relative flex min-h-[calc(100vh-96px)] items-center overflow-hidden px-6 py-24 md:px-12 lg:px-20 bg-slate-950 text-white">
-        {/* Background Video Container */}
+      <section className="relative flex min-h-[calc(100vh-96px)] items-center overflow-hidden px-6 py-24 md:px-12 lg:px-20 bg-[#020203] text-white">
+        {/* Glow Blobs */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+          <div className="absolute -top-[10%] -left-[10%] h-[60%] w-[60%] rounded-full bg-brand-blue/15 blur-[120px] animate-pulse-slow" />
+          <div className="absolute top-[40%] -right-[10%] h-[60%] w-[60%] rounded-full bg-brand-red/15 blur-[120px] animate-pulse-slow" style={{ animationDelay: '-5s' }} />
+          {/* Looping horizontal drifting color shadow */}
+          <div className="absolute top-[15%] -left-[20%] h-[60%] w-[60%] rounded-full bg-gradient-brand blur-[140px] animate-glow-drift-x" />
+        </div>
+        
+        {/* Background Image Container */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <motion.video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover opacity-60 md:opacity-80"
+          <motion.img
+            src="/images/hero_quantum_bg_v2.png"
+            alt="Quantum Computing Background"
+            className="absolute inset-0 h-full w-full object-cover opacity-45 md:opacity-55"
             style={{
               y: backgroundY,
               opacity: backgroundOpacity,
             }}
-          >
-            <source src="/video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </motion.video>
+          />
           {/* Subtle gradient overlay to ensure centered readability */}
-          <div className="absolute inset-0 bg-slate-950/45" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#020617_80%)]" />
+          <div className="absolute inset-0 bg-[#020203]/60" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#020203_80%)]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl w-full flex flex-col items-center text-center">
@@ -554,20 +488,20 @@ export default function Home() {
             animate="visible"
           >
             <motion.h1
-              className="text-4xl font-bold tracking-tight md:text-7xl lg:text-8xl font-heading !text-white leading-tight"
+              className="text-3xl sm:text-4xl font-bold tracking-tight md:text-7xl lg:text-8xl font-heading !text-white leading-tight whitespace-nowrap"
               style={{ color: '#ffffff' }}
               variants={itemVariants}
             >
               Deep Tech Company
             </motion.h1>
             <motion.p
-              className="mt-6 text-xl font-medium tracking-wide text-slate-300 md:text-2xl lg:text-3xl font-heading"
+              className="mt-6 text-xl font-medium tracking-wide text-white md:text-2xl lg:text-3xl font-heading"
               variants={itemVariants}
             >
               Focused on AI &amp; Quantum
             </motion.p>
             <motion.p
-              className="mt-6 text-base md:text-lg text-slate-400 font-light max-w-2xl leading-relaxed"
+              className="mt-6 text-base md:text-lg text-white/85 font-light max-w-2xl leading-relaxed"
               variants={itemVariants}
             >
               We leverage future compute and cognitive systems to engineer high-impact AI models, advanced optimization algorithms, and quantum-inspired architectures for forward-looking enterprises.
@@ -581,14 +515,14 @@ export default function Home() {
               <Link
                 id="hero-cta-services"
                 to="/services"
-                className="px-8 py-4 rounded-xl bg-white text-slate-950 font-medium hover:bg-slate-100 transition duration-300 shadow-lg shadow-white/5"
+                className="px-8 py-4 rounded-xl bg-gradient-brand text-white font-medium hover:scale-[1.02] hover:opacity-95 active:scale-[0.98] transition duration-300 shadow-lg shadow-brand-blue/20"
               >
                 Explore Our Services
               </Link>
               <Link
                 id="hero-cta-contact"
                 to="/contact"
-                className="px-8 py-4 rounded-xl border border-white/20 text-white font-medium hover:bg-white/10 transition duration-300"
+                className="px-8 py-4 rounded-xl btn-dark-gradient-border text-white font-medium transition duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Get in Touch
               </Link>
@@ -610,7 +544,17 @@ export default function Home() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="relative z-10 overflow-hidden rounded-2xl border border-brand-cream-border bg-white shadow-md">
+              <motion.div
+                className="relative z-10 overflow-hidden rounded-2xl border border-slate-200/30 bg-slate-100 backdrop-blur-sm shadow-md hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 transition duration-300 card-gradient-border-hover"
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
                 <img
                   src="/images/quantum_hero.png"
                   alt="Quantum Computing Research"
@@ -618,7 +562,7 @@ export default function Home() {
                   decoding="async"
                   className="w-full object-cover aspect-[4/3] md:aspect-[1.3] lg:aspect-[1.1] xl:aspect-[1.2] rounded-2xl"
                 />
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Right side: Content & 2x2 Grid of Quantum Services */}
@@ -686,7 +630,7 @@ export default function Home() {
                       const topic = quantumTopics.find(t => t.id === item.id);
                       setSelectedTopic(topic);
                     }}
-                    className="flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-brand-blue/30 hover:shadow-md transition duration-300 cursor-pointer"
+                    className="flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-slate-100 shadow-sm hover:shadow-lg hover:shadow-brand-red/5 hover:-translate-y-1 transition duration-300 cursor-pointer card-gradient-border-hover"
                   >
                     <img
                       src={item.image}
@@ -748,7 +692,7 @@ export default function Home() {
                     id={`home-ai-card-${item.id}`}
                     variants={cardFadeUp}
                     onClick={() => setSelectedTopic(item)}
-                    className="flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-brand-blue/30 hover:shadow-md transition duration-300 cursor-pointer"
+                    className="flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-slate-100 shadow-sm hover:shadow-lg hover:shadow-brand-red/5 hover:-translate-y-1 transition duration-300 cursor-pointer card-gradient-border-hover"
                   >
                     <img
                       src={item.image}
@@ -777,9 +721,9 @@ export default function Home() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               {/* Main Image Container */}
-              <div className="relative z-10 overflow-hidden rounded-2xl border border-brand-cream-border bg-white shadow-md">
+              <div className="relative z-10 overflow-hidden rounded-2xl border border-slate-200/30 bg-slate-100 backdrop-blur-sm shadow-md hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 transition duration-300 card-gradient-border-hover">
                 <img
-                  src="/images/ai_services_infographic.png"
+                  src="/images/ai_hero.png"
                   alt="Artificial Intelligence Services Diagram"
                   loading="lazy"
                   decoding="async"
@@ -796,137 +740,100 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(176,186,153,0.06),transparent_50%)]" />
         
         <div className="mx-auto max-w-7xl relative z-10">
-          {/* Interactive Offerings Section */}
-          <div>
-            <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-2xl font-semibold text-brand-charcoal font-serif md:text-4xl">Forward Deployed Engineering</h2>
-              <p className="mt-4 text-sm text-slate-600 font-light leading-relaxed">
-                Accelerating client success and advanced technology adoption through world-class technical expertise. We set the benchmark for implementation excellence, enabling your teams to build, optimize, and scale robust AI and data platforms. DYAU AI's Forward Deployed Engineering team is ready to guide you at every stage of your data and AI journey.
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
+            {/* Left side: Image */}
+            <motion.div
+              className="lg:col-span-5 relative order-1 lg:order-1"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+            >
+              <motion.div
+                className="relative z-10 overflow-hidden rounded-2xl border border-slate-200/30 bg-slate-100 backdrop-blur-sm shadow-md hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 transition duration-300 card-gradient-border-hover"
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <img
+                  src="/images/fde_illustration.png"
+                  alt="Forward Deployed Engineering"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover aspect-[4/3] md:aspect-[1.3] lg:aspect-[1.1] xl:aspect-[1.2] rounded-2xl"
+                />
+              </motion.div>
+            </motion.div>
+
+            {/* Right side: Content & Grid of FDE Services */}
+            <motion.div
+              className="lg:col-span-7 order-2 lg:order-2"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+            >
+              <motion.h2
+                className="text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }}
+              >
+                Forward Deployed Engineering
+              </motion.h2>
+              <p className="mt-4 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
+                Accelerating client success and advanced technology adoption through world-class technical expertise. We set the benchmark for implementation excellence, enabling your teams to build, optimize, and scale robust AI and data platforms.
               </p>
-            </div>
-
-            {/* Tab Selector */}
-            <div className="mt-10 flex flex-nowrap overflow-x-auto justify-start md:justify-center gap-2 border-b border-slate-200 pb-4 scrollbar-none">
-              {fdeTopics.map((item, idx) => (
-                <button
-                  key={idx}
-                  id={`home-fde-tab-${idx}`}
-                  onClick={() => {
-                    const dir = idx > page ? 1 : -1;
-                    setPage([idx, dir]);
-                  }}
-                  className={`px-5 py-3 text-sm font-semibold rounded-xl transition cursor-pointer relative whitespace-nowrap shrink-0 ${
-                    activeFdeTab === idx
-                      ? "text-brand-navy text-bold"
-                      : "text-slate-500 hover:text-brand-navy"
-                  }`}
-                >
-                  {item.title}
-                  {activeFdeTab === idx && (
-                    <motion.div
-                      layoutId="activeFdeTabLine"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-blue"
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {/* Active Details Block (rendered exactly like the screenshot, full width) */}
-            <div className="mt-8 bg-white border border-slate-200 rounded-[2.5rem] p-8 md:p-12 shadow-sm relative overflow-hidden group/slider">
-              {/* Left Slide Arrow */}
-              <button
-                onClick={() => paginate(-1)}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-brand-navy shadow-sm transition-all duration-300 opacity-0 group-hover/slider:opacity-100 cursor-pointer"
-                aria-label="Previous offering"
+              <p className="mt-6 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
+                Our Singapore-based Forward Deployed Engineering team is ready to guide you at every stage of your data and AI journey, from pilot to global production.
+              </p>
+              
+              <motion.div
+                className="mt-10 grid gap-6 sm:grid-cols-2"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
               >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-
-              {/* Right Slide Arrow */}
-              <button
-                onClick={() => paginate(1)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-brand-navy shadow-sm transition-all duration-300 opacity-0 group-hover/slider:opacity-100 cursor-pointer"
-                aria-label="Next offering"
-              >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-
-              <div className="overflow-hidden">
-                <AnimatePresence mode="wait" custom={direction}>
+                {fdeTopics.map((item, idx) => (
                   <motion.div
-                    key={activeFdeTab}
-                    custom={direction}
-                    variants={slideVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    className="grid gap-12 md:grid-cols-12 items-start text-left"
+                    key={idx}
+                    id={`home-fde-card-${item.id}`}
+                    variants={cardFadeUp}
+                    onClick={() => setSelectedTopic(item)}
+                    className={`flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-slate-100 shadow-sm hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 transition duration-300 cursor-pointer card-gradient-border-hover ${
+                      idx === 4 ? "sm:col-span-2" : ""
+                    }`}
                   >
-                    {/* Left Column: Image */}
-                    <div className="md:col-span-5 flex flex-col gap-6">
-                      <img
-                        src={fdeTopics[activeFdeTab].image}
-                        alt={fdeTopics[activeFdeTab].title}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full object-cover aspect-[1.6] rounded-2xl border border-slate-100 shadow-sm bg-slate-50"
-                      />
-                    </div>
-
-                    {/* Right Column: Title, Category and Overview */}
-                    <div className="md:col-span-7 flex flex-col gap-6">
-                      <div>
-                        <span className="text-[10px] font-mono font-bold tracking-[0.25em] text-brand-navy uppercase">
-                          {fdeTopics[activeFdeTab].category}
-                        </span>
-                        <h3 className="mt-2 text-3xl font-semibold tracking-tight text-brand-charcoal md:text-4xl font-serif">
-                          {fdeTopics[activeFdeTab].title}
-                        </h3>
-                      </div>
-
-                      <div className="border-t border-brand-charcoal/10 pt-6">
-                        <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-slate-400 mb-3.5">
-                          Overview
-                        </h4>
-                        <p className="text-base leading-relaxed text-slate-700 font-light font-sans">
-                          {fdeTopics[activeFdeTab].detailedExplanation || fdeTopics[activeFdeTab].description}
-                        </p>
-                      </div>
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-14 w-14 rounded-[1.25rem] object-cover shrink-0 border border-slate-100"
+                    />
+                    <div className="flex flex-col">
+                      <span className="text-[9px] font-bold tracking-[0.12em] text-slate-500 uppercase">
+                        {item.category}
+                      </span>
+                      <h4 className="text-xs font-bold text-brand-charcoal mt-1.5 leading-snug">
+                        {item.title}
+                      </h4>
                     </div>
                   </motion.div>
-                </AnimatePresence>
-              </div>
-            </div>
-
-            {/* Slide Position Indicator Dots */}
-            <div className="flex justify-center gap-2 mt-6">
-              {fdeTopics.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    const dir = idx > page ? 1 : -1;
-                    setPage([idx, dir]);
-                  }}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    page === idx ? "w-6 bg-brand-navy" : "w-2 bg-slate-300 hover:bg-slate-400"
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
+                ))}
+              </motion.div>
+            </motion.div>
           </div>
-
-
         </div>
       </section>
 
       {/* ───── Section 3: Latest Insights (Blog) ───── */}
-      <section className="relative px-5 py-20 md:px-8 md:py-28 overflow-hidden bg-white">
+      <section className="relative px-5 py-20 md:px-8 md:py-28 overflow-hidden bg-brand-cream">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Insights & Research"
@@ -948,62 +855,56 @@ export default function Home() {
                 category: "BLOG",
                 date: "June 29, 2026",
                 title: "Four ways Google Research scientists have been using Empirical Research Assistance",
-                desc: "A deep dive into the real-world applications of cognitive search pipelines and collaborative AI agents in modern enterprises."
+                desc: "Looking at how empirical research systems support research workflows, from prototyping to final evaluation."
               },
               {
-                image: "/images/blog_alpha_evolve.png",
-                category: "RESEARCH",
+                image: "/images/blog_it_automation.png",
+                category: "BLOG",
                 date: "May 12, 2026",
-                title: "AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms",
-                desc: "Introducing new neural network architectures that evolve dynamically based on computational feedback loops and IT talent pools."
+                title: "Empirical Research Assistance for IT Automation and systems engineering",
+                desc: "Analyzing key deployment patterns of empirical AI assistants in large-scale systems engineering environments."
               }
             ].map((post, idx) => (
               <motion.div
                 key={idx}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:shadow-md hover:border-brand-blue/30 text-brand-charcoal"
+                className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-100 p-8 shadow-sm transition duration-300 hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 text-brand-charcoal min-h-[480px] card-gradient-border-hover"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
               >
-                {/* Blog Image */}
-                <div className="relative h-56 w-full overflow-hidden rounded-t-2xl">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-2xl"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-                </div>
-
-                {/* Blog Content */}
-                <div className="flex flex-1 flex-col p-6 md:p-8">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono font-bold tracking-wider text-slate-600 uppercase">
-                      {post.category}
-                    </span>
-                    <span className="h-1 w-1 rounded-full bg-brand-charcoal/20" />
-                    <span className="text-xs text-slate-700 font-light">{post.date}</span>
-                  </div>
-
-                  <h3 className="mt-4 text-base font-bold text-brand-charcoal leading-snug line-clamp-2 transition duration-200">
+                {/* Card Content Top */}
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-500/80 block select-none">
+                    {post.category} • {post.date}
+                  </span>
+                  <h3 className="mt-4 text-2xl font-extrabold tracking-tight font-sans text-brand-charcoal leading-snug line-clamp-2">
                     {post.title}
                   </h3>
-
-                  <p className="mt-3 text-sm leading-relaxed text-slate-700 font-light line-clamp-3">
+                  <p className="mt-3 text-[15.5px] font-serif leading-relaxed text-brand-charcoal/85 line-clamp-3">
                     {post.desc}
                   </p>
-
-                  <div className="mt-6 pt-5 border-t border-brand-charcoal/10 mt-auto">
-                    <Link
-                      to="/blog"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-charcoal hover:underline transition duration-200"
-                    >
-                      Read Article <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </Link>
+                  <Link
+                    to="/blog"
+                    className="mt-4 inline-flex items-center text-xs font-semibold text-brand-charcoal hover:underline cursor-pointer"
+                  >
+                    Read article details →
+                  </Link>
+                  
+                  {/* Divider line to mimic service list outline */}
+                  <div className="mt-6 border-t border-brand-charcoal/10 pt-4 text-xs text-brand-charcoal/70 font-sans">
+                    DYAU Insights & Empirical Research
                   </div>
+                </div>
+
+                {/* Card Content Bottom */}
+                <div className="mt-8">
+                  <Link
+                    to="/blog"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-brand px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition duration-200 cursor-pointer"
+                  >
+                    Read Article →
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -1023,7 +924,7 @@ export default function Home() {
             {testimonials.map((t, i) => (
               <motion.div
                 key={i}
-                className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:border-slate-300 hover:shadow-md md:p-8"
+                className="flex flex-col rounded-2xl border border-slate-200 bg-slate-100 p-6 shadow-sm transition duration-300 hover:border-[#ec458d]/30 hover:shadow-lg hover:shadow-brand-red/5 hover:-translate-y-1 md:p-8"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -1062,12 +963,12 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-3xl overflow-hidden rounded-3xl border border-slate-100 bg-white/95 text-slate-800 shadow-2xl p-6 md:p-8 max-h-[85vh] overflow-y-auto backdrop-blur-xl"
+              className="relative w-full max-w-3xl overflow-hidden rounded-3xl border border-slate-200/40 bg-slate-100/95 text-slate-900 shadow-2xl p-6 md:p-8 max-h-[85vh] overflow-y-auto backdrop-blur-xl"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedTopic(null)}
-                className="absolute right-6 top-6 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 transition-colors"
+                className="absolute right-6 top-6 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-white transition-colors"
                 aria-label="Close modal"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">

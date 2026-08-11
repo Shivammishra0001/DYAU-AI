@@ -481,7 +481,7 @@ export const faqs: FaqItem[] = [
 export function FaqAccordionItem({ q, a, isOpen, onClick }: { q: string; a: string; isOpen: boolean; onClick: () => void }) {
   return (
     <motion.div
-      className="rounded-2xl border border-slate-200 bg-white shadow-sm transition-colors duration-300 hover:border-brand-blue/30"
+      className="rounded-2xl border border-slate-200 bg-slate-100 transition-colors duration-300 card-gradient-border-hover"
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}

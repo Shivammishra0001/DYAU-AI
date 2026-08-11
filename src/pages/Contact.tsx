@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import SectionTitle, { ColorizedWords } from "../components/SectionTitle";
+import SectionTitle from "../components/SectionTitle";
 import SEO from "../components/SEO";
 import { faqs, FaqAccordionItem } from "../data/content";
 
@@ -122,14 +122,14 @@ export default function Contact() {
               <div className="flex flex-wrap gap-4">
                 <a
                   href="mailto:contact@dyau.ai"
-                  className="inline-flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50/80 cursor-pointer"
+                  className="inline-flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-100 px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-200 cursor-pointer"
                 >
                   <span className="font-semibold text-brand-charcoal">Email:</span>
                   <span>contact@dyau.ai</span>
                 </a>
               </div>
               
-              <div className="flex flex-col gap-1.5 rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-700 shadow-sm max-w-sm">
+              <div className="flex flex-col gap-1.5 rounded-xl border border-slate-200/40 bg-slate-100/50 backdrop-blur-sm p-5 text-sm text-slate-700 shadow-sm max-w-sm">
                 <span className="font-semibold text-slate-700 uppercase tracking-wider text-xs">Office Address</span>
                 <span className="leading-relaxed mt-1 text-slate-700 font-light">
                   68 CIRCULAR ROAD, #02-01,<br />SINGAPORE 049422
@@ -142,11 +142,11 @@ export default function Contact() {
 
           {status === "success" ? (
             <motion.div 
-              className="rounded-2xl border border-green-200 bg-green-50/50 p-8 text-center backdrop-blur-2xl md:p-12 flex flex-col items-center justify-center min-h-[420px]"
+              className="rounded-2xl border border-green-900/30 bg-green-950/10 p-8 text-center backdrop-blur-2xl md:p-12 flex flex-col items-center justify-center min-h-[420px]"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-brand-green text-3xl mb-6 shadow-[0_0_20px_rgba(52,168,83,0.1)]">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-900/20 text-brand-green text-3xl mb-6 shadow-[0_0_20px_rgba(52,168,83,0.15)]">
                 ✓
               </div>
               <h3 className="text-2xl font-bold text-brand-charcoal mb-3">Message Sent!</h3>
@@ -155,14 +155,14 @@ export default function Contact() {
               </p>
               <button
                 onClick={() => setStatus("idle")}
-                className="mt-8 rounded-lg border border-slate-200 bg-white px-6 py-2.5 text-sm font-bold text-slate-700 transition hover:bg-slate-50 cursor-pointer"
+                className="mt-8 rounded-lg bg-gradient-orange text-white px-6 py-2.5 text-sm font-bold transition hover:opacity-95 hover:scale-[1.02] duration-200 shadow-md shadow-brand-red/10 cursor-pointer cursor-pointer"
               >
                 Send Another Message
               </button>
             </motion.div>
           ) : (
             <motion.form
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg backdrop-blur-2xl md:p-8"
+              className="rounded-2xl border border-slate-200 bg-slate-100/40 p-5 shadow-lg backdrop-blur-2xl md:p-8"
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
@@ -179,7 +179,7 @@ export default function Contact() {
                     placeholder="Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-slate-100 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   />
                 </label>
                 <label className="block">
@@ -191,7 +191,7 @@ export default function Contact() {
                     placeholder="Email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-slate-100 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   />
                 </label>
                 <label className="block">
@@ -202,7 +202,7 @@ export default function Contact() {
                     placeholder="Phone"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-slate-100 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   />
                 </label>
                 <label className="block">
@@ -213,7 +213,7 @@ export default function Contact() {
                     placeholder="Company"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-slate-100 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                   />
                 </label>
               </div>
@@ -223,7 +223,7 @@ export default function Contact() {
                   id="contact-form-service"
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-500 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue [&:has(option:checked:not([value='']))]:text-slate-900"
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-500 outline-none transition focus:bg-slate-100 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue [&:has(option:checked:not([value='']))]:text-slate-900"
                 >
                   <option value="">Select a service</option>
                   <option>AI Consulting</option>
@@ -244,7 +244,7 @@ export default function Contact() {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-white focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
+                  className="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 placeholder:text-slate-400 outline-none transition focus:bg-slate-100 focus:border-brand-blue focus:ring-1 focus:ring-brand-blue"
                 />
               </label>
               <div className="mt-6 flex flex-col gap-4 sm:flex-row">
@@ -252,7 +252,7 @@ export default function Contact() {
                   id="contact-form-submit-btn"
                   type="submit"
                   disabled={status === "submitting"}
-                  className="w-full sm:w-auto rounded-lg bg-brand-navy px-8 py-3.5 text-center text-sm font-bold text-brand-cream transition hover:bg-[#003875] disabled:opacity-50 cursor-pointer"
+                  className="w-full sm:w-auto rounded-lg bg-gradient-orange px-8 py-3.5 text-center text-sm font-bold text-white transition hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-brand-red/10 disabled:opacity-50 cursor-pointer"
                 >
                   {status === "submitting" ? "Sending..." : "Send Message"}
                 </button>

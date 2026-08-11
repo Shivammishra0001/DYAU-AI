@@ -72,52 +72,54 @@ export default function Industries() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {industries.map((ind, i) => {
-              const headingColorClass = [
-                "text-brand-blue group-hover:text-brand-red",
-                "text-brand-red group-hover:text-brand-blue",
-                "text-amber-600 group-hover:text-brand-blue",
-                "text-brand-green group-hover:text-brand-blue"
-              ][i % 4];
-
               return (
                 <motion.div
                   key={ind.name}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:shadow-md hover:border-brand-blue/30 text-brand-charcoal"
+                  className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-100 p-8 shadow-sm transition duration-300 hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 text-brand-charcoal min-h-[480px] card-gradient-border-hover"
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.45, delay: i * 0.06 }}
                 >
-                  {/* Image header with overlaid badge */}
-                  <div className="relative h-48 w-full overflow-hidden border-b border-slate-100 rounded-t-2xl">
-                    <img
-                      src={ind.img}
-                      alt={ind.name}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105 rounded-t-2xl"
-                    />
-                    <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-lg bg-brand-blue px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-charcoal border-none">
-                      <span>{ind.icon}</span>
-                      <span>{ind.name.includes(" & ") ? ind.name.split(" & ")[0] : ind.name.split(" ")[0]}</span>
+                  {/* Card Content Top */}
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-500/80 block select-none">
+                      Industries
                     </span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-1 flex-col p-6 md:p-8">
-                    <h3 className="text-xl font-bold tracking-tight font-sans text-brand-charcoal group-hover:text-slate-800 transition duration-300">
+                    <h3 className="mt-4 text-2xl font-extrabold tracking-tight font-sans text-brand-charcoal">
                       {ind.name}
                     </h3>
-                    <p className="mt-4 text-sm leading-6 text-slate-600 font-light flex-1">
+                    <p className="mt-3 text-[15.5px] font-serif leading-relaxed text-brand-charcoal/85">
                       {ind.desc}
                     </p>
-                    <div className="mt-6">
-                      <button
-                        id={`industry-card-${ind.name.toLowerCase().replace(/\s+/g, "-")}-read-more-btn`}
-                        onClick={() => setActiveInd(ind)}
-                        className="cursor-pointer inline-flex items-center gap-1 rounded-lg bg-brand-navy px-5 py-2.5 text-xs font-bold text-brand-cream hover:bg-[#003875] transition duration-200"
-                      >
-                        Read More →
-                      </button>
-                    </div>
+                    <button
+                      id={`industry-card-${ind.name.toLowerCase().replace(/\s+/g, "-")}-details-btn`}
+                      onClick={() => setActiveInd(ind)}
+                      className="mt-4 inline-flex items-center text-xs font-semibold text-brand-charcoal hover:underline cursor-pointer"
+                    >
+                      Industry details →
+                    </button>
+                    
+                    {/* Bullet Points list in card blank space */}
+                    <ul className="mt-6 space-y-2.5 border-t border-brand-charcoal/10 pt-4">
+                      {ind.highlights.slice(0, 3).map((h) => (
+                        <li key={h} className="flex items-center gap-2.5 text-[14px] text-brand-charcoal/80 font-sans font-light">
+                          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
+                          <span className="line-clamp-1">{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Card Content Bottom */}
+                  <div className="mt-8">
+                    <button
+                      id={`industry-card-${ind.name.toLowerCase().replace(/\s+/g, "-")}-explore-btn`}
+                      onClick={() => setActiveInd(ind)}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-brand px-5 py-2.5 text-xs font-bold text-white shadow-sm hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition duration-200 cursor-pointer"
+                    >
+                      Read More →
+                    </button>
                   </div>
                 </motion.div>
               );
@@ -151,7 +153,7 @@ export default function Industries() {
               <button
                 id="industry-modal-close-btn"
                 onClick={() => setActiveInd(null)}
-                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream-border bg-brand-cream text-brand-charcoal hover:bg-slate-100 transition cursor-pointer"
+                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream-border bg-slate-100 text-brand-charcoal hover:bg-slate-200 transition cursor-pointer"
                 aria-label="Close modal"
               >
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -166,10 +168,6 @@ export default function Industries() {
                   alt={activeInd.name}
                   className="h-full w-full object-cover"
                 />
-                <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-lg bg-brand-blue px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-charcoal border-none">
-                  <span>{activeInd.icon}</span>
-                  <span>{activeInd.name}</span>
-                </span>
               </div>
 
               {/* Text content */}
@@ -201,7 +199,7 @@ export default function Industries() {
                 </button>
                 <Link
                   to="/contact"
-                  className="rounded-lg bg-brand-navy px-6 py-3 text-sm font-bold text-brand-cream hover:bg-[#003875] transition text-center"
+                  className="rounded-lg bg-gradient-brand px-6 py-3 text-sm font-bold text-white hover:opacity-90 transition text-center hover:scale-[1.02] shadow-md shadow-brand-purple/10"
                 >
                   Consult an Expert
                 </Link>

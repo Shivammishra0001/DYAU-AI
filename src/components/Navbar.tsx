@@ -33,7 +33,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-brand-navy font-sans text-white">
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-white/5 bg-[#020203]/75 backdrop-blur-md font-sans text-white">
       <div className="mx-auto flex h-[80px] max-w-7xl items-center justify-between px-6 md:px-12" ref={dropdownRef}>
         
         {/* Left Side: Brand Logo (Anthropic-style uppercase all-caps text with backslash) */}
@@ -59,9 +59,14 @@ export default function Navbar() {
           <Link
             id="nav-link-home"
             to="/"
-            className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
+            className={`relative text-[15px] font-medium py-2 transition ${
+              location.pathname === "/" ? "text-white" : "text-slate-400 hover:text-white"
+            }`}
           >
             Home
+            {location.pathname === "/" && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full bg-gradient-brand" />
+            )}
           </Link>
 
           {/* Services Dropdown */}
@@ -72,8 +77,8 @@ export default function Navbar() {
           >
             <button
               id="nav-btn-services"
-              className={`flex items-center gap-1 py-1 text-[15px] font-medium transition duration-200 cursor-pointer border-b text-white ${
-                activeDropdown === "services" ? "border-white" : "border-transparent hover:border-white/40"
+              className={`relative flex items-center gap-1 py-2 text-[15px] font-medium transition duration-200 cursor-pointer ${
+                location.pathname.startsWith("/services") || activeDropdown === "services" ? "text-white" : "text-slate-400 hover:text-white"
               }`}
             >
               Services
@@ -88,6 +93,9 @@ export default function Navbar() {
               >
                 <path d="m6 9 6 6 6-6" />
               </svg>
+              {(location.pathname.startsWith("/services") || activeDropdown === "services") && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full bg-gradient-brand" />
+              )}
             </button>
 
             <AnimatePresence>
@@ -97,7 +105,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 6 }}
                   transition={{ duration: 0.12 }}
-                  className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] w-[260px] rounded-2xl border border-white/10 bg-brand-navy p-5 shadow-[0_16px_36px_rgba(0,0,0,0.15)] z-50"
+                  className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] w-[260px] rounded-2xl border border-white/5 bg-[#0d0d11]/90 backdrop-blur-md p-5 shadow-[0_16px_48px_rgba(0,0,0,0.5)] z-50"
                 >
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 block select-none">
@@ -139,8 +147,8 @@ export default function Navbar() {
           >
             <button
               id="nav-btn-industries"
-              className={`flex items-center gap-1 py-1 text-[15px] font-medium transition duration-200 cursor-pointer border-b text-white ${
-                activeDropdown === "industries" ? "border-white" : "border-transparent hover:border-white/40"
+              className={`relative flex items-center gap-1 py-2 text-[15px] font-medium transition duration-200 cursor-pointer ${
+                location.pathname.startsWith("/industries") || activeDropdown === "industries" ? "text-white" : "text-slate-400 hover:text-white"
               }`}
             >
               Industries
@@ -155,6 +163,9 @@ export default function Navbar() {
               >
                 <path d="m6 9 6 6 6-6" />
               </svg>
+              {(location.pathname.startsWith("/industries") || activeDropdown === "industries") && (
+                <span className="absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full bg-gradient-brand" />
+              )}
             </button>
 
             <AnimatePresence>
@@ -164,7 +175,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 6 }}
                   transition={{ duration: 0.12 }}
-                  className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] w-[260px] rounded-2xl border border-white/10 bg-brand-navy p-5 shadow-[0_16px_36px_rgba(0,0,0,0.15)] z-50"
+                  className="absolute left-1/2 -translate-x-1/2 top-[calc(100%-8px)] w-[260px] rounded-2xl border border-white/5 bg-[#0d0d11]/90 backdrop-blur-md p-5 shadow-[0_16px_48px_rgba(0,0,0,0.5)] z-50"
                 >
                   <div className="flex flex-col">
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 mb-3 block select-none">
@@ -202,18 +213,28 @@ export default function Navbar() {
           <Link
             id="nav-link-why-us"
             to="/why-us"
-            className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
+            className={`relative text-[15px] font-medium py-2 transition ${
+              location.pathname.startsWith("/why-us") ? "text-white" : "text-slate-400 hover:text-white"
+            }`}
           >
             Why Us
+            {location.pathname.startsWith("/why-us") && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full bg-gradient-brand" />
+            )}
           </Link>
 
           {/* Direct Link: Blog */}
           <Link
             id="nav-link-blog"
             to="/blog"
-            className="text-[15px] font-medium text-white border-b border-transparent hover:border-white/40 py-1 transition"
+            className={`relative text-[15px] font-medium py-2 transition ${
+              location.pathname.startsWith("/blog") ? "text-white" : "text-slate-400 hover:text-white"
+            }`}
           >
             Blog
+            {location.pathname.startsWith("/blog") && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full bg-gradient-brand" />
+            )}
           </Link>
         </nav>
 
@@ -222,7 +243,7 @@ export default function Navbar() {
           <Link
             id="nav-btn-contact"
             to="/contact"
-            className="rounded-lg bg-white px-5 py-2.5 text-[14px] font-bold text-brand-navy shadow-sm hover:bg-white/90 transition duration-200"
+            className="rounded-lg bg-gradient-brand px-5 py-2.5 text-[14px] font-bold text-white shadow-sm hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition duration-200"
           >
             Contact Us
           </Link>
@@ -254,7 +275,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="w-full border-t border-white/10 bg-brand-navy overflow-hidden lg:hidden"
+            className="w-full border-t border-white/5 bg-[#020203]/95 backdrop-blur-lg overflow-hidden lg:hidden"
           >
             <div className="flex flex-col px-6 py-6 gap-2">
               {/* Direct Link: Home */}
@@ -377,7 +398,7 @@ export default function Navbar() {
               <div className="mt-6 flex flex-col gap-3 pt-6 border-t border-white/10">
                 <Link
                   to="/contact"
-                  className="w-full rounded-lg bg-white py-3 text-center text-sm font-bold text-brand-navy hover:bg-white/90 transition"
+                  className="w-full rounded-lg bg-gradient-brand py-3 text-center text-sm font-bold text-white hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition"
                 >
                   Contact Us
                 </Link>

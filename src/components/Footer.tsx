@@ -93,7 +93,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        {/* Gradient separator line */}
+        <div className="mt-16 h-[1.5px] bg-gradient-brand w-full opacity-85" />
+        
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-white font-light">
             © {new Date().getFullYear()} DYAU AI. All rights reserved. Wisdom Beyond Intelligence.
           </p>

@@ -54,7 +54,7 @@ export default function TermsOfService() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="rounded-3xl border border-slate-200 bg-white p-8 md:p-12 shadow-sm font-sans text-slate-700 font-light"
+            className="rounded-3xl border border-slate-200 bg-slate-100/60 backdrop-blur-sm p-8 md:p-12 shadow-sm font-sans text-slate-700 font-light"
           >
             <div className="space-y-10">
               {/* Section 1 */}

@@ -19,27 +19,29 @@ interface SEOProps {
 }
 
 function setMetaTag(selector: string, attributes: Record<string, string>) {
-  let element = document.head.querySelector(selector) as HTMLMetaElement | null;
+  const element = document.head.querySelector(selector) as HTMLMetaElement | null;
   if (!element) {
-    element = document.createElement("meta");
-    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
-    document.head.appendChild(element);
+    const newEl = document.createElement("meta");
+    Object.entries(attributes).forEach(([key, value]) => newEl.setAttribute(key, value));
+    document.head.appendChild(newEl);
+    return newEl;
   } else {
     Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+    return element;
   }
-  return element;
 }
 
 function setLinkTag(selector: string, attributes: Record<string, string>) {
-  let element = document.head.querySelector(selector) as HTMLLinkElement | null;
+  const element = document.head.querySelector(selector) as HTMLLinkElement | null;
   if (!element) {
-    element = document.createElement("link");
-    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
-    document.head.appendChild(element);
+    const newEl = document.createElement("link");
+    Object.entries(attributes).forEach(([key, value]) => newEl.setAttribute(key, value));
+    document.head.appendChild(newEl);
+    return newEl;
   } else {
     Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+    return element;
   }
-  return element;
 }
 
 export default function SEO({
