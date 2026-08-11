@@ -785,7 +785,7 @@ export default function Home() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }}
               >
-                Forward Deployed Engineers (FDEs) and AI FDEs
+                Forward Deployed Engineers
               </motion.h2>
               <p className="mt-4 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
                 Highly experienced and technical resources with strong leadership and consulting skills. To ensure your success, we leverage our extensive partner ecosystem and co-deliver with them as required.
