@@ -252,7 +252,7 @@ export default function Navbar() {
         {/* Mobile Toggle Button */}
         <button
           id="nav-btn-mobile-toggle"
-          className="grid h-10 w-10 place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition lg:hidden cursor-pointer"
+          className="grid h-11 w-11 place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition lg:hidden cursor-pointer"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
@@ -281,7 +281,9 @@ export default function Navbar() {
               {/* Direct Link: Home */}
               <Link
                 to="/"
-                className="py-3 text-base font-semibold text-white"
+                className={`py-3 text-base font-semibold transition-colors duration-200 ${
+                  location.pathname === "/" ? "text-brand-blue" : "text-white"
+                }`}
               >
                 Home
               </Link>
@@ -290,7 +292,9 @@ export default function Navbar() {
               <div>
                 <button
                   onClick={() => setMobileServicesOpen((v) => !v)}
-                  className="flex w-full items-center justify-between py-3 text-base font-semibold text-white"
+                  className={`flex w-full items-center justify-between py-3 text-base font-semibold transition-colors duration-200 ${
+                    location.pathname.startsWith("/services") ? "text-brand-blue" : "text-white"
+                  }`}
                 >
                   Services
                   <svg
@@ -311,18 +315,24 @@ export default function Navbar() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden pl-4 border-l border-white/10 ml-1 flex flex-col gap-1 mt-1"
                     >
-                      {services.map((s) => (
-                        <Link
-                          key={s.title}
-                          to={`/services#${s.title.toLowerCase().replace(/\s+/g, "-")}`}
-                          className="py-2 text-sm text-slate-300 hover:text-white"
-                        >
-                          {s.title}
-                        </Link>
-                      ))}
+                      {services.map((s) => {
+                        const linkId = s.title.toLowerCase().replace(/\s+/g, "-");
+                        const isActive = location.pathname === "/services" && location.hash === `#${linkId}`;
+                        return (
+                          <Link
+                            key={s.title}
+                            to={`/services#${linkId}`}
+                            className={`py-2 text-sm transition-colors duration-200 ${
+                              isActive ? "text-brand-blue font-semibold" : "text-white hover:text-white/80"
+                            }`}
+                          >
+                            {s.title}
+                          </Link>
+                        );
+                      })}
                       <Link
                         to="/services"
-                        className="py-2 text-sm font-bold text-slate-400 hover:text-white transition-colors"
+                        className="py-2 text-sm font-bold text-white hover:text-white/80 transition-colors"
                       >
                         See All Services →
                       </Link>
@@ -335,7 +345,9 @@ export default function Navbar() {
               <div>
                 <button
                   onClick={() => setMobileIndustriesOpen((v) => !v)}
-                  className="flex w-full items-center justify-between py-3 text-base font-semibold text-white"
+                  className={`flex w-full items-center justify-between py-3 text-base font-semibold transition-colors duration-200 ${
+                    location.pathname.startsWith("/industries") ? "text-brand-blue" : "text-white"
+                  }`}
                 >
                   Industries
                   <svg
@@ -358,11 +370,14 @@ export default function Navbar() {
                     >
                       {industries.map((ind) => {
                         const linkId = ind.name.toLowerCase().replace(/\s+/g, "-");
+                        const isActive = location.pathname === "/industries" && location.hash === `#${linkId}`;
                         return (
                           <Link
                             key={ind.name}
                             to={`/industries#${linkId}`}
-                            className="py-2 text-sm text-slate-300 hover:text-white"
+                            className={`py-2 text-sm transition-colors duration-200 ${
+                              isActive ? "text-brand-blue font-semibold" : "text-white hover:text-white/80"
+                            }`}
                           >
                             {ind.name}
                           </Link>
@@ -370,7 +385,7 @@ export default function Navbar() {
                       })}
                       <Link
                         to="/industries"
-                        className="py-2 text-sm font-bold text-slate-400 hover:text-white transition-colors"
+                        className="py-2 text-sm font-bold text-white hover:text-white/80 transition-colors"
                       >
                         See All Industries →
                       </Link>
@@ -382,14 +397,18 @@ export default function Navbar() {
               {/* Direct Links */}
               <Link
                 to="/why-us"
-                className="py-3 text-base font-semibold text-white"
+                className={`py-3 text-base font-semibold transition-colors duration-200 ${
+                  location.pathname === "/why-us" ? "text-brand-blue" : "text-white"
+                }`}
               >
                 Why Us
               </Link>
 
               <Link
                 to="/blog"
-                className="py-3 text-base font-semibold text-white"
+                className={`py-3 text-base font-semibold transition-colors duration-200 ${
+                  location.pathname.startsWith("/blog") ? "text-brand-blue" : "text-white"
+                }`}
               >
                 Blog
               </Link>

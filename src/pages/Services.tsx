@@ -207,7 +207,7 @@ export default function Services() {
                 </span>
 
                 {/* Main Title */}
-                <h2 className="text-4xl md:text-5xl font-medium tracking-tight font-serif text-brand-charcoal">
+                <h2 className="text-3xl md:text-5xl font-medium tracking-tight font-serif text-brand-charcoal">
                   {activeService.title}
                 </h2>
 

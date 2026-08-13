@@ -454,7 +454,7 @@ export default function Home() {
         keywords="Dyau AI consulting, dyau, AI consulting, AI automation, quantum computing, quantum AI, quantum consulting, Singapore quantum computing, enterprise AI services, deep tech innovation"
         schema={homeSchema}
       />
-      <section className="relative flex min-h-[calc(100vh-96px)] items-center overflow-hidden px-6 py-24 md:px-12 lg:px-20 bg-[#020203] text-white">
+      <section className="relative flex min-h-0 md:min-h-[calc(100vh-96px)] items-center overflow-hidden px-6 pt-32 pb-12 md:px-12 lg:px-20 md:py-24 bg-[#020203] text-white">
         {/* Glow Blobs */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <div className="absolute -top-[10%] -left-[10%] h-[60%] w-[60%] rounded-full bg-brand-blue/15 blur-[120px] animate-pulse-slow" />
@@ -468,18 +468,18 @@ export default function Home() {
           <motion.img
             src="/images/hero_quantum_bg_v2.png"
             alt="Quantum Computing Background"
-            className="absolute inset-0 h-full w-full object-cover opacity-45 md:opacity-55"
+            className="absolute inset-0 h-full w-full object-cover opacity-70 md:opacity-80"
             style={{
               y: backgroundY,
               opacity: backgroundOpacity,
             }}
           />
           {/* Subtle gradient overlay to ensure centered readability */}
-          <div className="absolute inset-0 bg-[#020203]/60" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,#020203_80%)]" />
+          <div className="absolute inset-0 bg-[#020203]/30" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#020203_55%)]" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-7xl w-full flex flex-col items-center text-center">
+        <div className="relative z-10 mx-auto max-w-7xl w-full flex flex-col items-center text-center mt-12 md:mt-0">
           {/* Centered Content */}
           <motion.div
             className="max-w-4xl flex flex-col items-center text-center"
@@ -488,7 +488,7 @@ export default function Home() {
             animate="visible"
           >
             <motion.h1
-              className="text-3xl sm:text-4xl font-bold tracking-tight md:text-7xl lg:text-8xl font-heading !text-white leading-tight whitespace-nowrap"
+              className="text-3xl sm:text-4xl font-bold tracking-tight md:text-7xl lg:text-8xl font-heading !text-white leading-tight md:whitespace-nowrap"
               style={{ color: '#ffffff' }}
               variants={itemVariants}
             >
@@ -509,20 +509,20 @@ export default function Home() {
             
             {/* Call to Actions */}
             <motion.div
-              className="mt-10 flex flex-wrap justify-center gap-4"
+              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full"
               variants={itemVariants}
             >
               <Link
                 id="hero-cta-services"
                 to="/services"
-                className="px-8 py-4 rounded-xl bg-gradient-brand text-white font-medium hover:scale-[1.02] hover:opacity-95 active:scale-[0.98] transition duration-300 shadow-lg shadow-brand-blue/20"
+                className="w-full max-w-xs sm:w-auto text-center justify-center inline-flex items-center px-5 py-3 text-sm md:px-8 md:py-4 md:text-base rounded-xl bg-gradient-brand text-white font-medium hover:scale-[1.02] hover:opacity-95 active:scale-[0.98] transition duration-300 shadow-lg shadow-brand-blue/20"
               >
                 Explore Our Services
               </Link>
               <Link
                 id="hero-cta-contact"
                 to="/contact"
-                className="px-8 py-4 rounded-xl btn-dark-gradient-border text-white font-medium transition duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full max-w-xs sm:w-auto text-center justify-center inline-flex items-center px-5 py-3 text-sm md:px-8 md:py-4 md:text-base rounded-xl btn-dark-gradient-border text-white font-medium transition duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 Get in Touch
               </Link>
@@ -532,7 +532,7 @@ export default function Home() {
       </section>
 
       {/* ───── Section 1: Quantum Computing ───── */}
-      <section className="relative px-5 pt-20 pb-0 md:px-8 md:pt-28 md:pb-0 overflow-hidden bg-brand-cream">
+      <section className="relative px-5 pt-10 pb-0 md:px-8 md:pt-28 md:pb-0 overflow-hidden bg-brand-cream">
         <div className="mx-auto max-w-7xl">
           {/* Two-Column Grid: Left Side Image, Right Side Details */}
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start pb-20">
@@ -741,58 +741,16 @@ export default function Home() {
         
         <div className="mx-auto max-w-7xl relative z-10">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
-            {/* Left side: Image */}
+            {/* Left side: Grid of FDE Services (replacing the image) */}
             <motion.div
-              className="lg:col-span-5 relative order-1 lg:order-1"
+              className="lg:col-span-7 order-2 lg:order-1"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
             >
               <motion.div
-                className="relative z-10 overflow-hidden rounded-2xl border border-slate-200/30 bg-slate-100 backdrop-blur-sm shadow-md hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 transition duration-300 card-gradient-border-hover"
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <img
-                  src="/images/fde_illustration.png"
-                  alt="Forward Deployed Engineering"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full object-cover aspect-[4/3] md:aspect-[1.3] lg:aspect-[1.1] xl:aspect-[1.2] rounded-2xl"
-                />
-              </motion.div>
-            </motion.div>
-
-            {/* Right side: Content & Grid of FDE Services */}
-            <motion.div
-              className="lg:col-span-7 order-2 lg:order-2"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-            >
-              <motion.h2
-                className="text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }}
-              >
-                Forward Deployed Engineers
-              </motion.h2>
-              <p className="mt-4 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
-                Highly experienced and technical resources with strong leadership and consulting skills. To ensure your success, we leverage our extensive partner ecosystem and co-deliver with them as required.
-              </p>
-              
-              <motion.div
-                className="mt-10 grid gap-6 sm:grid-cols-2"
+                className="grid gap-6 sm:grid-cols-2"
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="visible"
@@ -804,9 +762,7 @@ export default function Home() {
                     id={`home-fde-card-${item.id}`}
                     variants={cardFadeUp}
                     onClick={() => setSelectedTopic(item)}
-                    className={`flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-slate-100 shadow-sm hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 transition duration-300 cursor-pointer card-gradient-border-hover ${
-                      idx === 4 ? "sm:col-span-2" : ""
-                    }`}
+                    className="flex gap-4 items-center p-4 rounded-2xl border border-slate-200 bg-slate-100 shadow-sm hover:shadow-lg hover:shadow-brand-blue/5 hover:-translate-y-1 transition duration-300 cursor-pointer card-gradient-border-hover"
                   >
                     <img
                       src={item.image}
@@ -824,6 +780,28 @@ export default function Home() {
                   </motion.div>
                 ))}
               </motion.div>
+            </motion.div>
+
+            {/* Right side: Content Title & Description */}
+            <motion.div
+              className="lg:col-span-5 order-1 lg:order-2"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+            >
+              <motion.h2
+                className="text-3xl font-semibold tracking-tight text-brand-charcoal md:text-5xl font-serif"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }}
+              >
+                Forward Deployed Engineers
+              </motion.h2>
+              <p className="mt-4 text-base leading-relaxed text-slate-600 font-light font-sans">
+                Highly experienced and technical resources with strong leadership and consulting skills. To ensure your success, we leverage our extensive partner ecosystem and co-deliver with them as required.
+              </p>
             </motion.div>
           </div>
         </div>

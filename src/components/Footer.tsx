@@ -4,9 +4,9 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/10 px-6 py-16 md:px-12 bg-brand-navy text-white font-sans">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-10 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           {/* Brand */}
-          <div className="md:col-span-1">
+          <div className="col-span-2 md:col-span-1">
             <Link to="/" className="group inline-flex items-center gap-1">
               <img
                 src="/images/logo.png"
@@ -24,14 +24,14 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div>
+          <div className="col-span-1">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-white">Services</p>
             <ul className="mt-5 space-y-3">
               {[
                 { name: "AI Consulting", id: "ai-consulting" },
                 { name: "Staffing Solutions", id: "staffing-solutions" },
                 { name: "Product Development", id: "product-development" },
-                { name: "Cloud & DevOps", id: "cloud-devops" },
+                { name: "Cloud & DevOps", id: "cloud-&-devops" },
                 { name: "Data Engineering", id: "data-engineering" },
                 { name: "AI Automation", id: "ai-automation" },
                 { name: "Quantum Computing", id: "quantum-computing" },
@@ -52,7 +52,7 @@ export default function Footer() {
           </div>
 
           {/* Company */}
-          <div>
+          <div className="col-span-1">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-white">Company</p>
             <ul className="mt-5 space-y-3">
               {[
@@ -75,7 +75,7 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-white">Contact</p>
             <ul className="mt-5 space-y-3">
               <li>
