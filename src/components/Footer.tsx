@@ -21,6 +21,15 @@ export default function Footer() {
             <p className="mt-4 text-sm leading-relaxed text-white font-light">
               Wisdom Beyond Intelligence. We accelerate business growth through advanced AI engineering, elite tech talent, and custom automation.
             </p>
+            <div className="mt-4 text-[14px] text-white font-light">
+              <span className="font-semibold text-slate-400 mr-1.5">Email:</span>
+              <a
+                href="mailto:contact@dyau.ai"
+                className="transition hover:underline"
+              >
+                contact@dyau.ai
+              </a>
+            </div>
           </div>
 
           {/* Services */}
@@ -76,18 +85,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="col-span-2 md:col-span-1">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-white">Contact</p>
-            <ul className="mt-5 space-y-3">
-              <li>
-                <a
-                  href="mailto:contact@dyau.ai"
-                  className="text-[14px] text-white font-light transition hover:underline"
-                >
-                  contact@dyau.ai
-                </a>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-white">Office Addresses</p>
+            <ul className="mt-5 space-y-4">
+              <li className="text-[14px] leading-relaxed text-white font-light">
+                <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">Singapore</span>
+                68 Circular Road, #02-01,<br />Singapore — 049422
               </li>
-              <li className="text-[13px] leading-relaxed text-white font-mono">
-                68 CIRCULAR ROAD, #02-01,<br />SINGAPORE 049422
+              <li className="text-[14px] leading-relaxed text-white font-light">
+                <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">Malaysia</span>
+                138 B, Jalan Kasah, Medan Damansara,<br />Kuala Lumpur — 50490
+              </li>
+              <li className="text-[14px] leading-relaxed text-white font-light">
+                <span className="text-[10px] uppercase font-bold text-slate-400 block mb-1">India</span>
+                Ground Floor 365, Lotus Mall, Sultanpur,<br />New Delhi — 110030
               </li>
             </ul>
           </div>

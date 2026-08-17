@@ -126,9 +126,12 @@ export default function PrivacyPolicy() {
                 <p className="leading-relaxed">
                   If you have any questions or feedback regarding this Privacy Policy, please contact our Data Protection Officer (DPO) at:
                 </p>
-                <div className="mt-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 font-mono text-sm text-slate-800">
+                <div className="mt-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 font-sans text-[14px] text-slate-700 leading-relaxed">
                   Email: <a href="mailto:privacy@dyau.ai" className="text-brand-blue hover:underline">privacy@dyau.ai</a><br />
-                  Office: 68 CIRCULAR ROAD, #02-01, SINGAPORE 049422
+                  <span className="font-semibold text-slate-800 block mt-2 mb-1">Offices:</span>
+                  • Singapore: 68 Circular Road, #02-01, Singapore — 049422<br />
+                  • Malaysia: 138 B, Jalan Kasah, Medan Damansara, Kuala Lumpur — 50490<br />
+                  • India: Ground Floor 365, Lotus Mall, Sultanpur, New Delhi — 110030
                 </div>
               </div>
             </div>

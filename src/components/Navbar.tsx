@@ -36,22 +36,27 @@ export default function Navbar() {
     <header className="fixed top-0 left-0 z-50 w-full border-b border-white/5 bg-[#020203]/75 backdrop-blur-md font-sans text-white">
       <div className="mx-auto flex h-[80px] max-w-7xl items-center justify-between px-6 md:px-12" ref={dropdownRef}>
         
-        {/* Left Side: Brand Logo (Anthropic-style uppercase all-caps text with backslash) */}
-        <Link
-          to="/"
-          className="flex items-center gap-0.5 group"
-          aria-label="DYAU Home"
-        >
-          <img
-            src="/images/logo.png"
-            alt="Dyau AI logo"
-            className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            style={{ filter: "invert(1)", display: "block" }}
-          />
-          <span className="text-[22px] font-semibold tracking-tight text-white select-none">
-            Dyau
+        {/* Left Side: Brand Logo (Anthropic-style uppercase all-caps text with backslash) and Subsidiary Info */}
+        <div className="flex flex-col items-start justify-center">
+          <Link
+            to="/"
+            className="flex items-center gap-0.5 group"
+            aria-label="DYAU Home"
+          >
+            <img
+              src="/images/logo.png"
+              alt="Dyau AI logo"
+              className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              style={{ filter: "invert(1)", display: "block" }}
+            />
+            <span className="text-[22px] font-semibold tracking-tight text-white select-none">
+              Dyau
+            </span>
+          </Link>
+          <span className="text-[11px] text-white select-none tracking-tight font-sans mt-1 leading-none pl-0.5">
+            Subsidiary of Quintessence Technology PLT
           </span>
-        </Link>
+        </div>
 
         {/* Center: Navigation Links */}
         <nav className="hidden items-center gap-8 lg:flex">

@@ -129,11 +129,29 @@ export default function Contact() {
                 </a>
               </div>
               
-              <div className="flex flex-col gap-1.5 rounded-xl border border-slate-200/40 bg-slate-100/50 backdrop-blur-sm p-5 text-sm text-slate-700 shadow-sm max-w-sm">
-                <span className="font-semibold text-slate-700 uppercase tracking-wider text-xs">Office Address</span>
-                <span className="leading-relaxed mt-1 text-slate-700 font-light">
-                  68 CIRCULAR ROAD, #02-01,<br />SINGAPORE 049422
-                </span>
+              <div className="flex flex-col gap-4 rounded-xl border border-slate-200/40 bg-slate-100/50 backdrop-blur-sm p-5 text-sm text-slate-700 shadow-sm max-w-md">
+                <span className="font-semibold text-slate-700 uppercase tracking-wider text-xs border-b border-slate-200/30 pb-2">Office Addresses</span>
+                
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold text-[11px] text-brand-charcoal uppercase tracking-wider">Singapore</span>
+                  <span className="leading-relaxed text-slate-700 font-light">
+                    68 Circular Road, #02-01,<br />Singapore — 049422
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-1 border-t border-slate-200/20 pt-3">
+                  <span className="font-semibold text-[11px] text-brand-charcoal uppercase tracking-wider">Malaysia</span>
+                  <span className="leading-relaxed text-slate-700 font-light">
+                    138 B, Jalan Kasah, Medan Damansara,<br />Kuala Lumpur — 50490
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-1 border-t border-slate-200/20 pt-3">
+                  <span className="font-semibold text-[11px] text-brand-charcoal uppercase tracking-wider">India</span>
+                  <span className="leading-relaxed text-slate-700 font-light">
+                    Ground Floor 365, Lotus Mall, Sultanpur,<br />New Delhi — 110030
+                  </span>
+                </div>
               </div>
 
               <p className="text-sm text-slate-500">We typically reply within 1–2 business days.</p>
