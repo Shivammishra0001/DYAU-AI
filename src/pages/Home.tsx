@@ -538,7 +538,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start pb-20">
             {/* Left side: Image */}
             <motion.div
-              className="lg:col-span-5 relative order-1 lg:order-1"
+              className="lg:col-span-5 relative order-2 lg:order-1"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -567,7 +567,7 @@ export default function Home() {
 
             {/* Right side: Content & 2x2 Grid of Quantum Services */}
             <motion.div
-              className="lg:col-span-7 order-2 lg:order-2"
+              className="lg:col-span-7 order-1 lg:order-2"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -659,7 +659,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
             {/* Left side: Content & 2x2 Grid of AI Services */}
             <motion.div
-              className="lg:col-span-7 order-2 lg:order-1"
+              className="lg:col-span-7 order-1 lg:order-1"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -714,7 +714,7 @@ export default function Home() {
 
             {/* Right side: Hero Image & Diagnostic Terminal */}
             <motion.div
-              className="lg:col-span-5 relative order-1 lg:order-2"
+              className="lg:col-span-5 relative order-2 lg:order-2"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
