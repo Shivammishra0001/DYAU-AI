@@ -536,9 +536,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           {/* Two-Column Grid: Left Side Image, Right Side Details */}
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start pb-20">
-            {/* Left side: Image */}
+            {/* Left side: Image (Desktop only) */}
             <motion.div
-              className="lg:col-span-5 relative order-2 lg:order-1"
+              className="hidden lg:block lg:col-span-5 relative"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -567,7 +567,7 @@ export default function Home() {
 
             {/* Right side: Content & 2x2 Grid of Quantum Services */}
             <motion.div
-              className="lg:col-span-7 order-1 lg:order-2"
+              className="lg:col-span-7"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -588,6 +588,17 @@ export default function Home() {
               <p className="mt-6 text-base leading-relaxed text-slate-600 font-light font-sans max-w-3xl">
                 Our Singapore-based quantum computing and quantum AI consulting team helps enterprises deploy practical research, production-ready algorithms, and next-generation hybrid AI systems.
               </p>
+
+              {/* Mobile Image (Visible on mobile only, placed before points) */}
+              <div className="block lg:hidden mt-8 overflow-hidden rounded-2xl border border-slate-200/30 bg-slate-100 backdrop-blur-sm shadow-md">
+                <img
+                  src="/images/quantum_hero.png"
+                  alt="Quantum Computing Research"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover aspect-[4/3] rounded-2xl"
+                />
+              </div>
               
               <motion.div
                 className="mt-10 grid gap-6 sm:grid-cols-2"
@@ -659,7 +670,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
             {/* Left side: Content & 2x2 Grid of AI Services */}
             <motion.div
-              className="lg:col-span-7 order-1 lg:order-1"
+              className="lg:col-span-7"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -677,6 +688,17 @@ export default function Home() {
               <p className="mt-6 text-base leading-8 text-slate-700 font-light font-sans">
                 Empowering organizations with state-of-the-art predictive algorithms, natural language processing models, and robust governance strategies. We help build ethical, compliant, and highly automated intelligence pipelines.
               </p>
+
+              {/* Mobile Image (Visible on mobile only, placed before points) */}
+              <div className="block lg:hidden mt-8 overflow-hidden rounded-2xl border border-slate-200/30 bg-slate-100 backdrop-blur-sm shadow-md">
+                <img
+                  src="/images/ai_hero.png"
+                  alt="Artificial Intelligence Services Diagram"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover aspect-[4/3] rounded-2xl"
+                />
+              </div>
               
               {/* 2x2 Grid of Points */}
               <motion.div
@@ -712,9 +734,9 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* Right side: Hero Image & Diagnostic Terminal */}
+            {/* Right side: Hero Image & Diagnostic Terminal (Desktop only) */}
             <motion.div
-              className="lg:col-span-5 relative order-2 lg:order-2"
+              className="hidden lg:block lg:col-span-5 relative"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
