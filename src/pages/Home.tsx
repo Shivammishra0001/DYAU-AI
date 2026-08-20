@@ -475,8 +475,8 @@ export default function Home() {
             }}
           />
           {/* Subtle gradient overlay to ensure centered readability */}
-          <div className="absolute inset-0 bg-[#020203]/30" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,#020203_55%)]" />
+          <div className="absolute inset-0 bg-[#020203]/10" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(2,2,3,0.5)_90%)]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl w-full flex flex-col items-center text-center mt-12 md:mt-0">
